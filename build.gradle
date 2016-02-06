@@ -1,0 +1,48 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
+    }
+}
+apply plugin: 'net.minecraftforge.gradle.forge'
+
+version = "1.8.9-r1"
+group= "de.ellpeck.reflection"
+archivesBaseName = "Reflection"
+
+minecraft {
+    version = "1.8.9-11.15.1.1732"
+    runDir = "run"
+
+    mappings = "stable_20"
+    makeObfSourceJar = false
+
+    replaceIn "LibMod.java"
+    replace "@VERSION@", project.version.toString()
+}
+
+dependencies {
+
+
+}
+
+processResources {
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+
+        expand 'version':project.version, 'mcversion':project.minecraft.version
+    }
+
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
