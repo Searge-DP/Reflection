@@ -1,6 +1,8 @@
 package de.ellpeck.reflection.mod.lib;
 
 import de.ellpeck.reflection.api.ReflectionAPI;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class LibMod{
 
@@ -11,6 +13,8 @@ public class LibMod{
 
     private static final String PROXY_BASE = "de.ellpeck.reflection.mod.proxy.";
     public static final String PROXY_CLIENT = PROXY_BASE+"ClientProxy";
-    public static final String PROXY_SERVER = PROXY_BASE+"ServerProxy";
+    public static final String PROXY_SERVER = PROXY_BASE+"CommonProxy";
+
+    public static final Logger LOGGER = LogManager.getLogger(MOD_NAME);
 
 }
