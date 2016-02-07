@@ -1,7 +1,10 @@
 package de.ellpeck.reflection.mod;
 
 import de.ellpeck.reflection.mod.lib.LibMod;
+import de.ellpeck.reflection.mod.network.LightNetwork;
+import de.ellpeck.reflection.mod.world.WorldData;
 import de.ellpeck.reflection.mod.proxy.CommonProxy;
+import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -9,6 +12,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
 
 @Mod(modid = LibMod.MOD_ID, name = LibMod.MOD_NAME, version = LibMod.VERSION)
 public class Reflection{
@@ -32,5 +36,14 @@ public class Reflection{
     @EventHandler
     public void postInit(FMLPostInitializationEvent event){
         proxy.postInit(event);
+    }
+
+    @EventHandler
+    public void serverStarted(FMLServerStartedEvent event){
+        if(LightNetwork.instance == null){
+            LightNetwork.instance = new LightNetwork();
+        }
+
+        WorldData.init(MinecraftServer.getServer());
     }
 }
