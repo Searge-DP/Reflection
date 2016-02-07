@@ -1,7 +1,7 @@
 package de.ellpeck.reflection.mod.proxy;
 
 import de.ellpeck.reflection.mod.tile.TileLightComponent;
-import de.ellpeck.reflection.mod.tile.render.TESRLightComponent;
+import de.ellpeck.reflection.mod.tile.render.LightComponentSpecialRenderer;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -19,7 +19,7 @@ public class ClientProxy extends CommonProxy{
     public void init(FMLInitializationEvent event){
         super.init(event);
 
-        ClientRegistry.bindTileEntitySpecialRenderer(TileLightComponent.class, new TESRLightComponent());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileLightComponent.class, new LightComponentSpecialRenderer());
     }
 
     @Override

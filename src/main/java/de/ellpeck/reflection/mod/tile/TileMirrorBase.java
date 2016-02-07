@@ -1,11 +1,10 @@
 package de.ellpeck.reflection.mod.tile;
 
 import de.ellpeck.reflection.mod.misc.LightNetworkTier;
-import de.ellpeck.reflection.mod.network.LightNetwork;
-import net.minecraft.client.Minecraft;
-import net.minecraft.util.ITickable;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TileMirrorBase extends TileLightComponent implements ITickable{
+public class TileMirrorBase extends TileLightComponent{
 
     @Override
     public LightNetworkTier getTier(){
@@ -22,15 +21,22 @@ public class TileMirrorBase extends TileLightComponent implements ITickable{
         return 2;
     }
 
-    public String toString(){
-        return this.getPos().toString();
+    @Override
+    public int getLightUsage(){
+        return 0;
     }
 
     @Override
-    public void update(){
-        if(!worldObj.isRemote && this.worldObj.getTotalWorldTime()%40 == 0){
-            System.out.println(LightNetwork.instance.allNetworks);
-            System.out.println();
-        }
+    public int getLightGeneration(){
+        return 0;
+    }
+
+    @Override
+    public int getMaxDistanceFromComponent(){
+        return 10;
+    }
+
+    public String toString(){
+        return this.getPos().toString();
     }
 }

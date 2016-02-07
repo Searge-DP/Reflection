@@ -25,6 +25,12 @@ public abstract class TileLightComponent extends TileEntityBase{
 
     public abstract int getMaxConnections();
 
+    public abstract int getLightUsage();
+
+    public abstract int getLightGeneration();
+
+    public abstract int getMaxDistanceFromComponent();
+
     @Override
     public void readNBT(NBTTagCompound compound, boolean sync){
         if(sync){

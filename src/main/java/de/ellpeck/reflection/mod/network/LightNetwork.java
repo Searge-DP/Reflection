@@ -102,11 +102,15 @@ public class LightNetwork{
                     if(!(firstComp.canBeInNetworkWith(secondComp) || secondComp.canBeInNetworkWith(firstComp))){
                         return false;
                     }
-
-                    Set<ConnectionPair> firstConnections = this.getConnectionsForComponent(first, dimension);
-                    Set<ConnectionPair> secondConnections = this.getConnectionsForComponent(second, dimension);
-                    if((firstConnections != null && firstConnections.size() >= firstComp.getMaxConnections()) || (secondConnections != null && secondConnections.size() >= secondComp.getMaxConnections())){
+                    else if(Math.sqrt(first.distanceSq(second)) > Math.min(firstComp.getMaxDistanceFromComponent(), secondComp.getMaxDistanceFromComponent())){
                         return false;
+                    }
+                    else{
+                        Set<ConnectionPair> firstConnections = this.getConnectionsForComponent(first, dimension);
+                        Set<ConnectionPair> secondConnections = this.getConnectionsForComponent(second, dimension);
+                        if((firstConnections != null && firstConnections.size() >= firstComp.getMaxConnections()) || (secondConnections != null && secondConnections.size() >= secondComp.getMaxConnections())){
+                            return false;
+                        }
                     }
                 }
             }
