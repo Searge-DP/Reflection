@@ -4,6 +4,9 @@ import de.ellpeck.reflection.mod.misc.LightNetworkTier;
 import de.ellpeck.reflection.mod.network.LightNetwork;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Set;
 
@@ -50,5 +53,11 @@ public abstract class TileLightComponent extends TileEntityBase{
                 compound.setTag(TAG_CONNECTIONS, list);
             }
         }
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public AxisAlignedBB getRenderBoundingBox(){
+        return INFINITE_EXTENT_AABB;
     }
 }
