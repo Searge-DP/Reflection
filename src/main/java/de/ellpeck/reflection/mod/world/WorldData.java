@@ -21,8 +21,6 @@ public class WorldData extends WorldSavedData{
     private static final String TAG_DIMENSION = "Dim";
     private static final String TAG_NETWORKS = "Networks";
     private static final String TAG_LIGHT_NETWORK = "LightNetwork";
-    private static final String TAG_NETWORK = "Network";
-    private static final String TAG_LIGHT_AMOUNT = "LightAmount";
 
     public WorldData(String name){
         super(name);
@@ -39,16 +37,8 @@ public class WorldData extends WorldSavedData{
 
             NBTTagList allNetworks = dimCompound.getTagList(TAG_NETWORKS, 10);
             for(int networks = 0; networks < allNetworks.tagCount(); networks++){
-
-                LightNetwork newNetwork = new LightNetwork();
                 NBTTagCompound networkCompound = allNetworks.getCompoundTagAt(networks);
-                NBTTagList aNetwork = networkCompound.getTagList(TAG_NETWORK, 10);
-
-                for(int network = 0; network < aNetwork.tagCount(); network++){
-                    NBTTagCompound pairCompound = aNetwork.getCompoundTagAt(network);
-                    LightNetworkHandler.ConnectionPair pair = LightNetworkHandler.ConnectionPair.readFromNBT(pairCompound);
-                    newNetwork.connections.add(pair);
-                }
+                LightNetwork newNetwork = LightNetwork.readFromNBT(networkCompound);
                 networksForDim.add(newNetwork);
             }
             LightNetworkHandler.instance.allNetworks.put(dimension, networksForDim);
@@ -64,16 +54,8 @@ public class WorldData extends WorldSavedData{
 
             NBTTagList allNetworks = new NBTTagList();
             for(LightNetwork network : networks.getValue()){
-
                 NBTTagCompound networkCompound = new NBTTagCompound();
-                NBTTagList aNetwork = new NBTTagList();
-
-                for(LightNetworkHandler.ConnectionPair pair : network.connections){
-                    NBTTagCompound pairCompound = new NBTTagCompound();
-                    pair.writeToNBT(pairCompound);
-                    aNetwork.appendTag(pairCompound);
-                }
-                networkCompound.setTag(TAG_NETWORK, aNetwork);
+                network.writeToNBT(networkCompound);
                 allNetworks.appendTag(networkCompound);
             }
             dimCompound.setTag(TAG_NETWORKS, allNetworks);
