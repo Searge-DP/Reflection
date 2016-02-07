@@ -1,7 +1,7 @@
 package de.ellpeck.reflection.mod;
 
 import de.ellpeck.reflection.mod.lib.LibMod;
-import de.ellpeck.reflection.mod.network.LightNetwork;
+import de.ellpeck.reflection.mod.network.LightNetworkHandler;
 import de.ellpeck.reflection.mod.world.WorldData;
 import de.ellpeck.reflection.mod.proxy.CommonProxy;
 import net.minecraft.server.MinecraftServer;
@@ -40,8 +40,8 @@ public class Reflection{
 
     @EventHandler
     public void serverStarted(FMLServerStartedEvent event){
-        if(LightNetwork.instance == null){
-            LightNetwork.instance = new LightNetwork();
+        if(LightNetworkHandler.instance == null){
+            LightNetworkHandler.instance = new LightNetworkHandler();
         }
 
         WorldData.init(MinecraftServer.getServer());

@@ -2,6 +2,7 @@ package de.ellpeck.reflection.mod.world;
 
 import de.ellpeck.reflection.mod.lib.LibMod;
 import de.ellpeck.reflection.mod.network.LightNetwork;
+import de.ellpeck.reflection.mod.network.LightNetworkHandler;
 import io.netty.util.internal.ConcurrentSet;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -31,45 +32,43 @@ public class WorldData extends WorldSavedData{
     public void readFromNBT(NBTTagCompound compound){
         NBTTagList lightNetworkList = compound.getTagList(TAG_LIGHT_NETWORK, 10);
         for(int lightNetwork = 0; lightNetwork < lightNetworkList.tagCount(); lightNetwork++){
-            Set<LightNetwork.Network> networksForDim = new ConcurrentSet<LightNetwork.Network>();
+            Set<LightNetwork> networksForDim = new ConcurrentSet<LightNetwork>();
 
             NBTTagCompound dimCompound = lightNetworkList.getCompoundTagAt(lightNetwork);
             int dimension = dimCompound.getInteger(TAG_DIMENSION);
 
             NBTTagList allNetworks = dimCompound.getTagList(TAG_NETWORKS, 10);
             for(int networks = 0; networks < allNetworks.tagCount(); networks++){
-                LightNetwork.Network newNetwork = new LightNetwork.Network();
 
+                LightNetwork newNetwork = new LightNetwork();
                 NBTTagCompound networkCompound = allNetworks.getCompoundTagAt(networks);
-                newNetwork.totalLightAmount = networkCompound.getInteger(TAG_LIGHT_AMOUNT);
-
                 NBTTagList aNetwork = networkCompound.getTagList(TAG_NETWORK, 10);
+
                 for(int network = 0; network < aNetwork.tagCount(); network++){
                     NBTTagCompound pairCompound = aNetwork.getCompoundTagAt(network);
-                    LightNetwork.ConnectionPair pair = LightNetwork.ConnectionPair.readFromNBT(pairCompound);
+                    LightNetworkHandler.ConnectionPair pair = LightNetworkHandler.ConnectionPair.readFromNBT(pairCompound);
                     newNetwork.connections.add(pair);
                 }
                 networksForDim.add(newNetwork);
             }
-            LightNetwork.instance.allNetworks.put(dimension, networksForDim);
+            LightNetworkHandler.instance.allNetworks.put(dimension, networksForDim);
         }
     }
 
     @Override
     public void writeToNBT(NBTTagCompound compound){
         NBTTagList lightNetworkList = new NBTTagList();
-        for(Map.Entry<Integer, Set<LightNetwork.Network>> networks : LightNetwork.instance.allNetworks.entrySet()){
+        for(Map.Entry<Integer, Set<LightNetwork>> networks : LightNetworkHandler.instance.allNetworks.entrySet()){
             NBTTagCompound dimCompound = new NBTTagCompound();
             dimCompound.setInteger(TAG_DIMENSION, networks.getKey());
 
             NBTTagList allNetworks = new NBTTagList();
-            for(LightNetwork.Network network : networks.getValue()){
+            for(LightNetwork network : networks.getValue()){
 
                 NBTTagCompound networkCompound = new NBTTagCompound();
-                networkCompound.setInteger(TAG_LIGHT_AMOUNT, network.totalLightAmount);
-
                 NBTTagList aNetwork = new NBTTagList();
-                for(LightNetwork.ConnectionPair pair : network.connections){
+
+                for(LightNetworkHandler.ConnectionPair pair : network.connections){
                     NBTTagCompound pairCompound = new NBTTagCompound();
                     pair.writeToNBT(pairCompound);
                     aNetwork.appendTag(pairCompound);
@@ -84,9 +83,9 @@ public class WorldData extends WorldSavedData{
     }
 
     public static void clearOldData(){
-        if(!LightNetwork.instance.allNetworks.isEmpty()){
+        if(!LightNetworkHandler.instance.allNetworks.isEmpty()){
             LibMod.LOGGER.info("Clearing LightNetwork Data from other worlds...");
-            LightNetwork.instance.allNetworks.clear();
+            LightNetworkHandler.instance.allNetworks.clear();
         }
     }
 

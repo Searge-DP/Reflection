@@ -1,6 +1,6 @@
 package de.ellpeck.reflection.mod.tile.render;
 
-import de.ellpeck.reflection.mod.network.LightNetwork;
+import de.ellpeck.reflection.mod.network.LightNetworkHandler;
 import de.ellpeck.reflection.mod.tile.TileLightComponent;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -17,7 +17,7 @@ public class LightComponentSpecialRenderer extends TileEntitySpecialRenderer<Til
 
     @Override
     public void renderTileEntityAt(TileLightComponent te, double x, double y, double z, float partialTicks, int destroyStage){
-        Set<LightNetwork.ConnectionPair> connections = LightNetwork.instance.getConnectionsForComponent(te.getPos(), te.getWorld().provider.getDimensionId());
+        Set<LightNetworkHandler.ConnectionPair> connections = LightNetworkHandler.instance.getConnectionsForComponent(te.getPos(), te.getWorld().provider.getDimensionId());
         if(connections != null){
             this.bindTexture(beaconBeam);
             Tessellator tessy = Tessellator.getInstance();
@@ -28,7 +28,7 @@ public class LightComponentSpecialRenderer extends TileEntitySpecialRenderer<Til
             float g = colors[1];
             float b = colors[2];
 
-            for(LightNetwork.ConnectionPair pair : connections){
+            for(LightNetworkHandler.ConnectionPair pair : connections){
                 if(te.getPos().equals(pair.first)){
 
                     double secondX = pair.second.getX()-x;

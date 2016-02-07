@@ -1,7 +1,7 @@
 package de.ellpeck.reflection.mod.items;
 
 import de.ellpeck.reflection.mod.tile.TileLightComponent;
-import de.ellpeck.reflection.mod.network.LightNetwork;
+import de.ellpeck.reflection.mod.network.LightNetworkHandler;
 import de.ellpeck.reflection.mod.util.VanillaPacketHandler;
 import de.ellpeck.reflection.mod.util.WorldUtil;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,7 +27,7 @@ public class ItemLightConnector extends ItemBase{
                     TileLightComponent second = this.getPosition(stack, world);
                     stack.setTagCompound(new NBTTagCompound());
                     if(second != null){
-                        if(LightNetwork.instance.addConnection(posHit, second.getPos(), world, true)){
+                        if(LightNetworkHandler.instance.addConnection(posHit, second.getPos(), world, true)){
                             VanillaPacketHandler.sendTilePacketToAllAround(tile);
                             VanillaPacketHandler.sendTilePacketToAllAround(second);
 

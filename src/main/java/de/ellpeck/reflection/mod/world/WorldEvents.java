@@ -1,6 +1,6 @@
 package de.ellpeck.reflection.mod.world;
 
-import de.ellpeck.reflection.mod.network.LightNetwork;
+import de.ellpeck.reflection.mod.network.LightNetworkHandler;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -8,8 +8,8 @@ public class WorldEvents{
 
     @SubscribeEvent
     public void onLoad(WorldEvent.Load event){
-        if(LightNetwork.instance == null){
-            LightNetwork.instance = new LightNetwork();
+        if(LightNetworkHandler.instance == null){
+            LightNetworkHandler.instance = new LightNetworkHandler();
         }
     }
 
