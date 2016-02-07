@@ -1,6 +1,7 @@
 package de.ellpeck.reflection.mod.proxy;
 
 import de.ellpeck.reflection.mod.blocks.InitBlocks;
+import de.ellpeck.reflection.mod.items.InitItems;
 import de.ellpeck.reflection.mod.world.WorldEvents;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -12,6 +13,7 @@ public class CommonProxy{
 
     public void preInit(FMLPreInitializationEvent event){
         InitBlocks.preInit();
+        InitItems.preInit();
     }
 
     public void init(FMLInitializationEvent event){

@@ -16,12 +16,12 @@ public class WorldData extends WorldSavedData{
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound nbt){
+    public void readFromNBT(NBTTagCompound compound){
 
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbt){
+    public void writeToNBT(NBTTagCompound compound){
 
     }
 

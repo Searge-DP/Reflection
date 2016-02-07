@@ -1,16 +1,20 @@
 package de.ellpeck.reflection.mod.tile;
 
-import net.minecraft.util.ITickable;
+import de.ellpeck.reflection.mod.misc.LightNetworkTier;
 
-public class TileMirrorBase extends TileEntityBase implements ITickable{
+public class TileMirrorBase extends TileLightComponent{
 
     @Override
-    public void invalidate(){
-
+    public LightNetworkTier getTier(){
+        return null;
     }
 
     @Override
-    public void update(){
+    public boolean canBeInNetworkWith(TileLightComponent component){
+        return this.getTier() == component.getTier();
+    }
 
+    public String toString(){
+        return this.getPos().toString();
     }
 }
