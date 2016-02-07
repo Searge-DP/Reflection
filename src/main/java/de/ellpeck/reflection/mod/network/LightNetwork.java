@@ -40,15 +40,6 @@ public class LightNetwork{
         WorldData.makeDirty();
     }
 
-    public Set<Network> getNetworkListForNetwork(Network network){
-        for(Set<Network> networks : this.allNetworks.values()){
-            if(networks.contains(network)){
-                return networks;
-            }
-        }
-        return null;
-    }
-
     public Set<ConnectionPair> getConnectionsForComponent(BlockPos component, int dimension){
         Set<ConnectionPair> connections = new ConcurrentSet<ConnectionPair>();
 
@@ -79,7 +70,7 @@ public class LightNetwork{
     public void removeConnections(BlockPos component, World world){
         Network network = this.getNetworkForComponent(component, world.provider.getDimensionId());
         if(network != null){
-            this.getNetworkListForNetwork(network).remove(network);
+            this.removeNetwork(network, world.provider.getDimensionId());
 
             for(ConnectionPair pair : network.connections){
                 if(!pair.contains(component)){
@@ -98,6 +89,7 @@ public class LightNetwork{
             return false;
         }
         else{
+            int dimension = world.provider.getDimensionId();
             if(validate){
                 TileEntity firstTile = world.getTileEntity(first);
                 TileEntity secondTile = world.getTileEntity(second);
@@ -110,10 +102,15 @@ public class LightNetwork{
                     if(!(firstComp.canBeInNetworkWith(secondComp) || secondComp.canBeInNetworkWith(firstComp))){
                         return false;
                     }
+
+                    Set<ConnectionPair> firstConnections = this.getConnectionsForComponent(first, dimension);
+                    Set<ConnectionPair> secondConnections = this.getConnectionsForComponent(second, dimension);
+                    if((firstConnections != null && firstConnections.size() >= firstComp.getMaxConnections()) || (secondConnections != null && secondConnections.size() >= secondComp.getMaxConnections())){
+                        return false;
+                    }
                 }
             }
 
-            int dimension = world.provider.getDimensionId();
             Network firstNet = this.getNetworkForComponent(first, dimension);
             Network secondNet = this.getNetworkForComponent(second, dimension);
 
@@ -132,7 +129,7 @@ public class LightNetwork{
                 firstNet.connections.add(new ConnectionPair(first, second));
             }
             else{
-                this.mergeNetworks(firstNet, secondNet);
+                this.mergeNetworks(firstNet, secondNet, dimension);
                 firstNet.connections.add(new ConnectionPair(first, second));
             }
         }
@@ -142,11 +139,11 @@ public class LightNetwork{
     }
 
 
-    private void mergeNetworks(Network first, Network second){
+    private void mergeNetworks(Network first, Network second, int dimension){
         for(ConnectionPair pair : second.connections){
             first.connections.add(pair);
         }
-        this.getNetworkListForNetwork(second).remove(second);
+        this.removeNetwork(second, dimension);
 
         WorldData.makeDirty();
     }
@@ -178,8 +175,8 @@ public class LightNetwork{
             compound.setTag(TAG_FIRST, firstCompound);
 
             NBTTagCompound secondCompound = new NBTTagCompound();
-            WorldUtil.writeBlockPosToNBT(firstCompound, this.second);
-            compound.setTag(TAG_SECOND, firstCompound);
+            WorldUtil.writeBlockPosToNBT(secondCompound, this.second);
+            compound.setTag(TAG_SECOND, secondCompound);
         }
 
         public static ConnectionPair readFromNBT(NBTTagCompound compound){
@@ -193,13 +190,14 @@ public class LightNetwork{
     public static class Network{
 
         public Set<ConnectionPair> connections;
+        public int totalLightAmount;
 
         public Network(){
             this.connections = new ConcurrentSet<ConnectionPair>();
         }
 
         public String toString(){
-            return this.connections.toString();
+            return this.connections.toString()+" @ "+this.totalLightAmount+" Light";
         }
 
     }

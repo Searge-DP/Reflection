@@ -1,7 +1,19 @@
 package de.ellpeck.reflection.mod.misc;
 
-public abstract class LightNetworkTier{
+import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.item.EnumDyeColor;
 
-    public abstract int getTierAsInt();
+public class LightNetworkTier{
 
+    public static final LightNetworkTier BASE_TIER = new LightNetworkTier(EntitySheep.func_175513_a(EnumDyeColor.GREEN));
+
+    private float[] colors;
+
+    public LightNetworkTier(float[] colors){
+        this.colors = colors;
+    }
+
+    public float[] getColors(){
+        return this.colors;
+    }
 }

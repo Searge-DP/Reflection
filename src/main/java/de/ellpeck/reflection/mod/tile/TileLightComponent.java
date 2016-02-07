@@ -23,6 +23,8 @@ public abstract class TileLightComponent extends TileEntityBase{
 
     public abstract boolean canBeInNetworkWith(TileLightComponent component);
 
+    public abstract int getMaxConnections();
+
     @Override
     public void readNBT(NBTTagCompound compound, boolean sync){
         if(sync){
