@@ -1,5 +1,6 @@
 package de.ellpeck.reflection.mod.items;
 
+import de.ellpeck.reflection.mod.network.LightNetwork;
 import de.ellpeck.reflection.mod.tile.TileLightComponent;
 import de.ellpeck.reflection.mod.network.LightNetworkHandler;
 import de.ellpeck.reflection.mod.util.VanillaPacketHandler;
@@ -23,23 +24,34 @@ public class ItemLightConnector extends ItemBase{
         TileEntity tile = world.getTileEntity(posHit);
         if(tile instanceof TileLightComponent){
             if(!world.isRemote){
-                if(this.hasStoredPosition(stack)){
-                    TileLightComponent second = this.getPosition(stack, world);
-                    stack.setTagCompound(new NBTTagCompound());
-                    if(second != null){
-                        if(LightNetworkHandler.instance.addConnection(posHit, second.getPos(), world, true)){
-                            VanillaPacketHandler.sendTilePacketToAllAround(tile);
-                            VanillaPacketHandler.sendTilePacketToAllAround(second);
+                if(player.isSneaking()){
+                    if(this.hasStoredPosition(stack)){
+                        TileLightComponent second = this.getPosition(stack, world);
+                        stack.setTagCompound(new NBTTagCompound());
+                        if(second != null){
+                            if(LightNetworkHandler.instance.addConnection(posHit, second.getPos(), world, true)){
+                                VanillaPacketHandler.sendTilePacketToAllAround(tile);
+                                VanillaPacketHandler.sendTilePacketToAllAround(second);
 
-                            return true;
+                                return true;
+                            }
+                            else{
+                                return false;
+                            }
                         }
-                        else{
-                            return false;
-                        }
+                    }
+                    else{
+                        this.storePosition(stack, (TileLightComponent)tile);
                     }
                 }
                 else{
-                    this.storePosition(stack, (TileLightComponent)tile);
+                    LightNetwork network = LightNetworkHandler.instance.getNetworkForComponent(posHit, world.provider.getDimensionId());
+                    if(network != null){
+                        System.out.println(network.lightGenAndUsage);
+                        network.addLightGen(tile, world.rand.nextInt(30));
+                        System.out.println(network.lightGenAndUsage);
+                        System.out.println();
+                    }
                 }
             }
             return true;

@@ -68,15 +68,25 @@ public class LightNetworkHandler{
     }
 
     public void removeConnections(BlockPos component, World world){
-        LightNetwork network = this.getNetworkForComponent(component, world.provider.getDimensionId());
-        if(network != null){
-            this.removeNetwork(network, world.provider.getDimensionId());
+        LightNetwork oldNetwork = this.getNetworkForComponent(component, world.provider.getDimensionId());
+        if(oldNetwork != null){
+            this.removeNetwork(oldNetwork, world.provider.getDimensionId());
 
-            for(ConnectionPair pair : network.connections){
+            for(ConnectionPair pair : oldNetwork.connections){
                 if(!pair.contains(component)){
                     this.addConnection(pair.first, pair.second, world, false);
                 }
             }
+
+            for(Map.Entry<BlockPos, Integer> entry : oldNetwork.lightGenAndUsage.entrySet()){
+                if(!entry.getKey().equals(component)){
+                    LightNetwork newNetwork = this.getNetworkForComponent(entry.getKey(), world.provider.getDimensionId());
+                    if(newNetwork != null){
+                        newNetwork.lightGenAndUsage.put(entry.getKey(), entry.getValue());
+                    }
+                }
+            }
+
             WorldData.makeDirty();
         }
     }
@@ -144,9 +154,9 @@ public class LightNetworkHandler{
 
 
     private void mergeNetworks(LightNetwork first, LightNetwork second, int dimension){
-        for(ConnectionPair pair : second.connections){
-            first.connections.add(pair);
-        }
+        first.connections.addAll(second.connections);
+        first.lightGenAndUsage.putAll(second.lightGenAndUsage);
+
         this.removeNetwork(second, dimension);
 
         WorldData.makeDirty();
