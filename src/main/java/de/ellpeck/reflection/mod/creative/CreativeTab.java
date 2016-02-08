@@ -21,9 +21,8 @@ import java.util.List;
 
 public class CreativeTab extends CreativeTabs{
 
-    private List<ItemStack> list;
-
     public static CreativeTab instance = new CreativeTab();
+    private List<ItemStack> list;
 
     public CreativeTab(){
         super(LibMod.MOD_ID);

@@ -13,7 +13,6 @@ package de.ellpeck.reflection.api.light.render;
 import de.ellpeck.reflection.api.ReflectionAPI;
 import de.ellpeck.reflection.api.internal.IConnectionPair;
 import de.ellpeck.reflection.api.light.ILightComponent;
-import de.ellpeck.reflection.api.light.TileLightComponent;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;

@@ -14,7 +14,6 @@ import de.ellpeck.reflection.api.ReflectionAPI;
 import de.ellpeck.reflection.api.internal.ILightNetwork;
 import de.ellpeck.reflection.mod.lib.LibMod;
 import de.ellpeck.reflection.mod.network.LightNetwork;
-import de.ellpeck.reflection.mod.network.LightNetworkHandler;
 import io.netty.util.internal.ConcurrentSet;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -28,14 +27,50 @@ import java.util.Set;
 public class WorldData extends WorldSavedData{
 
     public static final String DATA_TAG = LibMod.MOD_NAME+"WorldData";
-    private static WorldData instance;
-
     private static final String TAG_DIMENSION = "Dim";
     private static final String TAG_NETWORKS = "Networks";
     private static final String TAG_LIGHT_NETWORK = "LightNetwork";
+    private static WorldData instance;
 
     public WorldData(String name){
         super(name);
+    }
+
+    public static void clearOldData(){
+        if(!ReflectionAPI.theLightNetworkHandler.getAllNetworks().isEmpty()){
+            LibMod.LOGGER.info("Clearing LightNetwork Data from other worlds...");
+            ReflectionAPI.theLightNetworkHandler.getAllNetworks().clear();
+        }
+    }
+
+    public static void makeDirty(){
+        if(instance != null){
+            instance.markDirty();
+        }
+    }
+
+    public static void init(MinecraftServer server){
+        if(server != null){
+            World world = server.getEntityWorld();
+            if(!world.isRemote){
+                clearOldData();
+                LibMod.LOGGER.info("Loading WorldData!");
+
+                WorldData savedData = (WorldData)world.loadItemData(WorldData.class, DATA_TAG);
+
+                if(savedData == null){
+                    LibMod.LOGGER.info("No WorldData found, creating...");
+
+                    savedData = new WorldData(DATA_TAG);
+                    world.setItemData(DATA_TAG, savedData);
+                }
+                else{
+                    LibMod.LOGGER.info("WorldData successfully received!");
+                }
+
+                instance = savedData;
+            }
+        }
     }
 
     @Override
@@ -74,43 +109,6 @@ public class WorldData extends WorldSavedData{
             lightNetworkList.appendTag(dimCompound);
         }
         compound.setTag(TAG_LIGHT_NETWORK, lightNetworkList);
-    }
-
-    public static void clearOldData(){
-        if(!ReflectionAPI.theLightNetworkHandler.getAllNetworks().isEmpty()){
-            LibMod.LOGGER.info("Clearing LightNetwork Data from other worlds...");
-            ReflectionAPI.theLightNetworkHandler.getAllNetworks().clear();
-        }
-    }
-
-    public static void makeDirty(){
-        if(instance != null){
-            instance.markDirty();
-        }
-    }
-
-    public static void init(MinecraftServer server){
-        if(server != null){
-            World world = server.getEntityWorld();
-            if(!world.isRemote){
-                clearOldData();
-                LibMod.LOGGER.info("Loading WorldData!");
-
-                WorldData savedData = (WorldData)world.loadItemData(WorldData.class, DATA_TAG);
-
-                if(savedData == null){
-                    LibMod.LOGGER.info("No WorldData found, creating...");
-
-                    savedData = new WorldData(DATA_TAG);
-                    world.setItemData(DATA_TAG, savedData);
-                }
-                else{
-                    LibMod.LOGGER.info("WorldData successfully received!");
-                }
-
-                instance = savedData;
-            }
-        }
     }
 
 }

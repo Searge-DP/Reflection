@@ -16,9 +16,9 @@ import net.minecraft.world.World;
 /**
  * A light component
  * Implement this on a TileEntity that that generates or uses light and/or can be connected to a light network
- *
+ * <p>
  * For a pre-made implementation, see TileLightComponent.
- *
+ * <p>
  * IT IS VERY IMPORTANT THAT YOU REMOVE THE CONNECTIONS OF THIS COMPONENT IN THE TILE's invalidate() METHOD!!!
  * (Also see TileLightComponent for more precise information)
  */
@@ -33,7 +33,7 @@ public interface ILightComponent{
      * Checks if this component can be in a network with another component.
      * Note that this is called for both components and if at least one of them
      * returns true, the connection will be made.
-     *
+     * <p>
      * So it isn't certain that, if you return true here, the connection won't happen.
      *
      * @param component The component to connect to

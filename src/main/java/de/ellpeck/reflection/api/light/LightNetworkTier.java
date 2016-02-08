@@ -15,7 +15,7 @@ import net.minecraft.item.EnumDyeColor;
 
 /**
  * A light network tier
- *
+ * <p>
  * New tiers can be added and don't have to be registered
  */
 public class LightNetworkTier{

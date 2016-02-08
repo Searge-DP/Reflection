@@ -37,6 +37,27 @@ public class LightNetwork implements ILightNetwork{
         this.lightGenAndUsage = new HashMap<BlockPos, Integer>();
     }
 
+    public static LightNetwork readFromNBT(NBTTagCompound compound){
+        LightNetwork newNetwork = new LightNetwork();
+
+        NBTTagList light = compound.getTagList(TAG_LIGHT, 10);
+        for(int i = 0; i < light.tagCount(); i++){
+            NBTTagCompound lightCompound = light.getCompoundTagAt(i);
+            BlockPos pos = WorldUtil.readBlockPosFromNBT(lightCompound);
+            int amount = lightCompound.getInteger(TAG_AMOUNT);
+            newNetwork.lightGenAndUsage.put(pos, amount);
+        }
+
+        NBTTagList aNetwork = compound.getTagList(TAG_NETWORK, 10);
+        for(int i = 0; i < aNetwork.tagCount(); i++){
+            NBTTagCompound pairCompound = aNetwork.getCompoundTagAt(i);
+            LightNetworkHandler.ConnectionPair pair = LightNetworkHandler.ConnectionPair.readFromNBT(pairCompound);
+            newNetwork.connections.add(pair);
+        }
+
+        return newNetwork;
+    }
+
     @Override
     public void addLightUser(TileEntity tile, int amount){
         this.lightGenAndUsage.put(tile.getPos(), -amount);
@@ -67,7 +88,7 @@ public class LightNetwork implements ILightNetwork{
         int used = 0;
         for(Map.Entry<BlockPos, Integer> entry : this.lightGenAndUsage.entrySet()){
             if((tile == null || !entry.getKey().equals(tile.getPos())) && entry.getValue() < 0){
-                used+=entry.getValue();
+                used += entry.getValue();
             }
         }
         return used;
@@ -83,7 +104,7 @@ public class LightNetwork implements ILightNetwork{
         int generated = 0;
         for(Map.Entry<BlockPos, Integer> entry : this.lightGenAndUsage.entrySet()){
             if((tile == null || !entry.getKey().equals(tile.getPos())) && entry.getValue() > 0){
-                generated+=entry.getValue();
+                generated += entry.getValue();
             }
         }
         return generated;
@@ -99,7 +120,7 @@ public class LightNetwork implements ILightNetwork{
         int light = 0;
         for(Map.Entry<BlockPos, Integer> entry : this.lightGenAndUsage.entrySet()){
             if(tile == null || !entry.getKey().equals(tile.getPos())){
-                light+=entry.getValue();
+                light += entry.getValue();
             }
         }
         return light;
@@ -137,26 +158,5 @@ public class LightNetwork implements ILightNetwork{
             aNetwork.appendTag(pairCompound);
         }
         compound.setTag(TAG_NETWORK, aNetwork);
-    }
-
-    public static LightNetwork readFromNBT(NBTTagCompound compound){
-        LightNetwork newNetwork = new LightNetwork();
-
-        NBTTagList light = compound.getTagList(TAG_LIGHT, 10);
-        for(int i = 0; i < light.tagCount(); i++){
-            NBTTagCompound lightCompound = light.getCompoundTagAt(i);
-            BlockPos pos = WorldUtil.readBlockPosFromNBT(lightCompound);
-            int amount = lightCompound.getInteger(TAG_AMOUNT);
-            newNetwork.lightGenAndUsage.put(pos, amount);
-        }
-
-        NBTTagList aNetwork = compound.getTagList(TAG_NETWORK, 10);
-        for(int i = 0; i < aNetwork.tagCount(); i++){
-            NBTTagCompound pairCompound = aNetwork.getCompoundTagAt(i);
-            LightNetworkHandler.ConnectionPair pair = LightNetworkHandler.ConnectionPair.readFromNBT(pairCompound);
-            newNetwork.connections.add(pair);
-        }
-
-        return newNetwork;
     }
 }

@@ -65,14 +65,14 @@ public interface ILightNetwork{
 
     /**
      * Gets the total amount of light in the network.
-     *
+     * <p>
      * This returns the amount of light generated minus the amount of light used.
      */
     int getTotalLight();
 
     /**
      * Gets the total amount of light in the network minus the given tile.
-     *
+     * <p>
      * This returns the amount of light generated minus the given tile minus the amount of light used minus the given tile.
      */
     int getTotalLightExcluded(TileEntity tile);
@@ -84,7 +84,7 @@ public interface ILightNetwork{
 
     /**
      * Gets a map of all light users and generators.
-     *
+     * <p>
      * Light users have a negative value, light generators have a positive value.
      */
     Map<BlockPos, Integer> getLightGenAndUsageMap();

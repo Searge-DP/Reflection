@@ -22,7 +22,7 @@ import net.minecraft.world.World;
 /**
  * An internal class for a basic TileEntity.
  * Do not extend this directly.
- *
+ * <p>
  * Note how this disallows TileLightComponent from using readFromNBT and writeToNBT
  * directly. When writing/reading to/from NBT, use writeNBT and readNBT.
  */
@@ -54,6 +54,7 @@ public class TileEntityBase extends TileEntity{
 
     /**
      * Writes data to NBT.
+     *
      * @param sync true for getDescriptionPacket(), false for writeToNBT()
      */
     public void writeNBT(NBTTagCompound compound, boolean sync){
@@ -62,6 +63,7 @@ public class TileEntityBase extends TileEntity{
 
     /**
      * Reads data from NBT.
+     *
      * @param sync true for onDataPacket(), false for readFromNBT()
      */
     public void readNBT(NBTTagCompound compound, boolean sync){

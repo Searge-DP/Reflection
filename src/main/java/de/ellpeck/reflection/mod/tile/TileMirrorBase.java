@@ -11,8 +11,8 @@
 package de.ellpeck.reflection.mod.tile;
 
 import de.ellpeck.reflection.api.light.ILightComponent;
-import de.ellpeck.reflection.api.light.TileLightComponent;
 import de.ellpeck.reflection.api.light.LightNetworkTier;
+import de.ellpeck.reflection.api.light.TileLightComponent;
 
 public class TileMirrorBase extends TileLightComponent{
 

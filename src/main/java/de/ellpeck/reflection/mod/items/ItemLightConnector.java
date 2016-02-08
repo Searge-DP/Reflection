@@ -12,8 +12,6 @@ package de.ellpeck.reflection.mod.items;
 
 import de.ellpeck.reflection.api.ReflectionAPI;
 import de.ellpeck.reflection.api.light.ILightComponent;
-import de.ellpeck.reflection.mod.network.LightNetworkHandler;
-import de.ellpeck.reflection.api.light.TileLightComponent;
 import de.ellpeck.reflection.mod.util.VanillaPacketHandler;
 import de.ellpeck.reflection.mod.util.WorldUtil;
 import net.minecraft.entity.player.EntityPlayer;

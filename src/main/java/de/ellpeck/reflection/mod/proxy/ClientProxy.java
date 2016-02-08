@@ -10,7 +10,6 @@
 
 package de.ellpeck.reflection.mod.proxy;
 
-import de.ellpeck.reflection.api.light.TileLightComponent;
 import de.ellpeck.reflection.api.light.render.LightComponentSpecialRenderer;
 import de.ellpeck.reflection.mod.tile.TileMirrorBase;
 import net.minecraftforge.fml.client.registry.ClientRegistry;

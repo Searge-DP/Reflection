@@ -11,9 +11,8 @@
 package de.ellpeck.reflection.mod;
 
 import de.ellpeck.reflection.mod.lib.LibMod;
-import de.ellpeck.reflection.mod.network.LightNetworkHandler;
-import de.ellpeck.reflection.mod.world.WorldData;
 import de.ellpeck.reflection.mod.proxy.CommonProxy;
+import de.ellpeck.reflection.mod.world.WorldData;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;

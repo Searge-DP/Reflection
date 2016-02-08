@@ -10,7 +10,6 @@
 
 package de.ellpeck.reflection.mod.world;
 
-import de.ellpeck.reflection.mod.network.LightNetworkHandler;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 

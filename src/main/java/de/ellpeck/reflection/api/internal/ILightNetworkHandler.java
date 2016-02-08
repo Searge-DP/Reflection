@@ -11,7 +11,6 @@
 package de.ellpeck.reflection.api.internal;
 
 import de.ellpeck.reflection.api.light.ILightComponent;
-import de.ellpeck.reflection.api.light.TileLightComponent;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
@@ -49,7 +48,7 @@ public interface ILightNetworkHandler{
 
     /**
      * Gets all of the connections a component is directly involved in.
-     *
+     * <p>
      * This is different from getNetworkForComponent() as it only returns the
      * connections the component is directly part of.
      * This means that in a network with connections like this: component1-component2-component3,
@@ -59,7 +58,7 @@ public interface ILightNetworkHandler{
 
     /**
      * Adds a connection between two components
-     *
+     * <p>
      * Will add them to a new network if they're not in one,
      * merge the networks if they are in separate ones etc.
      *
