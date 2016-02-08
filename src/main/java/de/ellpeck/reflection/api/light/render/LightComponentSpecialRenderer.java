@@ -1,8 +1,7 @@
-package de.ellpeck.reflection.mod.tile.render;
+package de.ellpeck.reflection.api.light.render;
 
 import de.ellpeck.reflection.api.ReflectionAPI;
 import de.ellpeck.reflection.api.internal.IConnectionPair;
-import de.ellpeck.reflection.mod.network.LightNetworkHandler;
 import de.ellpeck.reflection.api.light.TileLightComponent;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -13,6 +12,14 @@ import net.minecraft.util.ResourceLocation;
 
 import java.util.Set;
 
+/**
+ * A TileLightComponent's TESR.
+ * This renders the light beams between two connections in a network.
+ * Be sure to use ClientRegistry.bindTileEntitySpecialRenderer for every component
+ * that should render the light beam.
+ * If you want a tile to have an extra TESR, then override this class and call
+ * super in renderTileEntityAt().
+ */
 public class LightComponentSpecialRenderer extends TileEntitySpecialRenderer<TileLightComponent>{
 
     private static final ResourceLocation beaconBeam = new ResourceLocation("textures/entity/beacon_beam.png");

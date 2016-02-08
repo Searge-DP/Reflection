@@ -1,4 +1,4 @@
-package de.ellpeck.reflection.api.light;
+package de.ellpeck.reflection.api.internal;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
@@ -9,6 +9,13 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
+/**
+ * An internal class for a basic TileEntity.
+ * Do not extend this directly.
+ *
+ * Note how this disallows TileLightComponent from using readFromNBT and writeToNBT
+ * directly. When writing/reading to/from NBT, use writeNBT and readNBT.
+ */
 public class TileEntityBase extends TileEntity{
 
     @Override
@@ -35,10 +42,18 @@ public class TileEntityBase extends TileEntity{
         this.writeNBT(compound, false);
     }
 
+    /**
+     * Writes data to NBT.
+     * @param sync true for getDescriptionPacket(), false for writeToNBT()
+     */
     public void writeNBT(NBTTagCompound compound, boolean sync){
 
     }
 
+    /**
+     * Reads data from NBT.
+     * @param sync true for onDataPacket(), false for readFromNBT()
+     */
     public void readNBT(NBTTagCompound compound, boolean sync){
 
     }
