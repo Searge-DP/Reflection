@@ -1,6 +1,6 @@
 package de.ellpeck.reflection.mod.proxy;
 
-import de.ellpeck.reflection.mod.tile.TileLightComponent;
+import de.ellpeck.reflection.api.light.TileLightComponent;
 import de.ellpeck.reflection.mod.tile.render.LightComponentSpecialRenderer;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;

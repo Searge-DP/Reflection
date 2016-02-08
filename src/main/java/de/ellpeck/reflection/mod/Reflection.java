@@ -40,10 +40,6 @@ public class Reflection{
 
     @EventHandler
     public void serverStarted(FMLServerStartedEvent event){
-        if(LightNetworkHandler.instance == null){
-            LightNetworkHandler.instance = new LightNetworkHandler();
-        }
-
         WorldData.init(MinecraftServer.getServer());
     }
 }

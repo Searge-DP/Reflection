@@ -1,4 +1,4 @@
-package de.ellpeck.reflection.mod.tile;
+package de.ellpeck.reflection.api.light;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;

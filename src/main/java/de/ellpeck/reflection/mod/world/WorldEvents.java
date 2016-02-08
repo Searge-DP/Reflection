@@ -7,11 +7,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class WorldEvents{
 
     @SubscribeEvent
-    public void onLoad(WorldEvent.Load event){
-
-    }
-
-    @SubscribeEvent
     public void onUnload(WorldEvent.Unload event){
         WorldData.makeDirty();
     }

@@ -1,4 +1,4 @@
-package de.ellpeck.reflection.mod.misc;
+package de.ellpeck.reflection.api.light;
 
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.item.EnumDyeColor;

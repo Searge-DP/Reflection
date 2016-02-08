@@ -1,7 +1,9 @@
 package de.ellpeck.reflection.mod.tile.render;
 
+import de.ellpeck.reflection.api.ReflectionAPI;
+import de.ellpeck.reflection.api.internal.IConnectionPair;
 import de.ellpeck.reflection.mod.network.LightNetworkHandler;
-import de.ellpeck.reflection.mod.tile.TileLightComponent;
+import de.ellpeck.reflection.api.light.TileLightComponent;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
@@ -17,7 +19,7 @@ public class LightComponentSpecialRenderer extends TileEntitySpecialRenderer<Til
 
     @Override
     public void renderTileEntityAt(TileLightComponent te, double x, double y, double z, float partialTicks, int destroyStage){
-        Set<LightNetworkHandler.ConnectionPair> connections = LightNetworkHandler.instance.getConnectionsForComponent(te.getPos(), te.getWorld().provider.getDimensionId());
+        Set<IConnectionPair> connections = ReflectionAPI.theLightNetworkHandler.getConnectionsForComponent(te.getPos(), te.getWorld().provider.getDimensionId());
         if(connections != null){
             this.bindTexture(beaconBeam);
             Tessellator tessy = Tessellator.getInstance();
@@ -28,12 +30,12 @@ public class LightComponentSpecialRenderer extends TileEntitySpecialRenderer<Til
             float g = colors[1];
             float b = colors[2];
 
-            for(LightNetworkHandler.ConnectionPair pair : connections){
-                if(te.getPos().equals(pair.first)){
+            for(IConnectionPair pair : connections){
+                if(te.getPos().equals(pair.getFirst())){
 
-                    double secondX = pair.second.getX()-x;
-                    double secondY = pair.second.getY()-y;
-                    double secondZ = pair.second.getZ()-z;
+                    double secondX = pair.getSecond().getX()-x;
+                    double secondY = pair.getSecond().getY()-y;
+                    double secondZ = pair.getSecond().getZ()-z;
 
                     //TODO Fix this because I don't get it whatsoever
                     GlStateManager.translate(x, y, z);
