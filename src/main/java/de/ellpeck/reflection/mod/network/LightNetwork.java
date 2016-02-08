@@ -33,6 +33,42 @@ public class LightNetwork{
         this.lightGenAndUsage.put(tile.getPos(), amount);
     }
 
+    public void removeLightUser(TileEntity tile){
+        this.lightGenAndUsage.remove(tile.getPos());
+    }
+
+    public void removeLightGen(TileEntity tile){
+        this.lightGenAndUsage.remove(tile.getPos());
+    }
+
+    public int getTotalLightUsed(){
+        int used = 0;
+        for(int light : this.lightGenAndUsage.values()){
+            if(light < 0){
+                used+=light;
+            }
+        }
+        return used;
+    }
+
+    public int getTotalLightGenerated(){
+        int generated = 0;
+        for(int light : this.lightGenAndUsage.values()){
+            if(light > 0){
+                generated+=light;
+            }
+        }
+        return generated;
+    }
+
+    public int getTotalLightLeft(){
+        int left = 0;
+        for(int light : this.lightGenAndUsage.values()){
+            left+=light;
+        }
+        return left;
+    }
+
     public String toString(){
         return this.connections.toString();
     }
