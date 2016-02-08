@@ -8,9 +8,7 @@ public class WorldEvents{
 
     @SubscribeEvent
     public void onLoad(WorldEvent.Load event){
-        if(LightNetworkHandler.instance == null){
-            LightNetworkHandler.instance = new LightNetworkHandler();
-        }
+
     }
 
     @SubscribeEvent

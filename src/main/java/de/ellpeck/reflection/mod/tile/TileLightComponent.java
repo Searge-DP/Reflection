@@ -1,10 +1,16 @@
 package de.ellpeck.reflection.mod.tile;
 
 import de.ellpeck.reflection.mod.misc.LightNetworkTier;
+import de.ellpeck.reflection.mod.network.LightNetwork;
 import de.ellpeck.reflection.mod.network.LightNetworkHandler;
+import de.ellpeck.reflection.mod.util.WorldUtil;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.ITickable;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.Vec3;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -22,10 +28,6 @@ public abstract class TileLightComponent extends TileEntityBase{
 
     public abstract int getMaxDistanceFromComponent();
 
-    public abstract int getGeneratedLight();
-
-    public abstract int getUsedLight();
-
     @Override
     public void invalidate(){
         LightNetworkHandler.instance.removeConnections(this.getPos(), this.worldObj);
@@ -34,13 +36,19 @@ public abstract class TileLightComponent extends TileEntityBase{
     @Override
     public void readNBT(NBTTagCompound compound, boolean sync){
         if(sync){
-            LightNetworkHandler.instance.removeConnections(this.pos, this.worldObj);
-
-            if(compound != null){
+            if(compound.hasKey(TAG_CONNECTIONS)){
                 NBTTagList list = compound.getTagList(TAG_CONNECTIONS, 10);
-                for(int i = 0; i < list.tagCount(); i++){
-                    LightNetworkHandler.ConnectionPair pair = LightNetworkHandler.ConnectionPair.readFromNBT(list.getCompoundTagAt(i));
-                    LightNetworkHandler.instance.addConnection(pair.first, pair.second, this.worldObj, false);
+                if(list.hasNoTags()){
+                    LightNetworkHandler.instance.removeConnections(this.getPos(), this.worldObj);
+                }
+                else{
+                    Set<LightNetworkHandler.ConnectionPair> connections = LightNetworkHandler.instance.getConnectionsForComponent(this.getPos(), this.getWorld().provider.getDimensionId());
+                    for(int i = 0; i < list.tagCount(); i++){
+                        LightNetworkHandler.ConnectionPair pair = LightNetworkHandler.ConnectionPair.readFromNBT(list.getCompoundTagAt(i));
+                        if(!connections.contains(pair)){
+                            LightNetworkHandler.instance.addConnection(pair.first, pair.second, this.worldObj, false);
+                        }
+                    }
                 }
             }
         }
@@ -49,17 +57,18 @@ public abstract class TileLightComponent extends TileEntityBase{
     @Override
     public void writeNBT(NBTTagCompound compound, boolean sync){
         if(sync){
-            Set<LightNetworkHandler.ConnectionPair> connections = LightNetworkHandler.instance.getConnectionsForComponent(this.getPos(), this.worldObj.provider.getDimensionId());
+            NBTTagList list = new NBTTagList();
 
-            if(connections != null){
-                NBTTagList list = new NBTTagList();
+            Set<LightNetworkHandler.ConnectionPair> connections = LightNetworkHandler.instance.getConnectionsForComponent(this.getPos(), this.getWorld().provider.getDimensionId());
+            if(connections != null && !connections.isEmpty()){
                 for(LightNetworkHandler.ConnectionPair pair : connections){
-                    NBTTagCompound tag = new NBTTagCompound();
-                    pair.writeToNBT(tag);
-                    list.appendTag(tag);
+                    NBTTagCompound pairCompound = new NBTTagCompound();
+                    pair.writeToNBT(pairCompound);
+                    list.appendTag(pairCompound);
                 }
-                compound.setTag(TAG_CONNECTIONS, list);
             }
+
+            compound.setTag(TAG_CONNECTIONS, list);
         }
     }
 

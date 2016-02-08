@@ -2,6 +2,7 @@ package de.ellpeck.reflection.mod.util;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.Vec3;
 
 public class WorldUtil{
 
@@ -25,6 +26,10 @@ public class WorldUtil{
 
     public static boolean hasBlockPosData(NBTTagCompound compound){
         return compound.hasKey(TAG_X) && compound.hasKey(TAG_Y) && compound.hasKey(TAG_Z);
+    }
+
+    public static Vec3 blockPosToVec(BlockPos pos){
+        return new Vec3(pos.getX(), pos.getY(), pos.getZ());
     }
 
 }

@@ -38,7 +38,6 @@ public class LightNetwork{
     }
 
     public void writeToNBT(NBTTagCompound compound){
-        System.out.println(lightGenAndUsage);
         NBTTagList light = new NBTTagList();
         for(Map.Entry<BlockPos, Integer> entry : this.lightGenAndUsage.entrySet()){
             NBTTagCompound lightCompound = new NBTTagCompound();
@@ -75,7 +74,6 @@ public class LightNetwork{
             newNetwork.connections.add(pair);
         }
 
-        System.out.println(newNetwork.lightGenAndUsage);
         return newNetwork;
     }
 }
