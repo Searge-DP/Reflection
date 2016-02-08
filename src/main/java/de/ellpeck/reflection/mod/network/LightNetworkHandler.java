@@ -4,6 +4,7 @@ import de.ellpeck.reflection.api.ReflectionAPI;
 import de.ellpeck.reflection.api.internal.IConnectionPair;
 import de.ellpeck.reflection.api.internal.ILightNetwork;
 import de.ellpeck.reflection.api.internal.ILightNetworkHandler;
+import de.ellpeck.reflection.api.light.ILightComponent;
 import de.ellpeck.reflection.api.light.TileLightComponent;
 import de.ellpeck.reflection.mod.util.WorldUtil;
 import de.ellpeck.reflection.mod.world.WorldData;
@@ -112,12 +113,12 @@ public class LightNetworkHandler implements ILightNetworkHandler{
             if(validate){
                 TileEntity firstTile = world.getTileEntity(first);
                 TileEntity secondTile = world.getTileEntity(second);
-                if(!(firstTile instanceof TileLightComponent) || !(secondTile instanceof TileLightComponent)){
+                if(!(firstTile instanceof ILightComponent) || !(secondTile instanceof ILightComponent)){
                     return false;
                 }
                 else{
-                    TileLightComponent firstComp = (TileLightComponent)firstTile;
-                    TileLightComponent secondComp = (TileLightComponent)secondTile;
+                    ILightComponent firstComp = (ILightComponent)firstTile;
+                    ILightComponent secondComp = (ILightComponent)secondTile;
                     if(!(firstComp.canBeInNetworkWith(secondComp) || secondComp.canBeInNetworkWith(firstComp))){
                         return false;
                     }
@@ -177,18 +178,18 @@ public class LightNetworkHandler implements ILightNetworkHandler{
     }
 
     @Override
-    public void writeConnectionInfoNBT(TileLightComponent tile, NBTTagCompound compound){
+    public void writeConnectionInfoNBT(ILightComponent tile, NBTTagCompound compound){
         if(compound.hasKey(TAG_CONNECTIONS)){
             NBTTagList list = compound.getTagList(TAG_CONNECTIONS, 10);
             if(list.hasNoTags()){
-                ReflectionAPI.theLightNetworkHandler.removeConnections(tile.getPos(), tile.getWorld());
+                ReflectionAPI.theLightNetworkHandler.removeConnections(tile.getPosition(), tile.getTheWorld());
             }
             else{
-                Set<IConnectionPair> connections = ReflectionAPI.theLightNetworkHandler.getConnectionsForComponent(tile.getPos(), tile.getWorld().provider.getDimensionId());
+                Set<IConnectionPair> connections = ReflectionAPI.theLightNetworkHandler.getConnectionsForComponent(tile.getPosition(), tile.getTheWorld().provider.getDimensionId());
                 for(int i = 0; i < list.tagCount(); i++){
                     LightNetworkHandler.ConnectionPair pair = LightNetworkHandler.ConnectionPair.readFromNBT(list.getCompoundTagAt(i));
                     if(!connections.contains(pair)){
-                        ReflectionAPI.theLightNetworkHandler.addConnection(pair.first, pair.second, tile.getWorld(), false);
+                        ReflectionAPI.theLightNetworkHandler.addConnection(pair.first, pair.second, tile.getTheWorld(), false);
                     }
                 }
             }
@@ -196,10 +197,10 @@ public class LightNetworkHandler implements ILightNetworkHandler{
     }
 
     @Override
-    public void readConnectionInfoNBT(TileLightComponent tile, NBTTagCompound compound){
+    public void readConnectionInfoNBT(ILightComponent tile, NBTTagCompound compound){
         NBTTagList list = new NBTTagList();
 
-        Set<IConnectionPair> connections = ReflectionAPI.theLightNetworkHandler.getConnectionsForComponent(tile.getPos(), tile.getWorld().provider.getDimensionId());
+        Set<IConnectionPair> connections = ReflectionAPI.theLightNetworkHandler.getConnectionsForComponent(tile.getPosition(), tile.getTheWorld().provider.getDimensionId());
         if(connections != null && !connections.isEmpty()){
             for(IConnectionPair pair : connections){
                 NBTTagCompound pairCompound = new NBTTagCompound();

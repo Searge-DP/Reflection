@@ -1,5 +1,6 @@
 package de.ellpeck.reflection.mod.tile;
 
+import de.ellpeck.reflection.api.light.ILightComponent;
 import de.ellpeck.reflection.api.light.TileLightComponent;
 import de.ellpeck.reflection.api.light.LightNetworkTier;
 
@@ -11,7 +12,7 @@ public class TileMirrorBase extends TileLightComponent{
     }
 
     @Override
-    public boolean canBeInNetworkWith(TileLightComponent component){
+    public boolean canBeInNetworkWith(ILightComponent component){
         return this.getTier() == component.getTier();
     }
 

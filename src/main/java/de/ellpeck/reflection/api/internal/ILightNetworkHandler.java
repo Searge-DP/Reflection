@@ -1,5 +1,6 @@
 package de.ellpeck.reflection.api.internal;
 
+import de.ellpeck.reflection.api.light.ILightComponent;
 import de.ellpeck.reflection.api.light.TileLightComponent;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
@@ -18,13 +19,13 @@ public interface ILightNetworkHandler{
      * Writes info about a connection to NBT.
      * Used by TileLightComponent.
      */
-    void writeConnectionInfoNBT(TileLightComponent tile, NBTTagCompound compound);
+    void writeConnectionInfoNBT(ILightComponent tile, NBTTagCompound compound);
 
     /**
      * Reads info about a connection from NBT.
      * Used by TileLightComponent.
      */
-    void readConnectionInfoNBT(TileLightComponent tile, NBTTagCompound compound);
+    void readConnectionInfoNBT(ILightComponent tile, NBTTagCompound compound);
 
     /**
      * Removes every connection in a network for a component

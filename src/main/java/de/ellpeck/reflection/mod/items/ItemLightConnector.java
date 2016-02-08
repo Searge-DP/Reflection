@@ -1,6 +1,7 @@
 package de.ellpeck.reflection.mod.items;
 
 import de.ellpeck.reflection.api.ReflectionAPI;
+import de.ellpeck.reflection.api.light.ILightComponent;
 import de.ellpeck.reflection.mod.network.LightNetworkHandler;
 import de.ellpeck.reflection.api.light.TileLightComponent;
 import de.ellpeck.reflection.mod.util.VanillaPacketHandler;
@@ -22,15 +23,18 @@ public class ItemLightConnector extends ItemBase{
     @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos posHit, EnumFacing side, float hitX, float hitY, float hitZ){
         TileEntity tile = world.getTileEntity(posHit);
-        if(tile instanceof TileLightComponent){
+        if(tile instanceof ILightComponent){
             if(!world.isRemote){
                 if(this.hasStoredPosition(stack)){
-                    TileLightComponent second = this.getPosition(stack, world);
+                    ILightComponent second = this.getPosition(stack, world);
                     stack.setTagCompound(new NBTTagCompound());
                     if(second != null){
-                        if(ReflectionAPI.theLightNetworkHandler.addConnection(posHit, second.getPos(), world, true)){
+                        if(ReflectionAPI.theLightNetworkHandler.addConnection(posHit, second.getPosition(), world, true)){
                             VanillaPacketHandler.sendTilePacketToAllAround(tile);
-                            VanillaPacketHandler.sendTilePacketToAllAround(second);
+                            if(second instanceof TileEntity){
+                                System.out.println("This works!");
+                                VanillaPacketHandler.sendTilePacketToAllAround((TileEntity)second);
+                            }
 
                             return true;
                         }
@@ -40,7 +44,7 @@ public class ItemLightConnector extends ItemBase{
                     }
                 }
                 else{
-                    this.storePosition(stack, (TileLightComponent)tile);
+                    this.storePosition(stack, (ILightComponent)tile);
                 }
             }
             return true;
@@ -48,20 +52,20 @@ public class ItemLightConnector extends ItemBase{
         return false;
     }
 
-    private void storePosition(ItemStack stack, TileLightComponent component){
+    private void storePosition(ItemStack stack, ILightComponent component){
         if(stack.getTagCompound() == null){
             stack.setTagCompound(new NBTTagCompound());
         }
         NBTTagCompound compound = stack.getTagCompound();
-        WorldUtil.writeBlockPosToNBT(compound, component.getPos());
+        WorldUtil.writeBlockPosToNBT(compound, component.getPosition());
     }
 
-    private TileLightComponent getPosition(ItemStack stack, World world){
+    private ILightComponent getPosition(ItemStack stack, World world){
         if(stack.getTagCompound() != null){
             BlockPos pos = WorldUtil.readBlockPosFromNBT(stack.getTagCompound());
             TileEntity tile = world.getTileEntity(pos);
-            if(tile instanceof TileLightComponent){
-                return (TileLightComponent)tile;
+            if(tile instanceof ILightComponent){
+                return (ILightComponent)tile;
             }
         }
         return null;
