@@ -28,8 +28,4 @@ public class WorldUtil{
         return compound.hasKey(TAG_X) && compound.hasKey(TAG_Y) && compound.hasKey(TAG_Z);
     }
 
-    public static Vec3 blockPosToVec(BlockPos pos){
-        return new Vec3(pos.getX(), pos.getY(), pos.getZ());
-    }
-
 }

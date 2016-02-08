@@ -25,6 +25,6 @@ public class TileMirrorBase extends TileLightComponent{
     }
 
     public String toString(){
-        return this.getPos().toString()+"MIRRORBASE!!";
+        return this.getPos().toString();
     }
 }
