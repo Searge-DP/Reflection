@@ -6,6 +6,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
+import scala.Int;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -42,31 +43,45 @@ public class LightNetwork{
     }
 
     public int getTotalLightUsed(){
+        return this.getTotalLightUsedExcluded(null);
+    }
+
+    public int getTotalLightUsedExcluded(TileEntity tile){
         int used = 0;
-        for(int light : this.lightGenAndUsage.values()){
-            if(light < 0){
-                used+=light;
+        for(Map.Entry<BlockPos, Integer> entry : this.lightGenAndUsage.entrySet()){
+            if((tile == null || !entry.getKey().equals(tile.getPos())) && entry.getValue() < 0){
+                used+=entry.getValue();
             }
         }
         return used;
     }
 
     public int getTotalLightGenerated(){
+        return this.getTotalLightGeneratedExcluded(null);
+    }
+
+    public int getTotalLightGeneratedExcluded(TileEntity tile){
         int generated = 0;
-        for(int light : this.lightGenAndUsage.values()){
-            if(light > 0){
-                generated+=light;
+        for(Map.Entry<BlockPos, Integer> entry : this.lightGenAndUsage.entrySet()){
+            if((tile == null || !entry.getKey().equals(tile.getPos())) && entry.getValue() > 0){
+                generated+=entry.getValue();
             }
         }
         return generated;
     }
 
-    public int getTotalLightLeft(){
-        int left = 0;
-        for(int light : this.lightGenAndUsage.values()){
-            left+=light;
+    public int getTotalLight(){
+        return this.getTotalLightExcluded(null);
+    }
+
+    public int getTotalLightExcluded(TileEntity tile){
+        int light = 0;
+        for(Map.Entry<BlockPos, Integer> entry : this.lightGenAndUsage.entrySet()){
+            if(tile == null || !entry.getKey().equals(tile.getPos())){
+                light+=entry.getValue();
+            }
         }
-        return left;
+        return light;
     }
 
     public String toString(){
