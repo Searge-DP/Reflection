@@ -24,6 +24,16 @@ public class TileMirrorBase extends TileLightComponent{
         return 10;
     }
 
+    @Override
+    public int getGeneratedLight(){
+        return 0;
+    }
+
+    @Override
+    public int getUsedLight(){
+        return 0;
+    }
+
     public String toString(){
         return this.getPos().toString();
     }

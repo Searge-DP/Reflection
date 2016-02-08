@@ -22,6 +22,10 @@ public abstract class TileLightComponent extends TileEntityBase{
 
     public abstract int getMaxDistanceFromComponent();
 
+    public abstract int getGeneratedLight();
+
+    public abstract int getUsedLight();
+
     @Override
     public void invalidate(){
         LightNetworkHandler.instance.removeConnections(this.getPos(), this.worldObj);
