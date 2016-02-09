@@ -12,6 +12,8 @@ package de.ellpeck.reflection.api.light;
 
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.item.EnumDyeColor;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * A light network tier
@@ -47,6 +49,7 @@ public class LightNetworkTier{
      * The colors of the tier's light beams
      * the array should be filled with 3 floats: red, green, blue
      */
+    @SideOnly(Side.CLIENT)
     public float[] getColors(){
         return this.colors;
     }

@@ -20,6 +20,8 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Set;
 
@@ -31,6 +33,7 @@ import java.util.Set;
  * If you want a tile to have an extra TESR, then override this class and call
  * super in renderTileEntityAt().
  */
+@SideOnly(Side.CLIENT)
 public class LightComponentSpecialRenderer extends TileEntitySpecialRenderer<TileEntity>{
 
     private static final ResourceLocation beaconBeam = new ResourceLocation("textures/entity/beacon_beam.png");

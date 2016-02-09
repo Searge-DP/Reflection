@@ -10,9 +10,13 @@
 
 package de.ellpeck.reflection.mod.blocks;
 
+import de.ellpeck.reflection.mod.Reflection;
+import de.ellpeck.reflection.mod.lib.LibMod;
 import de.ellpeck.reflection.mod.util.RegistryUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
 public class BlockBase extends Block{
 
@@ -20,6 +24,11 @@ public class BlockBase extends Block{
         super(material);
 
         RegistryUtil.registerBlock(this, name, addTab);
+        this.registerRendering(name);
+    }
+
+    public void registerRendering(String name){
+        Reflection.proxy.addRenderRegister(new ItemStack(this), new ResourceLocation(LibMod.MOD_ID, name));
     }
 
 }

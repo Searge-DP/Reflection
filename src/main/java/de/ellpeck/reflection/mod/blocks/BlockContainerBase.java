@@ -10,11 +10,14 @@
 
 package de.ellpeck.reflection.mod.blocks;
 
+import de.ellpeck.reflection.mod.Reflection;
 import de.ellpeck.reflection.mod.lib.LibMod;
 import de.ellpeck.reflection.mod.util.RegistryUtil;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -28,6 +31,11 @@ public class BlockContainerBase extends BlockContainer{
 
         RegistryUtil.registerBlock(this, name, addTab);
         GameRegistry.registerTileEntity(tileClass, LibMod.MOD_ID+":"+tileName);
+        this.registerRendering(name);
+    }
+
+    public void registerRendering(String name){
+        Reflection.proxy.addRenderRegister(new ItemStack(this), new ResourceLocation(LibMod.MOD_ID, name));
     }
 
     @Override
@@ -41,7 +49,7 @@ public class BlockContainerBase extends BlockContainer{
             return this.tileClass.newInstance();
         }
         catch(Exception e){
-            LibMod.LOGGER.error("Creating a new TileEntity failed!", e);
+            LibMod.LOGGER.fatal("Creating a new TileEntity failed!", e);
             return null;
         }
     }

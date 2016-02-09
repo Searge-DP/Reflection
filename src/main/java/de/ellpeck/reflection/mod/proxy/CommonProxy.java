@@ -15,6 +15,9 @@ import de.ellpeck.reflection.mod.blocks.InitBlocks;
 import de.ellpeck.reflection.mod.items.InitItems;
 import de.ellpeck.reflection.mod.network.LightNetworkHandler;
 import de.ellpeck.reflection.mod.world.WorldEvents;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -36,6 +39,14 @@ public class CommonProxy{
     }
 
     public void postInit(FMLPostInitializationEvent event){
+
+    }
+
+    public void addRenderRegister(ItemStack stack, ResourceLocation location){
+
+    }
+
+    public void addRenderVariant(Item item, ResourceLocation... location){
 
     }
 }

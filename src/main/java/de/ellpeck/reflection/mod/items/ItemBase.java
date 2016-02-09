@@ -10,13 +10,22 @@
 
 package de.ellpeck.reflection.mod.items;
 
+import de.ellpeck.reflection.mod.Reflection;
+import de.ellpeck.reflection.mod.lib.LibMod;
 import de.ellpeck.reflection.mod.util.RegistryUtil;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
 public class ItemBase extends Item{
 
     public ItemBase(String name, boolean addTab){
         RegistryUtil.registerItem(this, name, addTab);
+
+        this.registerRendering(name);
     }
 
+    public void registerRendering(String name){
+        Reflection.proxy.addRenderRegister(new ItemStack(this), new ResourceLocation(LibMod.MOD_ID, name));
+    }
 }

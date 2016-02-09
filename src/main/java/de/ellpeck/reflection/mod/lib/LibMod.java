@@ -14,6 +14,8 @@ import de.ellpeck.reflection.api.ReflectionAPI;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Random;
+
 public class LibMod{
 
     public static final String MOD_ID = "reflection";
@@ -24,5 +26,7 @@ public class LibMod{
     private static final String PROXY_BASE = "de.ellpeck.reflection.mod.proxy.";
     public static final String PROXY_CLIENT = PROXY_BASE+"ClientProxy";
     public static final String PROXY_SERVER = PROXY_BASE+"CommonProxy";
+
+    public static final Random RANDOM = new Random();
 
 }
