@@ -11,6 +11,7 @@
 package de.ellpeck.reflection.mod.proxy;
 
 import de.ellpeck.reflection.api.light.render.LightComponentSpecialRenderer;
+import de.ellpeck.reflection.mod.gui.HUDEvents;
 import de.ellpeck.reflection.mod.tile.TileReflectorBase;
 import de.ellpeck.reflection.mod.util.ClientUtil;
 import net.minecraft.client.resources.model.ModelBakery;
@@ -18,6 +19,7 @@ import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -44,6 +46,8 @@ public class ClientProxy extends CommonProxy{
     @Override
     public void init(FMLInitializationEvent event){
         super.init(event);
+
+        MinecraftForge.EVENT_BUS.register(new HUDEvents());
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileReflectorBase.class, new LightComponentSpecialRenderer());
 
