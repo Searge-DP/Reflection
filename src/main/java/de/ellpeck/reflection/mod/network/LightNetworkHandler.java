@@ -114,7 +114,7 @@ public class LightNetworkHandler implements ILightNetworkHandler{
         if(first == null || second == null){
             return false;
         }
-        else if(first == second){
+        else if(first.equals(second)){
             return false;
         }
         else{

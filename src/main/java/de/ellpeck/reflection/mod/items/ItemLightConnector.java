@@ -40,7 +40,6 @@ public class ItemLightConnector extends ItemBase{
                         if(ReflectionAPI.theLightNetworkHandler.addConnection(posHit, second.getPosition(), world, true)){
                             VanillaPacketHandler.sendTilePacketToAllAround(tile);
                             if(second instanceof TileEntity){
-                                System.out.println("This works!");
                                 VanillaPacketHandler.sendTilePacketToAllAround((TileEntity)second);
                             }
 

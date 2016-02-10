@@ -11,6 +11,7 @@
 package de.ellpeck.reflection.mod.creative;
 
 import de.ellpeck.reflection.mod.blocks.InitBlocks;
+import de.ellpeck.reflection.mod.items.InitItems;
 import de.ellpeck.reflection.mod.lib.LibMod;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
@@ -30,14 +31,15 @@ public class CreativeTab extends CreativeTabs{
 
     @Override
     public Item getTabIconItem(){
-        return Item.getItemFromBlock(InitBlocks.blockMirror);
+        return Item.getItemFromBlock(InitBlocks.blockBasicReflector);
     }
 
     @Override
     public void displayAllReleventItems(List<ItemStack> list){
         this.list = list;
 
-        this.addBlock(InitBlocks.blockMirror);
+        this.addBlock(InitBlocks.blockBasicReflector);
+        this.addItem(InitItems.itemLightConnector);
     }
 
     private void addBlock(Block block){

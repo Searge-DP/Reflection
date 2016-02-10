@@ -14,7 +14,7 @@ import de.ellpeck.reflection.api.light.ILightComponent;
 import de.ellpeck.reflection.api.light.LightNetworkTier;
 import de.ellpeck.reflection.api.light.TileLightComponent;
 
-public class TileMirrorBase extends TileLightComponent{
+public class TileReflector extends TileLightComponent{
 
     @Override
     public LightNetworkTier getTier(){
@@ -33,7 +33,7 @@ public class TileMirrorBase extends TileLightComponent{
 
     @Override
     public int getMaxDistanceFromComponent(){
-        return 10;
+        return 5;
     }
 
     public String toString(){

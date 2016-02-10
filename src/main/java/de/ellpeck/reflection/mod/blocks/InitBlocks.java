@@ -11,16 +11,16 @@
 package de.ellpeck.reflection.mod.blocks;
 
 import de.ellpeck.reflection.mod.lib.LibNames;
-import de.ellpeck.reflection.mod.tile.TileMirrorBase;
+import de.ellpeck.reflection.mod.tile.TileReflector;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
 public class InitBlocks{
 
-    public static Block blockMirror;
+    public static Block blockBasicReflector;
 
     public static void preInit(){
-        blockMirror = new BlockMirrorBase(Material.anvil, LibNames.BLOCK_MIRROR_NAME, true, TileMirrorBase.class, LibNames.TILE_MIRROR_NAME);
+        blockBasicReflector = new BlockReflector(Material.anvil, LibNames.BLOCK_MIRROR_NAME, true, TileReflector.class, LibNames.TILE_MIRROR_NAME);
     }
 
 }
