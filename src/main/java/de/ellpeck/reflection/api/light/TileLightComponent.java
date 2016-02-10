@@ -40,7 +40,7 @@ public abstract class TileLightComponent extends TileEntityBase implements ILigh
         //
         //This is not necessary, but it is used for properly rendering the light beams in the TESR
         if(sync){
-            ReflectionAPI.theLightNetworkHandler.readConnectionInfoNBT(this, compound);
+            ReflectionAPI.theMethodHandler.readConnectionInfoNBT(this, compound);
         }
     }
 
@@ -51,7 +51,7 @@ public abstract class TileLightComponent extends TileEntityBase implements ILigh
         //
         //This is not necessary, but it is used for properly rendering the light beams in the TESR
         if(sync){
-            ReflectionAPI.theLightNetworkHandler.writeConnectionInfoNBT(this, compound);
+            ReflectionAPI.theMethodHandler.writeConnectionInfoNBT(this, compound);
         }
     }
 

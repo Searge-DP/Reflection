@@ -10,7 +10,6 @@
 
 package de.ellpeck.reflection.mod.network;
 
-import de.ellpeck.reflection.api.ReflectionAPI;
 import de.ellpeck.reflection.api.internal.IConnectionPair;
 import de.ellpeck.reflection.api.internal.ILightNetwork;
 import de.ellpeck.reflection.api.internal.ILightNetworkHandler;
@@ -19,7 +18,6 @@ import de.ellpeck.reflection.mod.util.WorldUtil;
 import de.ellpeck.reflection.mod.world.WorldData;
 import io.netty.util.internal.ConcurrentSet;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
@@ -29,8 +27,6 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class LightNetworkHandler implements ILightNetworkHandler{
-
-    private static final String TAG_CONNECTIONS = "Connections";
 
     public Map<Integer, Set<ILightNetwork>> allNetworks = new ConcurrentHashMap<Integer, Set<ILightNetwork>>();
 
@@ -185,41 +181,6 @@ public class LightNetworkHandler implements ILightNetworkHandler{
         this.removeNetwork(second, dimension);
 
         WorldData.makeDirty();
-    }
-
-    @Override
-    public void writeConnectionInfoNBT(ILightComponent tile, NBTTagCompound compound){
-        NBTTagList list = new NBTTagList();
-
-        Set<IConnectionPair> connections = ReflectionAPI.theLightNetworkHandler.getConnectionsForComponent(tile.getPosition(), tile.getTheWorld().provider.getDimensionId());
-        if(connections != null && !connections.isEmpty()){
-            for(IConnectionPair pair : connections){
-                NBTTagCompound pairCompound = new NBTTagCompound();
-                pair.writeToNBT(pairCompound);
-                list.appendTag(pairCompound);
-            }
-        }
-
-        compound.setTag(TAG_CONNECTIONS, list);
-    }
-
-    @Override
-    public void readConnectionInfoNBT(ILightComponent tile, NBTTagCompound compound){
-        if(compound.hasKey(TAG_CONNECTIONS)){
-            NBTTagList list = compound.getTagList(TAG_CONNECTIONS, 10);
-            if(list.hasNoTags()){
-                ReflectionAPI.theLightNetworkHandler.removeConnections(tile.getPosition(), tile.getTheWorld());
-            }
-            else{
-                Set<IConnectionPair> connections = ReflectionAPI.theLightNetworkHandler.getConnectionsForComponent(tile.getPosition(), tile.getTheWorld().provider.getDimensionId());
-                for(int i = 0; i < list.tagCount(); i++){
-                    LightNetworkHandler.ConnectionPair pair = LightNetworkHandler.ConnectionPair.readFromNBT(list.getCompoundTagAt(i));
-                    if(!connections.contains(pair)){
-                        ReflectionAPI.theLightNetworkHandler.addConnection(pair.first, pair.second, tile.getTheWorld(), false);
-                    }
-                }
-            }
-        }
     }
 
     public static class ConnectionPair implements IConnectionPair{

@@ -11,10 +11,11 @@
 package de.ellpeck.reflection.api;
 
 import de.ellpeck.reflection.api.internal.ILightNetworkHandler;
+import de.ellpeck.reflection.api.internal.IMethodHandler;
 
 public class ReflectionAPI{
 
-    public static final String VERSION = "4";
+    public static final String VERSION = "5";
 
     public static final String MOD_NAME = "Reflection";
     public static final String API_NAME = MOD_NAME+"API";
@@ -27,4 +28,11 @@ public class ReflectionAPI{
      * Gets initialized during the FMLPreInitializationEvent in Reflection's CommonProxy
      */
     public static ILightNetworkHandler theLightNetworkHandler;
+
+    /**
+     * The method handler
+     *
+     * Gets initialized during the FMLPreInitializationEvent in Reflection's CommonProxy
+     */
+    public static IMethodHandler theMethodHandler;
 }

@@ -13,6 +13,10 @@ package de.ellpeck.reflection.api.internal;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 
+/**
+ * An internal class for a ConnectionPair.
+ * Do not implement this directly.
+ */
 public interface IConnectionPair{
 
     /**

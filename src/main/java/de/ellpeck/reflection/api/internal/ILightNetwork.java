@@ -17,6 +17,10 @@ import net.minecraft.util.BlockPos;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * An internal class for a LightNetwork.
+ * Do not implement this directly.
+ */
 public interface ILightNetwork{
 
     /**
