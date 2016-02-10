@@ -59,6 +59,10 @@ public class LightComponentSpecialRenderer extends TileEntitySpecialRenderer<Til
                         //pair.getFirst() and pair.getSecond(), everything below this could be deleted
                         //if it's nonsense. Which it probably is. Everything above this should stay and
                         //can be used. And yes, if you rename Tessy, I will be mad.
+                        //So what this is basically supposed to do:
+                        //Render a light beam between the two components. I don't care if they rotate or not,
+                        //they just have to be shiny and render in the color that's specified above.
+                        //Also please make it so that I know how to change the size (how big they are). Thanks.
 
                         double secondX = pair.getSecond().getX()-x;
                         double secondY = pair.getSecond().getY()-y;
