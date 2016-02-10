@@ -14,7 +14,7 @@ import de.ellpeck.reflection.api.internal.ILightNetworkHandler;
 
 public class ReflectionAPI{
 
-    public static final String VERSION = "3";
+    public static final String VERSION = "4";
 
     public static final String MOD_NAME = "Reflection";
     public static final String API_NAME = MOD_NAME+"API";

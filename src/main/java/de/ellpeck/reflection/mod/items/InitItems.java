@@ -10,15 +10,18 @@
 
 package de.ellpeck.reflection.mod.items;
 
+import de.ellpeck.reflection.mod.items.light.ItemLightBattery;
 import de.ellpeck.reflection.mod.lib.LibNames;
 import net.minecraft.item.Item;
 
 public class InitItems{
 
     public static Item itemLightConnector;
+    public static Item itemLightBatteryBase;
 
     public static void preInit(){
         itemLightConnector = new ItemLightConnector(LibNames.ITEM_LIGHT_CONNECTOR, true);
+        itemLightBatteryBase = new ItemLightBattery(LibNames.ITEM_LIGHT_BATTERY_BASE, true, 1000);
     }
 
 }

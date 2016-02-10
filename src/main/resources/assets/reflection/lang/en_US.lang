@@ -3,6 +3,7 @@ itemGroup.reflection=Reflection
 
 #Items
 item.reflection.itemLightConnector.name=Rod of the Lights
+item.reflection.itemLightBatteryBase.name=Tiny Rounded Prism
 
 #Misc
 misc.reflection.connectionWorked=You see a beam of light appear...

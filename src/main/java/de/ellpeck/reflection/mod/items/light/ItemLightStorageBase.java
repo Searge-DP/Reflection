@@ -1,0 +1,119 @@
+/*
+ * This file ("LightStorageItemBase.java") is part of the Reflection Mod for Minecraft.
+ * It is created and owned by Ellpeck and distributed
+ * under the Reflection License to be found at
+ * https://github.com/Ellpeck/Reflection/blob/master/LICENSE.md
+ * View the source code at https://github.com/Ellpeck/Reflection
+ *
+ * © 2016 Ellpeck
+ */
+
+package de.ellpeck.reflection.mod.items.light;
+
+import de.ellpeck.reflection.api.light.ILightStorageItem;
+import de.ellpeck.reflection.mod.items.ItemBase;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
+
+public class ItemLightStorageBase extends ItemBase implements ILightStorageItem{
+
+    private static final String TAG_LIGHT = "Light";
+    private int maxLight;
+
+    public ItemLightStorageBase(String name, boolean addTab, int maxLight){
+        super(name, addTab);
+        this.maxLight = maxLight;
+        this.setMaxStackSize(1);
+    }
+
+    @Override
+    public int getLight(ItemStack stack){
+        NBTTagCompound compound = stack.getTagCompound();
+        if(compound != null){
+            return compound.getInteger(TAG_LIGHT);
+        }
+        else{
+            return 0;
+        }
+    }
+
+    @Override
+    public int getMaxLight(ItemStack stack){
+        return this.maxLight;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public boolean displayTopBar(ItemStack stack){
+        return false;
+    }
+
+    @Override
+    public boolean extractLight(ItemStack stack, int amount, boolean actuallyDo){
+        NBTTagCompound compound = stack.getTagCompound();
+        if(compound != null){
+            int thisAmount = compound.getInteger(TAG_LIGHT);
+            if(thisAmount >= amount){
+                if(actuallyDo){
+                    compound.setInteger(TAG_LIGHT, thisAmount-amount);
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean insertLight(ItemStack stack, int amount, boolean actuallyDo){
+        NBTTagCompound compound = stack.getTagCompound();
+        if(compound != null){
+            int thisAmount = compound.getInteger(TAG_LIGHT);
+            if(this.getMaxLight(stack) >= thisAmount+amount){
+                if(actuallyDo){
+                    compound.setInteger(TAG_LIGHT, thisAmount+amount);
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public void setLight(ItemStack stack, int amount){
+        if(stack.getTagCompound() == null){
+            stack.setTagCompound(new NBTTagCompound());
+        }
+
+        stack.getTagCompound().setInteger(TAG_LIGHT, amount);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list){
+        ItemStack empty = new ItemStack(item);
+        this.setLight(empty, 0);
+        list.add(empty);
+
+        ItemStack full = new ItemStack(item);
+        this.setLight(full, this.getMaxLight(full));
+        list.add(full);
+    }
+
+    @Override
+    public boolean showDurabilityBar(ItemStack itemStack){
+        return true;
+    }
+
+    @Override
+    public double getDurabilityForDisplay(ItemStack stack){
+        double maxAmount = this.getMaxLight(stack);
+        double energyDif = maxAmount-this.getLight(stack);
+        return energyDif/maxAmount;
+    }
+}

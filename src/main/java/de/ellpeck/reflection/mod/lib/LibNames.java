@@ -21,5 +21,6 @@ public class LibNames{
     public static final String TILE_REFLECTOR_BASE_NAME = "tileReflectorBase";
 
     public static final String ITEM_LIGHT_CONNECTOR = "itemLightConnector";
+    public static final String ITEM_LIGHT_BATTERY_BASE = "itemLightBatteryBase";
 
 }

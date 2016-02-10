@@ -40,17 +40,14 @@ public class CreativeTab extends CreativeTabs{
 
         this.addBlock(InitBlocks.blockBasicReflector);
         this.addItem(InitItems.itemLightConnector);
+        this.addItem(InitItems.itemLightBatteryBase);
     }
 
     private void addBlock(Block block){
-        this.addItemStack(new ItemStack(block));
+        block.getSubBlocks(Item.getItemFromBlock(block), this, this.list);
     }
 
     private void addItem(Item item){
-        this.addItemStack(new ItemStack(item));
-    }
-
-    private void addItemStack(ItemStack stack){
-        this.list.add(stack);
+        item.getSubItems(item, this, this.list);
     }
 }
