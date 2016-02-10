@@ -28,7 +28,7 @@ import java.util.Set;
 /**
  * A TileLightComponent's TESR.
  * This renders the light beams between two connections in a network.
- * Be sure to use ClientRegistry.bindTileEntitySpecialRenderer for every component
+ * Be sure to use ClientRegistry.bindTileEntitySpecialRenderer() for every component
  * that should render the light beam.
  * If you want a tile to have an extra TESR, then override this class and call
  * super in renderTileEntityAt().
@@ -54,12 +54,16 @@ public class LightComponentSpecialRenderer extends TileEntitySpecialRenderer<Til
 
                 for(IConnectionPair pair : connections){
                     if(te.getPos().equals(pair.getFirst())){
+                        //TODO Fix this because I don't get it whatsoever
+                        //If anyone wants to do this: The connection should be rendered between
+                        //pair.getFirst() and pair.getSecond(), everything below this could be deleted
+                        //if it's nonsense. Which it probably is. Everything above this should stay and
+                        //can be used. And yes, if you rename Tessy, I will be mad.
 
                         double secondX = pair.getSecond().getX()-x;
                         double secondY = pair.getSecond().getY()-y;
                         double secondZ = pair.getSecond().getZ()-z;
 
-                        //TODO Fix this because I don't get it whatsoever
                         GlStateManager.translate(x, y, z);
                         renderer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
                         renderer.pos(0, 0, 0).color(r, g, b, 0.25F).endVertex();

@@ -13,6 +13,8 @@ package de.ellpeck.reflection.mod.lib;
 public class LibNames{
 
     public static final String BASE_TRANSLATOR = LibMod.MOD_ID+".";
+    public static final String BASE_REGISTRY = LibMod.MOD_ID+":";
+
     public static final String MISC_TRANSLATOR = "misc."+BASE_TRANSLATOR;
 
     public static final String BLOCK_REFLECTOR_BASE_NAME = "blockReflectorBase";
