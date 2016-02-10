@@ -12,6 +12,8 @@ package de.ellpeck.reflection.api.internal;
 
 import de.ellpeck.reflection.api.light.ILightComponent;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * This is the method handler for accessing methods from the mod
@@ -34,4 +36,14 @@ public interface IMethodHandler{
      */
     void readConnectionInfoNBT(ILightComponent tile, NBTTagCompound compound);
 
+    /**
+     * Renders all of the lightbeams for the connections of this component
+     * Can be called in the TileEntitySpecialRenderer of a component
+     * <p>
+     * No additional tests have to be done as only the first part of a
+     * ConnectionPair will be rendered by default, meaning no connection
+     * will be rendered twice
+     */
+    @SideOnly(Side.CLIENT)
+    void renderLightForConnections(ILightComponent component);
 }

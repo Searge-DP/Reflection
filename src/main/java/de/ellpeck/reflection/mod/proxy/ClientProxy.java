@@ -10,9 +10,9 @@
 
 package de.ellpeck.reflection.mod.proxy;
 
-import de.ellpeck.reflection.api.light.render.LightComponentSpecialRenderer;
 import de.ellpeck.reflection.mod.gui.HUDEvents;
 import de.ellpeck.reflection.mod.tile.TileReflectorBase;
+import de.ellpeck.reflection.mod.tile.render.TESRReflectorBase;
 import de.ellpeck.reflection.mod.util.ClientUtil;
 import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelResourceLocation;
@@ -49,7 +49,7 @@ public class ClientProxy extends CommonProxy{
 
         MinecraftForge.EVENT_BUS.register(new HUDEvents());
 
-        ClientRegistry.bindTileEntitySpecialRenderer(TileReflectorBase.class, new LightComponentSpecialRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileReflectorBase.class, new TESRReflectorBase());
 
         for(Map.Entry<ItemStack, ResourceLocation> entry : modelLocationsForRegistering.entrySet()){
             ClientUtil.mc().getRenderItem().getItemModelMesher().register(entry.getKey().getItem(), entry.getKey().getItemDamage(), new ModelResourceLocation(entry.getValue(), "inventory"));
