@@ -14,7 +14,7 @@ import de.ellpeck.reflection.api.light.ILightComponent;
 import de.ellpeck.reflection.api.light.LightNetworkTier;
 import de.ellpeck.reflection.api.light.TileLightComponent;
 
-public class TileReflector extends TileLightComponent{
+public class TileReflectorBase extends TileLightComponent{
 
     @Override
     public LightNetworkTier getTier(){

@@ -12,6 +12,7 @@ package de.ellpeck.reflection.mod.items;
 
 import de.ellpeck.reflection.api.ReflectionAPI;
 import de.ellpeck.reflection.api.light.ILightComponent;
+import de.ellpeck.reflection.mod.lib.LibNames;
 import de.ellpeck.reflection.mod.util.VanillaPacketHandler;
 import de.ellpeck.reflection.mod.util.WorldUtil;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,6 +20,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
@@ -37,15 +39,18 @@ public class ItemLightConnector extends ItemBase{
                     ILightComponent second = this.getPosition(stack, world);
                     stack.setTagCompound(new NBTTagCompound());
                     if(second != null){
-                        if(ReflectionAPI.theLightNetworkHandler.addConnection(posHit, second.getPosition(), world, true)){
+                        String error = ReflectionAPI.theLightNetworkHandler.addConnection(posHit, second.getPosition(), world, true);
+                        if(error == null){
                             VanillaPacketHandler.sendTilePacketToAllAround(tile);
                             if(second instanceof TileEntity){
                                 VanillaPacketHandler.sendTilePacketToAllAround((TileEntity)second);
                             }
 
+                            player.addChatComponentMessage(new ChatComponentTranslation(LibNames.MISC_TRANSLATOR+"connectionWorked"));
                             return true;
                         }
                         else{
+                            player.addChatComponentMessage(new ChatComponentTranslation(LibNames.MISC_TRANSLATOR+error));
                             return false;
                         }
                     }

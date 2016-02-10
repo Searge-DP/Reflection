@@ -11,7 +11,7 @@
 package de.ellpeck.reflection.mod.blocks;
 
 import de.ellpeck.reflection.mod.lib.LibNames;
-import de.ellpeck.reflection.mod.tile.TileReflector;
+import de.ellpeck.reflection.mod.tile.TileReflectorBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
@@ -20,7 +20,7 @@ public class InitBlocks{
     public static Block blockBasicReflector;
 
     public static void preInit(){
-        blockBasicReflector = new BlockReflector(Material.anvil, LibNames.BLOCK_MIRROR_NAME, true, TileReflector.class, LibNames.TILE_MIRROR_NAME);
+        blockBasicReflector = new BlockReflector(Material.anvil, LibNames.BLOCK_REFLECTOR_BASE_NAME, true, TileReflectorBase.class, LibNames.TILE_REFLECTOR_BASE_NAME);
     }
 
 }

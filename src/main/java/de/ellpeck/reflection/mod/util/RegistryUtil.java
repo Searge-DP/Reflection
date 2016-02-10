@@ -12,6 +12,7 @@ package de.ellpeck.reflection.mod.util;
 
 import de.ellpeck.reflection.mod.creative.CreativeTab;
 import de.ellpeck.reflection.mod.lib.LibMod;
+import de.ellpeck.reflection.mod.lib.LibNames;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -19,7 +20,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class RegistryUtil{
 
     public static void registerBlock(Block block, String name, boolean addTab){
-        block.setUnlocalizedName(LibMod.MOD_ID+"."+name);
+        block.setUnlocalizedName(LibNames.BASE_TRANSLATOR+name);
 
         block.setRegistryName(LibMod.MOD_ID, name);
         GameRegistry.registerBlock(block);
@@ -28,7 +29,7 @@ public class RegistryUtil{
     }
 
     public static void registerItem(Item item, String name, boolean addTab){
-        item.setUnlocalizedName(LibMod.MOD_ID+"."+name);
+        item.setUnlocalizedName(LibNames.BASE_TRANSLATOR+name);
 
         item.setRegistryName(LibMod.MOD_ID, name);
         GameRegistry.registerItem(item);

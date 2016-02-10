@@ -11,7 +11,7 @@
 package de.ellpeck.reflection.mod.proxy;
 
 import de.ellpeck.reflection.api.light.render.LightComponentSpecialRenderer;
-import de.ellpeck.reflection.mod.tile.TileReflector;
+import de.ellpeck.reflection.mod.tile.TileReflectorBase;
 import de.ellpeck.reflection.mod.util.ClientUtil;
 import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelResourceLocation;
@@ -45,7 +45,7 @@ public class ClientProxy extends CommonProxy{
     public void init(FMLInitializationEvent event){
         super.init(event);
 
-        ClientRegistry.bindTileEntitySpecialRenderer(TileReflector.class, new LightComponentSpecialRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileReflectorBase.class, new LightComponentSpecialRenderer());
 
         for(Map.Entry<ItemStack, ResourceLocation> entry : modelLocationsForRegistering.entrySet()){
             ClientUtil.mc().getRenderItem().getItemModelMesher().register(entry.getKey().getItem(), entry.getKey().getItemDamage(), new ModelResourceLocation(entry.getValue(), "inventory"));

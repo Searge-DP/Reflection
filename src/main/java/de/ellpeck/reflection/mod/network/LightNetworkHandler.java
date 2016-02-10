@@ -110,12 +110,12 @@ public class LightNetworkHandler implements ILightNetworkHandler{
     }
 
     @Override
-    public boolean addConnection(BlockPos first, BlockPos second, World world, boolean validate){
+    public String addConnection(BlockPos first, BlockPos second, World world, boolean validate){
         if(first == null || second == null){
-            return false;
+            return "connectToNothing";
         }
         else if(first.equals(second)){
-            return false;
+            return "connectToSame";
         }
         else{
             int dimension = world.provider.getDimensionId();
@@ -123,22 +123,23 @@ public class LightNetworkHandler implements ILightNetworkHandler{
                 TileEntity firstTile = world.getTileEntity(first);
                 TileEntity secondTile = world.getTileEntity(second);
                 if(!(firstTile instanceof ILightComponent) || !(secondTile instanceof ILightComponent)){
-                    return false;
+                    return "connectToNotLightComponent";
                 }
                 else{
                     ILightComponent firstComp = (ILightComponent)firstTile;
                     ILightComponent secondComp = (ILightComponent)secondTile;
+
                     if(!(firstComp.canBeInNetworkWith(secondComp) || secondComp.canBeInNetworkWith(firstComp))){
-                        return false;
+                        return "connectNetworkError";
                     }
                     else if(Math.sqrt(first.distanceSq(second)) > Math.min(firstComp.getMaxDistanceFromComponent(), secondComp.getMaxDistanceFromComponent())){
-                        return false;
+                        return "connectTooFarAway";
                     }
                     else{
                         Set<IConnectionPair> firstConnections = this.getConnectionsForComponent(first, dimension);
                         Set<IConnectionPair> secondConnections = this.getConnectionsForComponent(second, dimension);
                         if((firstConnections != null && firstConnections.size() >= firstComp.getMaxConnections()) || (secondConnections != null && secondConnections.size() >= secondComp.getMaxConnections())){
-                            return false;
+                            return "connectEnoughConnections";
                         }
                     }
                 }
@@ -153,7 +154,7 @@ public class LightNetworkHandler implements ILightNetworkHandler{
                 this.addNetwork(net, dimension);
             }
             else if(firstNet == secondNet){
-                return false;
+                return "connectSameNetwork";
             }
             else if(firstNet == null){
                 secondNet.getConnections().add(new ConnectionPair(first, second));
@@ -168,7 +169,7 @@ public class LightNetworkHandler implements ILightNetworkHandler{
         }
         WorldData.makeDirty();
 
-        return true;
+        return null;
     }
 
     @Override

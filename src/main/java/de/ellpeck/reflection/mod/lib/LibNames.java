@@ -12,8 +12,11 @@ package de.ellpeck.reflection.mod.lib;
 
 public class LibNames{
 
-    public static final String BLOCK_MIRROR_NAME = "blockMirror";
-    public static final String TILE_MIRROR_NAME = "tileMirror";
+    public static final String BASE_TRANSLATOR = LibMod.MOD_ID+".";
+    public static final String MISC_TRANSLATOR = "misc."+BASE_TRANSLATOR;
+
+    public static final String BLOCK_REFLECTOR_BASE_NAME = "blockReflectorBase";
+    public static final String TILE_REFLECTOR_BASE_NAME = "tileReflectorBase";
 
     public static final String ITEM_LIGHT_CONNECTOR = "itemLightConnector";
 

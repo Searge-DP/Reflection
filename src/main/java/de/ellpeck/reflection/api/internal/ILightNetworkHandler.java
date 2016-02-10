@@ -62,9 +62,9 @@ public interface ILightNetworkHandler{
      * Will add them to a new network if they're not in one,
      * merge the networks if they are in separate ones etc.
      *
-     * @return If connecting the two components worked
+     * @return An unlocalized text that points out what exactly went wrong. Null if the connection worked.
      */
-    boolean addConnection(BlockPos first, BlockPos second, World world, boolean validate);
+    String addConnection(BlockPos first, BlockPos second, World world, boolean validate);
 
     /**
      * Gets every network the current world (or the last world that was opened) has
