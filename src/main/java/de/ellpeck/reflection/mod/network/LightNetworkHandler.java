@@ -188,6 +188,22 @@ public class LightNetworkHandler implements ILightNetworkHandler{
 
     @Override
     public void writeConnectionInfoNBT(ILightComponent tile, NBTTagCompound compound){
+        NBTTagList list = new NBTTagList();
+
+        Set<IConnectionPair> connections = ReflectionAPI.theLightNetworkHandler.getConnectionsForComponent(tile.getPosition(), tile.getTheWorld().provider.getDimensionId());
+        if(connections != null && !connections.isEmpty()){
+            for(IConnectionPair pair : connections){
+                NBTTagCompound pairCompound = new NBTTagCompound();
+                pair.writeToNBT(pairCompound);
+                list.appendTag(pairCompound);
+            }
+        }
+
+        compound.setTag(TAG_CONNECTIONS, list);
+    }
+
+    @Override
+    public void readConnectionInfoNBT(ILightComponent tile, NBTTagCompound compound){
         if(compound.hasKey(TAG_CONNECTIONS)){
             NBTTagList list = compound.getTagList(TAG_CONNECTIONS, 10);
             if(list.hasNoTags()){
@@ -203,22 +219,6 @@ public class LightNetworkHandler implements ILightNetworkHandler{
                 }
             }
         }
-    }
-
-    @Override
-    public void readConnectionInfoNBT(ILightComponent tile, NBTTagCompound compound){
-        NBTTagList list = new NBTTagList();
-
-        Set<IConnectionPair> connections = ReflectionAPI.theLightNetworkHandler.getConnectionsForComponent(tile.getPosition(), tile.getTheWorld().provider.getDimensionId());
-        if(connections != null && !connections.isEmpty()){
-            for(IConnectionPair pair : connections){
-                NBTTagCompound pairCompound = new NBTTagCompound();
-                pair.writeToNBT(pairCompound);
-                list.appendTag(pairCompound);
-            }
-        }
-
-        compound.setTag(TAG_CONNECTIONS, list);
     }
 
     public static class ConnectionPair implements IConnectionPair{
