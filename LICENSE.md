@@ -21,7 +21,7 @@ Everything that is not listed below applies to the above.
 * When it comes to the Mod, always link back to the the Forum Thread linked above.
 
 ### NOTES
-* The Reflection API can be excerpted for use in other projects, however it should not be modified. Do not remove the copyright header from any of the API's files.
+* The Reflection API can be excerpted for use in other projects, however it should not be modified. Do not remove the copyright header from any of the API's files and do not remove or change the package-info.java file!
 * The above License only applies for Code I wrote myself, any APIs used have their own License that is being respected.
 * There are some excerpts from other code used. Credit to the creators of these parts is always given and their Permission is granted or their License is respected.
 * Almost all of the Assets used in this Mod are owned by me. You are not allowed to copy them for any other Project.
