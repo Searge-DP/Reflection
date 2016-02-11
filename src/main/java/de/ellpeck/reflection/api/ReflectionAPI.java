@@ -12,8 +12,20 @@ package de.ellpeck.reflection.api;
 
 import de.ellpeck.reflection.api.internal.ILightNetworkHandler;
 import de.ellpeck.reflection.api.internal.IMethodHandler;
+import de.ellpeck.reflection.api.light.LightNetworkTier;
+import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.item.EnumDyeColor;
 
 public class ReflectionAPI{
+
+    /**
+     * The tier for every light component which isn't part of the tier system itself (like converters)
+     */
+    public static final LightNetworkTier TIER_SPECIAL = new LightNetworkTier(0, EntitySheep.func_175513_a(EnumDyeColor.CYAN));
+
+    //All of the "normal" light network tiers
+    public static final LightNetworkTier TIER_1 = new LightNetworkTier(1, EntitySheep.func_175513_a(EnumDyeColor.LIGHT_BLUE));
+    public static final LightNetworkTier TIER_2 = new LightNetworkTier(2, EntitySheep.func_175513_a(EnumDyeColor.GREEN));
 
     /**
      * The method handler

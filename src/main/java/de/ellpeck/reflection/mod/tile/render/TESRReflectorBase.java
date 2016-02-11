@@ -11,7 +11,7 @@
 package de.ellpeck.reflection.mod.tile.render;
 
 import de.ellpeck.reflection.api.ReflectionAPI;
-import de.ellpeck.reflection.mod.tile.TileReflectorBase;
+import de.ellpeck.reflection.mod.tile.tier1.TileReflectorBase;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 
 public class TESRReflectorBase extends TileEntitySpecialRenderer<TileReflectorBase>{

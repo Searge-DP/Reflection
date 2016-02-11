@@ -1,5 +1,5 @@
 /*
- * This file ("BlockMirrorBase.java") is part of the Reflection Mod for Minecraft.
+ * This file ("BlockReflector.java") is part of the Reflection Mod for Minecraft.
  * It is created and owned by Ellpeck and distributed
  * under the Reflection License to be found at
  * https://github.com/Ellpeck/Reflection/blob/master/LICENSE.md
@@ -8,14 +8,15 @@
  * © 2016 Ellpeck
  */
 
-package de.ellpeck.reflection.mod.blocks;
+package de.ellpeck.reflection.mod.blocks.tier1;
 
+import de.ellpeck.reflection.mod.blocks.BlockContainerBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 
-public class BlockReflector extends BlockContainerBase{
+public class BlockReflectorBase extends BlockContainerBase{
 
-    public BlockReflector(Material material, String name, boolean addTab, Class<? extends TileEntity> tileClass, String tileName){
+    public BlockReflectorBase(Material material, String name, boolean addTab, Class<? extends TileEntity> tileClass, String tileName){
         super(material, name, addTab, tileClass, tileName);
     }
 

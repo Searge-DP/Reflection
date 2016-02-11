@@ -20,6 +20,9 @@ public class LibNames{
     public static final String BLOCK_REFLECTOR_BASE_NAME = "blockReflectorBase";
     public static final String TILE_REFLECTOR_BASE_NAME = "tileReflectorBase";
 
+    public static final String BLOCK_CONVERTER12_BASE_NAME = "blockConverter12";
+    public static final String TILE_CONVERTER12_BASE_NAME = "tileConverter12";
+
     public static final String BLOCK_COALLECTOR_BASE_NAME = "blockCoallector";
     public static final String TILE_COALLECTOR_BASE_NAME = "tileCoallector";
 

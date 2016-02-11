@@ -10,8 +10,6 @@
 
 package de.ellpeck.reflection.api.light;
 
-import net.minecraft.entity.passive.EntitySheep;
-import net.minecraft.item.EnumDyeColor;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -21,12 +19,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  * New tiers can be added and don't have to be registered
  */
 public class LightNetworkTier{
-
-    /**
-     * The base tier
-     * This is the start of progression.
-     */
-    public static final LightNetworkTier BASE_TIER = new LightNetworkTier(0, EntitySheep.func_175513_a(EnumDyeColor.GREEN));
 
     private float[] colors;
     private int tierInt;

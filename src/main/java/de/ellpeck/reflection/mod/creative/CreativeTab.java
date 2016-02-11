@@ -38,8 +38,14 @@ public class CreativeTab extends CreativeTabs{
     public void displayAllReleventItems(List<ItemStack> list){
         this.list = list;
 
+        //Special
+        this.addBlock(InitBlocks.blockConverter12);
+
+        //Tier 1
         this.addBlock(InitBlocks.blockBasicReflector);
         this.addBlock(InitBlocks.blockCoallector);
+
+        //Items
         this.addItem(InitItems.itemLightConnector);
         this.addItem(InitItems.itemLightBatteryBase);
     }

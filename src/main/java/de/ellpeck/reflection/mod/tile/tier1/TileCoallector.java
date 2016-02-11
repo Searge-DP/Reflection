@@ -8,8 +8,9 @@
  * © 2016 Ellpeck
  */
 
-package de.ellpeck.reflection.mod.tile;
+package de.ellpeck.reflection.mod.tile.tier1;
 
+import de.ellpeck.reflection.api.ReflectionAPI;
 import de.ellpeck.reflection.api.internal.ILightNetwork;
 import de.ellpeck.reflection.api.light.ILightComponent;
 import de.ellpeck.reflection.api.light.LightNetworkTier;
@@ -31,7 +32,6 @@ import java.util.List;
 
 public class TileCoallector extends TileLightComponent implements ITickable{
 
-    private static final int LIGHT_PRODUCE = 10;
     private static final String TAG_BURN_TIME = "BurnTime";
 
     private boolean hadEnoughLight;
@@ -39,7 +39,7 @@ public class TileCoallector extends TileLightComponent implements ITickable{
 
     @Override
     public LightNetworkTier getTier(){
-        return LightNetworkTier.BASE_TIER;
+        return ReflectionAPI.TIER_1;
     }
 
     @Override
@@ -118,8 +118,9 @@ public class TileCoallector extends TileLightComponent implements ITickable{
                 if(this.hadEnoughLight != hasEnoughLight || burnTimeWatcher != this.burnTime > 0){
                     this.hadEnoughLight = hasEnoughLight;
 
+                    System.out.println("Funktioniert das hier überhaupt wie es soll?");
                     if(this.burnTime > 0 && hasEnoughLight){
-                        network.addLightGen(this, LIGHT_PRODUCE);
+                        network.addLightGen(this, 10);
                     }
                     else{
                         network.removeLightGen(this);
