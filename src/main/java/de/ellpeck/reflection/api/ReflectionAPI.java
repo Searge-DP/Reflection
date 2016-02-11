@@ -16,18 +16,17 @@ import de.ellpeck.reflection.api.internal.IMethodHandler;
 public class ReflectionAPI{
 
     /**
-     * The light network handler
-     * (Connections get added when joining a world or while in a world,
-     * old connections are cleared when loading/joining a different world)
-     * <p>
-     * Gets initialized during the FMLPreInitializationEvent in Reflection's CommonProxy
-     */
-    public static ILightNetworkHandler theLightNetworkHandler;
-
-    /**
      * The method handler
      *
      * Gets initialized during the FMLPreInitializationEvent in Reflection's CommonProxy
      */
     public static IMethodHandler theMethodHandler;
+
+    /**
+     * Gets the light network handler from the method handler
+     * (Check there for more detailed information)
+     */
+    public static ILightNetworkHandler getLightNetworkHandler(){
+        return theMethodHandler.getLightNetworkHandler();
+    }
 }

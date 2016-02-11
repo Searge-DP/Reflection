@@ -44,11 +44,11 @@ public class WorldUtil{
     }
 
     public static ILightNetwork getNetworkForTile(ILightComponent tile){
-        return ReflectionAPI.theLightNetworkHandler.getNetworkForComponent(tile.getPosition(), tile.getTheWorld().provider.getDimensionId());
+        return ReflectionAPI.getLightNetworkHandler().getNetworkForComponent(tile.getPosition(), tile.getTheWorld().provider.getDimensionId());
     }
 
     public static Set<IConnectionPair> getAllConnectionsForTile(ILightComponent tile){
-        return ReflectionAPI.theLightNetworkHandler.getConnectionsForComponent(tile.getPosition(), tile.getTheWorld().provider.getDimensionId());
+        return ReflectionAPI.getLightNetworkHandler().getConnectionsForComponent(tile.getPosition(), tile.getTheWorld().provider.getDimensionId());
     }
 
 }

@@ -42,7 +42,7 @@ public class ItemLightConnector extends ItemBase{
                         ILightComponent second = this.getPosition(stack, world);
                         stack.setTagCompound(new NBTTagCompound());
                         if(second != null){
-                            String error = ReflectionAPI.theLightNetworkHandler.addConnection(posHit, second.getPosition(), world, true);
+                            String error = ReflectionAPI.getLightNetworkHandler().addConnection(posHit, second.getPosition(), world, true);
                             if(error == null){
                                 VanillaPacketHandler.sendTilePacketToAllAround(tile);
                                 if(second instanceof TileEntity){

@@ -37,9 +37,9 @@ public class WorldData extends WorldSavedData{
     }
 
     public static void clearOldData(){
-        if(!ReflectionAPI.theLightNetworkHandler.getAllNetworks().isEmpty()){
+        if(!ReflectionAPI.getLightNetworkHandler().getAllNetworks().isEmpty()){
             LibMod.LOGGER.info("Clearing LightNetwork Data from other worlds...");
-            ReflectionAPI.theLightNetworkHandler.getAllNetworks().clear();
+            ReflectionAPI.getLightNetworkHandler().getAllNetworks().clear();
         }
     }
 
@@ -88,14 +88,14 @@ public class WorldData extends WorldSavedData{
                 ILightNetwork newNetwork = LightNetwork.readFromNBT(networkCompound);
                 networksForDim.add(newNetwork);
             }
-            ReflectionAPI.theLightNetworkHandler.getAllNetworks().put(dimension, networksForDim);
+            ReflectionAPI.getLightNetworkHandler().getAllNetworks().put(dimension, networksForDim);
         }
     }
 
     @Override
     public void writeToNBT(NBTTagCompound compound){
         NBTTagList lightNetworkList = new NBTTagList();
-        for(Map.Entry<Integer, Set<ILightNetwork>> networks : ReflectionAPI.theLightNetworkHandler.getAllNetworks().entrySet()){
+        for(Map.Entry<Integer, Set<ILightNetwork>> networks : ReflectionAPI.getLightNetworkHandler().getAllNetworks().entrySet()){
             NBTTagCompound dimCompound = new NBTTagCompound();
             dimCompound.setInteger(TAG_DIMENSION, networks.getKey());
 

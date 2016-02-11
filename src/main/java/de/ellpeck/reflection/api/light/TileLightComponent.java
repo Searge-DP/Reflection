@@ -30,7 +30,7 @@ public abstract class TileLightComponent extends TileEntityBase implements ILigh
         //Be sure to use super when overriding this method
         //
         //IT IS VERY IMPORTANT THAT YOU ALWAYS CALL THIS IN invalidate()!!!
-        ReflectionAPI.theLightNetworkHandler.removeConnections(this.getPos(), this.worldObj);
+        ReflectionAPI.getLightNetworkHandler().removeConnections(this.getPos(), this.worldObj);
     }
 
     @Override

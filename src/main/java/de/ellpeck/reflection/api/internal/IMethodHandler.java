@@ -46,4 +46,11 @@ public interface IMethodHandler{
      */
     @SideOnly(Side.CLIENT)
     void renderLightForConnections(ILightComponent component);
+
+    /**
+     * Gets the light network handler
+     * (Connections get added when joining a world or while in a world,
+     * old connections are cleared when loading/joining a different world)
+     */
+    ILightNetworkHandler getLightNetworkHandler();
 }

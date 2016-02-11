@@ -12,6 +12,7 @@ package de.ellpeck.reflection.mod.util;
 
 import de.ellpeck.reflection.api.ReflectionAPI;
 import de.ellpeck.reflection.api.internal.IConnectionPair;
+import de.ellpeck.reflection.api.internal.ILightNetworkHandler;
 import de.ellpeck.reflection.api.internal.IMethodHandler;
 import de.ellpeck.reflection.api.light.ILightComponent;
 import de.ellpeck.reflection.mod.network.LightNetworkHandler;
@@ -25,6 +26,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.Set;
 
 public class MethodHandler implements IMethodHandler{
+
+    private final ILightNetworkHandler lightNetworkHandler;
+
+    public MethodHandler(){
+        this.lightNetworkHandler = new LightNetworkHandler();
+    }
 
     private static final String TAG_CONNECTIONS = "Connections";
 
@@ -49,14 +56,14 @@ public class MethodHandler implements IMethodHandler{
         if(compound.hasKey(TAG_CONNECTIONS)){
             NBTTagList list = compound.getTagList(TAG_CONNECTIONS, 10);
             if(list.hasNoTags()){
-                ReflectionAPI.theLightNetworkHandler.removeConnections(tile.getPosition(), tile.getTheWorld());
+                ReflectionAPI.getLightNetworkHandler().removeConnections(tile.getPosition(), tile.getTheWorld());
             }
             else{
                 Set<IConnectionPair> connections = WorldUtil.getAllConnectionsForTile(tile);
                 for(int i = 0; i < list.tagCount(); i++){
                     LightNetworkHandler.ConnectionPair pair = LightNetworkHandler.ConnectionPair.readFromNBT(list.getCompoundTagAt(i));
                     if(!connections.contains(pair)){
-                        ReflectionAPI.theLightNetworkHandler.addConnection(pair.first, pair.second, tile.getTheWorld(), false);
+                        ReflectionAPI.getLightNetworkHandler().addConnection(pair.first, pair.second, tile.getTheWorld(), false);
                     }
                 }
             }
@@ -91,6 +98,11 @@ public class MethodHandler implements IMethodHandler{
                 }
             }
         }
+    }
+
+    @Override
+    public ILightNetworkHandler getLightNetworkHandler(){
+        return this.lightNetworkHandler;
     }
 
 }

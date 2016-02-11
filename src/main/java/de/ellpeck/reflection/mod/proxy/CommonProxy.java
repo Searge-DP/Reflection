@@ -13,7 +13,6 @@ package de.ellpeck.reflection.mod.proxy;
 import de.ellpeck.reflection.api.ReflectionAPI;
 import de.ellpeck.reflection.mod.blocks.InitBlocks;
 import de.ellpeck.reflection.mod.items.InitItems;
-import de.ellpeck.reflection.mod.network.LightNetworkHandler;
 import de.ellpeck.reflection.mod.util.MethodHandler;
 import de.ellpeck.reflection.mod.world.WorldEvents;
 import net.minecraft.item.Item;
@@ -28,7 +27,6 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 public class CommonProxy{
 
     public void preInit(FMLPreInitializationEvent event){
-        ReflectionAPI.theLightNetworkHandler = new LightNetworkHandler();
         ReflectionAPI.theMethodHandler = new MethodHandler();
 
         InitBlocks.preInit();
