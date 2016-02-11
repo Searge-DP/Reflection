@@ -32,7 +32,7 @@ public class MethodHandler implements IMethodHandler{
     public void writeConnectionInfoNBT(ILightComponent tile, NBTTagCompound compound){
         NBTTagList list = new NBTTagList();
 
-        Set<IConnectionPair> connections = ReflectionAPI.theLightNetworkHandler.getConnectionsForComponent(tile.getPosition(), tile.getTheWorld().provider.getDimensionId());
+        Set<IConnectionPair> connections = WorldUtil.getAllConnectionsForTile(tile);
         if(connections != null && !connections.isEmpty()){
             for(IConnectionPair pair : connections){
                 NBTTagCompound pairCompound = new NBTTagCompound();
@@ -52,7 +52,7 @@ public class MethodHandler implements IMethodHandler{
                 ReflectionAPI.theLightNetworkHandler.removeConnections(tile.getPosition(), tile.getTheWorld());
             }
             else{
-                Set<IConnectionPair> connections = ReflectionAPI.theLightNetworkHandler.getConnectionsForComponent(tile.getPosition(), tile.getTheWorld().provider.getDimensionId());
+                Set<IConnectionPair> connections = WorldUtil.getAllConnectionsForTile(tile);
                 for(int i = 0; i < list.tagCount(); i++){
                     LightNetworkHandler.ConnectionPair pair = LightNetworkHandler.ConnectionPair.readFromNBT(list.getCompoundTagAt(i));
                     if(!connections.contains(pair)){
@@ -66,7 +66,7 @@ public class MethodHandler implements IMethodHandler{
     @Override
     @SideOnly(Side.CLIENT)
     public void renderLightForConnections(ILightComponent component){
-        Set<IConnectionPair> connections = ReflectionAPI.theLightNetworkHandler.getConnectionsForComponent(component.getPosition(), component.getTheWorld().provider.getDimensionId());
+        Set<IConnectionPair> connections = WorldUtil.getAllConnectionsForTile(component);
         if(connections != null){
 
             Tessellator tessy = Tessellator.getInstance();

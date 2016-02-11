@@ -11,6 +11,7 @@
 package de.ellpeck.reflection.mod.items;
 
 import de.ellpeck.reflection.api.ReflectionAPI;
+import de.ellpeck.reflection.api.internal.ILightNetwork;
 import de.ellpeck.reflection.api.light.ILightComponent;
 import de.ellpeck.reflection.mod.lib.LibNames;
 import de.ellpeck.reflection.mod.util.VanillaPacketHandler;
@@ -20,6 +21,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
@@ -35,28 +37,41 @@ public class ItemLightConnector extends ItemBase{
         TileEntity tile = world.getTileEntity(posHit);
         if(tile instanceof ILightComponent){
             if(!world.isRemote){
-                if(this.hasStoredPosition(stack)){
-                    ILightComponent second = this.getPosition(stack, world);
-                    stack.setTagCompound(new NBTTagCompound());
-                    if(second != null){
-                        String error = ReflectionAPI.theLightNetworkHandler.addConnection(posHit, second.getPosition(), world, true);
-                        if(error == null){
-                            VanillaPacketHandler.sendTilePacketToAllAround(tile);
-                            if(second instanceof TileEntity){
-                                VanillaPacketHandler.sendTilePacketToAllAround((TileEntity)second);
-                            }
+                if(!player.isSneaking()){
+                    if(this.hasStoredPosition(stack)){
+                        ILightComponent second = this.getPosition(stack, world);
+                        stack.setTagCompound(new NBTTagCompound());
+                        if(second != null){
+                            String error = ReflectionAPI.theLightNetworkHandler.addConnection(posHit, second.getPosition(), world, true);
+                            if(error == null){
+                                VanillaPacketHandler.sendTilePacketToAllAround(tile);
+                                if(second instanceof TileEntity){
+                                    VanillaPacketHandler.sendTilePacketToAllAround((TileEntity)second);
+                                }
 
-                            player.addChatComponentMessage(new ChatComponentTranslation(LibNames.MISC_TRANSLATOR+"connectionWorked"));
-                            return true;
+                                player.addChatComponentMessage(new ChatComponentTranslation(LibNames.MISC_TRANSLATOR+"connectionWorked"));
+                                return true;
+                            }
+                            else{
+                                player.addChatComponentMessage(new ChatComponentTranslation(LibNames.MISC_TRANSLATOR+error));
+                                return false;
+                            }
                         }
-                        else{
-                            player.addChatComponentMessage(new ChatComponentTranslation(LibNames.MISC_TRANSLATOR+error));
-                            return false;
-                        }
+                    }
+                    else{
+                        this.storePosition(stack, (ILightComponent)tile);
                     }
                 }
                 else{
-                    this.storePosition(stack, (ILightComponent)tile);
+                    ILightNetwork network = WorldUtil.getNetworkForTile((ILightComponent)tile);
+                    if(network != null){
+                        player.addChatComponentMessage(new ChatComponentText("Network generates "+network.getTotalLightGenerated()+" Light!"));
+                        player.addChatComponentMessage(new ChatComponentText("Network uses "+network.getTotalLightUsed()+" Light!"));
+                        player.addChatComponentMessage(new ChatComponentText("In total, Network has "+network.getTotalLight()+" Light left!"));
+                    }
+                    else{
+                        player.addChatComponentMessage(new ChatComponentText("No Network!"));
+                    }
                 }
             }
             return true;

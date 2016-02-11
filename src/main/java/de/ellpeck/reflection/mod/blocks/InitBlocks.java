@@ -11,16 +11,20 @@
 package de.ellpeck.reflection.mod.blocks;
 
 import de.ellpeck.reflection.mod.lib.LibNames;
+import de.ellpeck.reflection.mod.tile.TileCoallector;
 import de.ellpeck.reflection.mod.tile.TileReflectorBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
 public class InitBlocks{
 
+    //Tier 1
     public static Block blockBasicReflector;
+    public static Block blockCoallector;
 
     public static void preInit(){
         blockBasicReflector = new BlockReflector(Material.anvil, LibNames.BLOCK_REFLECTOR_BASE_NAME, true, TileReflectorBase.class, LibNames.TILE_REFLECTOR_BASE_NAME);
+        blockCoallector = new BlockCoallector(Material.anvil, LibNames.BLOCK_COALLECTOR_BASE_NAME, true, TileCoallector.class, LibNames.TILE_COALLECTOR_BASE_NAME);
     }
 
 }

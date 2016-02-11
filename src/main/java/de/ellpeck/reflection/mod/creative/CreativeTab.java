@@ -39,6 +39,7 @@ public class CreativeTab extends CreativeTabs{
         this.list = list;
 
         this.addBlock(InitBlocks.blockBasicReflector);
+        this.addBlock(InitBlocks.blockCoallector);
         this.addItem(InitItems.itemLightConnector);
         this.addItem(InitItems.itemLightBatteryBase);
     }

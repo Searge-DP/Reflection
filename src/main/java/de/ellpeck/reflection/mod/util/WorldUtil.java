@@ -10,8 +10,14 @@
 
 package de.ellpeck.reflection.mod.util;
 
+import de.ellpeck.reflection.api.ReflectionAPI;
+import de.ellpeck.reflection.api.internal.IConnectionPair;
+import de.ellpeck.reflection.api.internal.ILightNetwork;
+import de.ellpeck.reflection.api.light.ILightComponent;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
+
+import java.util.Set;
 
 public class WorldUtil{
 
@@ -35,6 +41,14 @@ public class WorldUtil{
 
     public static boolean hasBlockPosData(NBTTagCompound compound){
         return compound.hasKey(TAG_X) && compound.hasKey(TAG_Y) && compound.hasKey(TAG_Z);
+    }
+
+    public static ILightNetwork getNetworkForTile(ILightComponent tile){
+        return ReflectionAPI.theLightNetworkHandler.getNetworkForComponent(tile.getPosition(), tile.getTheWorld().provider.getDimensionId());
+    }
+
+    public static Set<IConnectionPair> getAllConnectionsForTile(ILightComponent tile){
+        return ReflectionAPI.theLightNetworkHandler.getConnectionsForComponent(tile.getPosition(), tile.getTheWorld().provider.getDimensionId());
     }
 
 }
