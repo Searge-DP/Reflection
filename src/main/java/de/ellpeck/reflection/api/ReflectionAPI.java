@@ -15,11 +15,6 @@ import de.ellpeck.reflection.api.internal.IMethodHandler;
 
 public class ReflectionAPI{
 
-    public static final String VERSION = "6";
-
-    public static final String MOD_NAME = "Reflection";
-    public static final String API_NAME = MOD_NAME+"API";
-
     /**
      * The light network handler
      * (Connections get added when joining a world or while in a world,

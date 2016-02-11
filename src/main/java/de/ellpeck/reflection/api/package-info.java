@@ -8,7 +8,8 @@
  * © 2016 Ellpeck
  */
 
-@API(owner = ReflectionAPI.MOD_NAME, provides = ReflectionAPI.API_NAME, apiVersion = ReflectionAPI.VERSION)
+@API(owner = Values.MOD_ID, provides = Values.API_NAME, apiVersion = Values.API_VERSION)
 package de.ellpeck.reflection.api;
 
+import de.ellpeck.reflection.api.internal.Values;
 import net.minecraftforge.fml.common.API;

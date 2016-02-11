@@ -10,7 +10,7 @@
 
 package de.ellpeck.reflection.mod.lib;
 
-import de.ellpeck.reflection.api.ReflectionAPI;
+import de.ellpeck.reflection.api.internal.Values;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,8 +18,8 @@ import java.util.Random;
 
 public class LibMod{
 
-    public static final String MOD_ID = "reflection";
-    public static final String MOD_NAME = ReflectionAPI.MOD_NAME;
+    public static final String MOD_ID = Values.MOD_ID;
+    public static final String MOD_NAME = Values.MOD_NAME;
 
     public static final String VERSION = "@VERSION@";
     public static final Logger LOGGER = LogManager.getLogger(MOD_NAME);
