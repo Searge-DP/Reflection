@@ -5,6 +5,11 @@ itemGroup.reflection=Reflection
 item.reflection.itemLightConnector.name=Rod of the Lights
 item.reflection.itemLightBatteryBase.name=Tiny Rounded Prism
 
+#Blocks
+tile.reflection.blockConverter12.name=Tier Shifter (1-2)
+tile.reflection.blockReflectorBase.name=Reflector of the Common
+tile.reflection.blockCoallector.name=Flame Focus
+
 #Misc
 misc.reflection.connectionWorked=You see a beam of light appear...
 misc.reflection.connectToSame=The distance is too short for a light beam to form...

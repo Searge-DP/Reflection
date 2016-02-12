@@ -31,7 +31,7 @@ public class CreativeTab extends CreativeTabs{
 
     @Override
     public Item getTabIconItem(){
-        return Item.getItemFromBlock(InitBlocks.blockBasicReflector);
+        return InitItems.itemLightConnector;
     }
 
     @Override
