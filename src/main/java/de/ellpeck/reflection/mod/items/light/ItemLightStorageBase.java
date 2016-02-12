@@ -55,33 +55,33 @@ public class ItemLightStorageBase extends ItemBase implements ILightStorageItem{
     }
 
     @Override
-    public boolean extractLight(ItemStack stack, int amount, boolean actuallyDo){
-        NBTTagCompound compound = stack.getTagCompound();
-        if(compound != null){
-            int thisAmount = compound.getInteger(TAG_LIGHT);
-            if(thisAmount >= amount){
-                if(actuallyDo){
-                    compound.setInteger(TAG_LIGHT, thisAmount-amount);
-                }
-                return true;
-            }
+    public int extractLight(ItemStack stack, int amount, boolean actuallyDo){
+        int light = this.getLight(stack);
+        if(light > 0){
+            int extracted = Math.min(light, amount);
+            this.setLight(stack, light-extracted);
+
+            return extracted;
         }
-        return false;
+        else{
+            return 0;
+        }
     }
 
     @Override
-    public boolean insertLight(ItemStack stack, int amount, boolean actuallyDo){
-        NBTTagCompound compound = stack.getTagCompound();
-        if(compound != null){
-            int thisAmount = compound.getInteger(TAG_LIGHT);
-            if(this.getMaxLight(stack) >= thisAmount+amount){
-                if(actuallyDo){
-                    compound.setInteger(TAG_LIGHT, thisAmount+amount);
-                }
-                return true;
-            }
+    public int insertLight(ItemStack stack, int amount, boolean actuallyDo){
+        int light = this.getLight(stack);
+        int maxLight = this.getMaxLight(stack);
+        if(light < maxLight){
+
+            int inserted = Math.min(amount, maxLight-light);
+            this.setLight(stack, light+inserted);
+
+            return inserted;
         }
-        return false;
+        else{
+            return 0;
+        }
     }
 
     @Override

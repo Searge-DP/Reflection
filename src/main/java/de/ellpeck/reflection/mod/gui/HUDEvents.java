@@ -48,8 +48,10 @@ public class HUDEvents{
                     Item item = stack.getItem();
                     if(item instanceof ILightStorageItem){
                         ILightStorageItem storage = (ILightStorageItem)item;
-                        lightAmount += storage.getLight(stack);
-                        maxLightAmount += storage.getMaxLight(stack);
+                        if(storage.displayTopBar(stack)){
+                            lightAmount += storage.getLight(stack);
+                            maxLightAmount += storage.getMaxLight(stack);
+                        }
                     }
                 }
             }

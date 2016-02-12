@@ -15,9 +15,13 @@ import de.ellpeck.reflection.api.internal.IConnectionPair;
 import de.ellpeck.reflection.api.internal.ILightNetworkHandler;
 import de.ellpeck.reflection.api.internal.IMethodHandler;
 import de.ellpeck.reflection.api.light.ILightComponent;
+import de.ellpeck.reflection.api.light.ILightStorageItem;
 import de.ellpeck.reflection.mod.network.LightNetworkHandler;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.fml.relauncher.Side;
@@ -103,6 +107,36 @@ public class MethodHandler implements IMethodHandler{
     @Override
     public ILightNetworkHandler getLightNetworkHandler(){
         return this.lightNetworkHandler;
+    }
+
+    @Override
+    public int insertLightIntoInventory(InventoryPlayer inventory, int amount, boolean actuallyDo){
+        int inserted = 0;
+        for(int i = 0; i < inventory.getSizeInventory(); i++){
+            ItemStack stack = inventory.getStackInSlot(i);
+            if(stack != null){
+                Item item = stack.getItem();
+                if(item instanceof ILightStorageItem){
+                    inserted+=((ILightStorageItem)item).insertLight(stack, amount-inserted, actuallyDo);
+                }
+            }
+        }
+        return inserted;
+    }
+
+    @Override
+    public int extractLightFromInventory(InventoryPlayer inventory, int amount, boolean actuallyDo){
+        int extracted = 0;
+        for(int i = 0; i < inventory.getSizeInventory(); i++){
+            ItemStack stack = inventory.getStackInSlot(i);
+            if(stack != null){
+                Item item = stack.getItem();
+                if(item instanceof ILightStorageItem){
+                    extracted+=((ILightStorageItem)item).extractLight(stack, amount-extracted, actuallyDo);
+                }
+            }
+        }
+        return extracted;
     }
 
 }

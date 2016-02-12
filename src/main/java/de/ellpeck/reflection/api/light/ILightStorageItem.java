@@ -42,17 +42,17 @@ public interface ILightStorageItem{
      * Tries to extract a given amount of light
      *
      * @param actuallyDo When set to false, the extract will be simulated
-     * @return If the extraction worked
+     * @return The amount that was extracted
      */
-    boolean extractLight(ItemStack stack, int amount, boolean actuallyDo);
+    int extractLight(ItemStack stack, int amount, boolean actuallyDo);
 
     /**
      * Tries to insert a given amount of light
      *
      * @param actuallyDo When set to false, the insert will be simulated
-     * @return If the insertion worked
+     * @return The amount that was inserted
      */
-    boolean insertLight(ItemStack stack, int amount, boolean actuallyDo);
+    int insertLight(ItemStack stack, int amount, boolean actuallyDo);
 
     /**
      * Sets the amount of light in the stack to the specified amount.

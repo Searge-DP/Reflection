@@ -11,6 +11,7 @@
 package de.ellpeck.reflection.api.internal;
 
 import de.ellpeck.reflection.api.light.ILightComponent;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -53,4 +54,16 @@ public interface IMethodHandler{
      * old connections are cleared when loading/joining a different world)
      */
     ILightNetworkHandler getLightNetworkHandler();
+
+    /**
+     * Inserts a given amount of light into any light containers the player has in their inventory
+     * @return The amount that was added
+     */
+    int insertLightIntoInventory(InventoryPlayer inventory, int amount, boolean actuallyDo);
+
+    /**
+     * Extracts a given amount of light from any light containers the player has in their inventory
+     * @return The amount that was extracted
+     */
+    int extractLightFromInventory(InventoryPlayer inventory, int amount, boolean actuallyDo);
 }
