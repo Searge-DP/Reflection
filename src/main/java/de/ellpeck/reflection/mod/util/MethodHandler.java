@@ -43,7 +43,7 @@ public class MethodHandler implements IMethodHandler{
 
     private static double BEAM_SIZE = 4D/16D;
     private static float BEAM_ALPHA = 0.5F;
-    private static int BEAM_ROTATIONTIME = 3000;    // Time (in ms) for a full rotaion
+    private static int BEAM_ROTATIONTIME = 60;    // Time (in ticks) for a full rotaion. 0 will not rotate
 
     @Override
     public void writeConnectionInfoNBT(ILightComponent tile, NBTTagCompound compound){
@@ -89,7 +89,7 @@ public class MethodHandler implements IMethodHandler{
             Tessellator tessy = Tessellator.getInstance();
             WorldRenderer render = tessy.getWorldRenderer();
 
-            GlStateManager.color(1,1,1,1);
+            GlStateManager.disableFog();
 
             float[] colors = component.getTier().getColors();
             float r = colors[0];
@@ -98,7 +98,7 @@ public class MethodHandler implements IMethodHandler{
 
             Vec3d vpos1 = new Vec3d(component.getPosition().getX()+0.5, component.getPosition().getY()+0.5, component.getPosition().getZ()+0.5);
 
-            float rot =  360F *((float)(System.currentTimeMillis() % BEAM_ROTATIONTIME) / (float) BEAM_ROTATIONTIME);
+            float rot =  (BEAM_ROTATIONTIME > 0) ? (360F *((float)((component.getTheWorld().getTotalWorldTime()) % BEAM_ROTATIONTIME) / (float) BEAM_ROTATIONTIME)) : 0;
 
             for(IConnectionPair pair : connections){
                 if(component.getPosition().equals(pair.getFirst())){
@@ -129,13 +129,12 @@ public class MethodHandler implements IMethodHandler{
 
                     GlStateManager.pushMatrix();
 
-                    GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, 10497.0F);
-                    GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T, 10497.0F);
                     GlStateManager.disableLighting();
-                    GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
                     GlStateManager.disableTexture2D();
                     GlStateManager.enableBlend();
-                    //GlStateManager.tryBlendFuncSeparate(770, 1, 1, 0);
+                    //GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+                    GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
+                    GlStateManager.depthMask(false);
 
                     GlStateManager.translate(x+0.5,y+0.5,z+0.5);
                     GlStateManager.rotate((float)(180*yaw/Math.PI),0,1,0);
@@ -165,12 +164,12 @@ public class MethodHandler implements IMethodHandler{
                     tessy.draw();
 
                     GlStateManager.disableBlend();
-                    GlStateManager.enableTexture2D();
-
                     GlStateManager.enableLighting();
                     GlStateManager.enableTexture2D();
+                    GlStateManager.depthMask(true);
                     GlStateManager.popMatrix();
                 }
+                GlStateManager.enableFog();
             }
         }
     }
