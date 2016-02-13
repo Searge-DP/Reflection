@@ -54,7 +54,7 @@ public interface IMethodHandler{
      * @param alpha The alpha (transparency) of the beam
      * @param beamWidth The width of the beam
      * @param firstColor The color at the first pos
-     * @param secondColor The color at the second pos (will cause gradient if different from firstColor)
+     * @param secondColor The color at the second pos
      */
     @SideOnly(Side.CLIENT)
     void renderLightBetweenTwoPoints(double firstX, double firstY, double firstZ, double secondX, double secondY, double secondZ, int rotationTime, float alpha, double beamWidth, float[] firstColor, float[] secondColor);

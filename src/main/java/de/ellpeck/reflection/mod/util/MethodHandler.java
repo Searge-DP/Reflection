@@ -101,6 +101,7 @@ public class MethodHandler implements IMethodHandler{
         }
     }
 
+    @SuppressWarnings("UnnecessaryLocalVariable")
     @Override
     @SideOnly(Side.CLIENT)
     public void renderLightBetweenTwoPoints(double firstX, double firstY, double firstZ, double secondX, double secondY, double secondZ, int rotationTime, float alpha, double beamWidth, float[] firstColor, float[] secondColor){
@@ -110,13 +111,20 @@ public class MethodHandler implements IMethodHandler{
 
         GlStateManager.disableFog();
 
-        float r = firstColor[0];
+        /*float r = firstColor[0];
         float g = firstColor[1];
         float b = firstColor[2];
 
         float r2 = secondColor[0];
         float g2 = secondColor[1];
-        float b2 = secondColor[2];
+        float b2 = secondColor[2];*/
+
+        float r = firstColor[0] * 0.5F + secondColor[0] * 0.5F;
+        float g = firstColor[1] * 0.5F + secondColor[1] * 0.5F;
+        float b = firstColor[2] * 0.5F + secondColor[2] * 0.5F;
+        float r2 = r;
+        float g2 = g;
+        float b2 = b;
 
         Vec3d vec1 = new Vec3d(firstX, firstY, firstZ);
         Vec3d vec2 = new Vec3d(secondX, secondY, secondZ);

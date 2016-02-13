@@ -43,7 +43,6 @@ public class ItemLightConnector extends ItemBase{
                         stack.setTagCompound(new NBTTagCompound());
                         if(second != null){
                             String error = ReflectionAPI.getLightNetworkHandler().addConnection(posHit, second.getPosition(), world, true);
-                            System.out.println(error);
                             if(error == null){
                                 VanillaPacketHandler.sendTilePacketToAllAround(tile);
                                 if(second instanceof TileEntity){
