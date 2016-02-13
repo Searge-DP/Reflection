@@ -17,13 +17,9 @@ import de.ellpeck.reflection.api.internal.ILightNetworkHandler;
 import de.ellpeck.reflection.api.internal.IMethodHandler;
 import de.ellpeck.reflection.api.light.ILightComponent;
 import de.ellpeck.reflection.mod.network.LightNetworkHandler;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
-import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -47,6 +43,7 @@ public class MethodHandler implements IMethodHandler{
 
     private static double BEAM_SIZE = 4D/16D;
     private static float BEAM_ALPHA = 0.5F;
+    private static int BEAM_ROTATIONTIME = 3000;    // Time (in ms) for a full rotaion
 
     @Override
     public void writeConnectionInfoNBT(ILightComponent tile, NBTTagCompound compound){
@@ -92,12 +89,16 @@ public class MethodHandler implements IMethodHandler{
             Tessellator tessy = Tessellator.getInstance();
             WorldRenderer render = tessy.getWorldRenderer();
 
+            GlStateManager.color(1,1,1,1);
+
             float[] colors = component.getTier().getColors();
             float r = colors[0];
             float g = colors[1];
             float b = colors[2];
 
             Vec3d vpos1 = new Vec3d(component.getPosition().getX()+0.5, component.getPosition().getY()+0.5, component.getPosition().getZ()+0.5);
+
+            float rot =  360F *((float)(System.currentTimeMillis() % BEAM_ROTATIONTIME) / (float) BEAM_ROTATIONTIME);
 
             for(IConnectionPair pair : connections){
                 if(component.getPosition().equals(pair.getFirst())){
@@ -131,7 +132,7 @@ public class MethodHandler implements IMethodHandler{
                     GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, 10497.0F);
                     GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T, 10497.0F);
                     GlStateManager.disableLighting();
-                    //GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+                    GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
                     GlStateManager.disableTexture2D();
                     GlStateManager.enableBlend();
                     //GlStateManager.tryBlendFuncSeparate(770, 1, 1, 0);
@@ -139,8 +140,7 @@ public class MethodHandler implements IMethodHandler{
                     GlStateManager.translate(x+0.5,y+0.5,z+0.5);
                     GlStateManager.rotate((float)(180*yaw/Math.PI),0,1,0);
                     GlStateManager.rotate((float)(180*pitch/Math.PI),0,0,1);
-
-                    GlStateManager.color(255,255,255,255);
+                    GlStateManager.rotate(rot,1,0,0);
 
                     render.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR);
                     render.pos(beamlen, width, width).color(r2,g2,b2,BEAM_ALPHA).endVertex();
@@ -158,10 +158,10 @@ public class MethodHandler implements IMethodHandler{
                     render.pos(0, width, width).color(r,g,b,BEAM_ALPHA).endVertex();
                     render.pos(beamlen, width, width).color(r2,g2,b2,BEAM_ALPHA).endVertex();
 
-                    render.pos(beamlen, -width, -width).color(r2,g2,b2,BEAM_ALPHA).endVertex();
-                    render.pos(0, -width, -width).color(r,g,b,BEAM_ALPHA).endVertex();
-                    render.pos(0, -width, width).color(r,g,b,BEAM_ALPHA).endVertex();
                     render.pos(beamlen, -width, width).color(r2,g2,b2,BEAM_ALPHA).endVertex();
+                    render.pos(0, -width, width).color(r,g,b,BEAM_ALPHA).endVertex();
+                    render.pos(0, -width, -width).color(r,g,b,BEAM_ALPHA).endVertex();
+                    render.pos(beamlen, -width, -width).color(r2,g2,b2,BEAM_ALPHA).endVertex();
                     tessy.draw();
 
                     GlStateManager.disableBlend();
