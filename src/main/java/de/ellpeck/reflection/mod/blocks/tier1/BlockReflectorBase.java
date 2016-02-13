@@ -10,15 +10,14 @@
 
 package de.ellpeck.reflection.mod.blocks.tier1;
 
-import de.ellpeck.reflection.mod.blocks.BlockContainerBase;
+import de.ellpeck.reflection.mod.blocks.BlockLightComponentBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 
-public class BlockReflectorBase extends BlockContainerBase{
+public class BlockReflectorBase extends BlockLightComponentBase{
 
     public BlockReflectorBase(Material material, String name, boolean addTab, Class<? extends TileEntity> tileClass, String tileName){
         super(material, name, addTab, tileClass, tileName);
-        this.setLightOpacity(1);
     }
 
 }
