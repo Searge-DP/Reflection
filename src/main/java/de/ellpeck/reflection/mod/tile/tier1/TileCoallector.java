@@ -118,7 +118,6 @@ public class TileCoallector extends TileLightComponent implements ITickable{
                 if(this.hadEnoughLight != hasEnoughLight || burnTimeWatcher != this.burnTime > 0){
                     this.hadEnoughLight = hasEnoughLight;
 
-                    System.out.println("Funktioniert das hier überhaupt wie es soll?");
                     if(this.burnTime > 0 && hasEnoughLight){
                         network.addLightGen(this, 10);
                     }

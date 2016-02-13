@@ -17,14 +17,11 @@ import de.ellpeck.reflection.api.internal.ILightNetworkHandler;
 import de.ellpeck.reflection.api.internal.IMethodHandler;
 import de.ellpeck.reflection.api.light.ILightComponent;
 import de.ellpeck.reflection.api.light.ILightStorageItem;
-import de.ellpeck.reflection.mod.Reflection;
 import de.ellpeck.reflection.mod.lib.LibMod;
 import de.ellpeck.reflection.mod.network.LightNetworkHandler;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
-import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -45,7 +42,9 @@ import java.util.Set;
 public class MethodHandler implements IMethodHandler{
 
     private final ILightNetworkHandler lightNetworkHandler;
-    private final ResourceLocation GRADIENT = new ResourceLocation(LibMod.MOD_ID, "textures/blocks/gradient.png");
+
+    @SideOnly(Side.CLIENT)
+    private static final ResourceLocation GRADIENT = new ResourceLocation(LibMod.MOD_ID, "textures/gradient.png");
 
     public MethodHandler(){
         this.lightNetworkHandler = new LightNetworkHandler();
@@ -117,20 +116,13 @@ public class MethodHandler implements IMethodHandler{
 
         GlStateManager.disableFog();
 
-        /*float r = firstColor[0];
+        float r = firstColor[0];
         float g = firstColor[1];
         float b = firstColor[2];
 
         float r2 = secondColor[0];
         float g2 = secondColor[1];
-        float b2 = secondColor[2];*/
-
-        float r = firstColor[0] * 0.5F + secondColor[0] * 0.5F;
-        float g = firstColor[1] * 0.5F + secondColor[1] * 0.5F;
-        float b = firstColor[2] * 0.5F + secondColor[2] * 0.5F;
-        float r2 = r;
-        float g2 = g;
-        float b2 = b;
+        float b2 = secondColor[2];
 
         Vec3d vec1 = new Vec3d(firstX, firstY, firstZ);
         Vec3d vec2 = new Vec3d(secondX, secondY, secondZ);
@@ -155,7 +147,7 @@ public class MethodHandler implements IMethodHandler{
         GlStateManager.rotate((float)rot, 1, 0, 0);
 
         render.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);
-        Minecraft.getMinecraft().renderEngine.bindTexture(GRADIENT);
+        ClientUtil.mc().renderEngine.bindTexture(GRADIENT);
 
         render.pos(length, -beamWidth, beamWidth).tex(0,0).color(r,g,b,alpha).endVertex();
         render.pos(length, beamWidth, beamWidth).tex(0,1).color(r,g,b,alpha).endVertex();
