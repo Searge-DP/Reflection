@@ -18,6 +18,6 @@ public class TESRReflectorBase extends TileEntitySpecialRenderer<TileReflectorBa
 
     @Override
     public void renderTileEntityAt(TileReflectorBase te, double x, double y, double z, float partialTicks, int destroyStage){
-        ReflectionAPI.theMethodHandler.renderLightForConnections(te);
+        ReflectionAPI.theMethodHandler.renderLightForConnections(te, x, y, z);
     }
 }

@@ -18,6 +18,7 @@ public class BlockReflectorBase extends BlockContainerBase{
 
     public BlockReflectorBase(Material material, String name, boolean addTab, Class<? extends TileEntity> tileClass, String tileName){
         super(material, name, addTab, tileClass, tileName);
+        this.setLightOpacity(1);
     }
 
 }

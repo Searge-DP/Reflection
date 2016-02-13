@@ -46,7 +46,7 @@ public interface IMethodHandler{
      * will be rendered twice
      */
     @SideOnly(Side.CLIENT)
-    void renderLightForConnections(ILightComponent component);
+    void renderLightForConnections(ILightComponent component, double x, double y, double z);
 
     /**
      * Gets the light network handler
