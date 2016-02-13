@@ -43,6 +43,7 @@ public class ItemLightConnector extends ItemBase{
                         stack.setTagCompound(new NBTTagCompound());
                         if(second != null){
                             String error = ReflectionAPI.getLightNetworkHandler().addConnection(posHit, second.getPosition(), world, true);
+                            System.out.println(error);
                             if(error == null){
                                 VanillaPacketHandler.sendTilePacketToAllAround(tile);
                                 if(second instanceof TileEntity){
@@ -56,6 +57,10 @@ public class ItemLightConnector extends ItemBase{
                                 player.addChatComponentMessage(new ChatComponentTranslation(LibNames.MISC_TRANSLATOR+error));
                                 return false;
                             }
+                        }
+                        else{
+                            player.addChatComponentMessage(new ChatComponentTranslation(LibNames.MISC_TRANSLATOR+"componentMissing"));
+                            return false;
                         }
                     }
                     else{

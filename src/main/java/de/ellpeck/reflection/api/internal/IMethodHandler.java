@@ -49,6 +49,17 @@ public interface IMethodHandler{
     void renderLightForConnections(ILightComponent component, double x, double y, double z);
 
     /**
+     * Renders a lightbeam between two points
+     * @param rotationTime The speed of the rotation (0 if it shouldn't rotate)
+     * @param alpha The alpha (transparency) of the beam
+     * @param beamWidth The width of the beam
+     * @param firstColor The color at the first pos
+     * @param secondColor The color at the second pos (will cause gradient if different from firstColor)
+     */
+    @SideOnly(Side.CLIENT)
+    void renderLightBetweenTwoPoints(double firstX, double firstY, double firstZ, double secondX, double secondY, double secondZ, int rotationTime, float alpha, double beamWidth, float[] firstColor, float[] secondColor);
+
+    /**
      * Gets the light network handler
      * (Connections get added when joining a world or while in a world,
      * old connections are cleared when loading/joining a different world)

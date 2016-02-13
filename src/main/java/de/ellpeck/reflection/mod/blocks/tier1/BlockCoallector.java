@@ -18,7 +18,6 @@ public class BlockCoallector extends BlockContainerBase{
 
     public BlockCoallector(Material material, String name, boolean addTab, Class<? extends TileEntity> tileClass, String tileName){
         super(material, name, addTab, tileClass, tileName);
-
         this.setLightOpacity(1);
     }
 }

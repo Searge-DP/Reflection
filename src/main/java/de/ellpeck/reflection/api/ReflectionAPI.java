@@ -21,7 +21,7 @@ public class ReflectionAPI{
     /**
      * The tier for every light component which isn't part of the tier system itself (like converters)
      */
-    public static final LightNetworkTier TIER_SPECIAL = new LightNetworkTier(0, EntitySheep.func_175513_a(EnumDyeColor.CYAN));
+    public static final LightNetworkTier TIER_SPECIAL = new LightNetworkTier(0, EntitySheep.func_175513_a(EnumDyeColor.ORANGE));
 
     //All of the "normal" light network tiers
     public static final LightNetworkTier TIER_1 = new LightNetworkTier(1, EntitySheep.func_175513_a(EnumDyeColor.LIGHT_BLUE));

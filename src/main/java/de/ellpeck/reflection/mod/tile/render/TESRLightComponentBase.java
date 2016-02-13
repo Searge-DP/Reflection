@@ -11,13 +11,13 @@
 package de.ellpeck.reflection.mod.tile.render;
 
 import de.ellpeck.reflection.api.ReflectionAPI;
-import de.ellpeck.reflection.mod.tile.tier1.TileReflectorBase;
+import de.ellpeck.reflection.api.light.TileLightComponent;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 
-public class TESRReflectorBase extends TileEntitySpecialRenderer<TileReflectorBase>{
+public class TESRLightComponentBase extends TileEntitySpecialRenderer<TileLightComponent>{
 
     @Override
-    public void renderTileEntityAt(TileReflectorBase te, double x, double y, double z, float partialTicks, int destroyStage){
+    public void renderTileEntityAt(TileLightComponent te, double x, double y, double z, float partialTicks, int destroyStage){
         ReflectionAPI.theMethodHandler.renderLightForConnections(te, x, y, z);
     }
 }

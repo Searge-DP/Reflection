@@ -10,8 +10,11 @@
 
 package de.ellpeck.reflection.mod.proxy;
 
+import de.ellpeck.reflection.api.light.TileLightComponent;
 import de.ellpeck.reflection.mod.gui.HUDEvents;
-import de.ellpeck.reflection.mod.tile.render.TESRReflectorBase;
+import de.ellpeck.reflection.mod.tile.render.TESRLightComponentBase;
+import de.ellpeck.reflection.mod.tile.special.TileConverter12;
+import de.ellpeck.reflection.mod.tile.tier1.TileCoallector;
 import de.ellpeck.reflection.mod.tile.tier1.TileReflectorBase;
 import de.ellpeck.reflection.mod.util.ClientUtil;
 import net.minecraft.client.resources.model.ModelBakery;
@@ -49,11 +52,17 @@ public class ClientProxy extends CommonProxy{
 
         MinecraftForge.EVENT_BUS.register(new HUDEvents());
 
-        ClientRegistry.bindTileEntitySpecialRenderer(TileReflectorBase.class, new TESRReflectorBase());
+        this.registerBeamRenderer(TileConverter12.class);
+        this.registerBeamRenderer(TileCoallector.class);
+        this.registerBeamRenderer(TileReflectorBase.class);
 
         for(Map.Entry<ItemStack, ResourceLocation> entry : modelLocationsForRegistering.entrySet()){
             ClientUtil.mc().getRenderItem().getItemModelMesher().register(entry.getKey().getItem(), entry.getKey().getItemDamage(), new ModelResourceLocation(entry.getValue(), "inventory"));
         }
+    }
+
+    private void registerBeamRenderer(Class<? extends TileLightComponent> tile){
+        ClientRegistry.bindTileEntitySpecialRenderer(tile, new TESRLightComponentBase());
     }
 
     @Override
