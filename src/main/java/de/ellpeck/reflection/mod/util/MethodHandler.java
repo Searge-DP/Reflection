@@ -116,13 +116,13 @@ public class MethodHandler implements IMethodHandler{
 
         GlStateManager.disableFog();
 
-        float r = firstColor[0];
-        float g = firstColor[1];
-        float b = firstColor[2];
+        float r = secondColor[0];
+        float g = secondColor[1];
+        float b = secondColor[2];
 
-        float r2 = secondColor[0];
-        float g2 = secondColor[1];
-        float b2 = secondColor[2];
+        float r2 = firstColor[0];
+        float g2 = firstColor[1];
+        float b2 = firstColor[2];
 
         Vec3d vec1 = new Vec3d(firstX, firstY, firstZ);
         Vec3d vec2 = new Vec3d(secondX, secondY, secondZ);
