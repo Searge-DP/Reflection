@@ -17,10 +17,14 @@ import de.ellpeck.reflection.api.internal.ILightNetworkHandler;
 import de.ellpeck.reflection.api.internal.IMethodHandler;
 import de.ellpeck.reflection.api.light.ILightComponent;
 import de.ellpeck.reflection.api.light.ILightStorageItem;
+import de.ellpeck.reflection.mod.Reflection;
+import de.ellpeck.reflection.mod.lib.LibMod;
 import de.ellpeck.reflection.mod.network.LightNetworkHandler;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -30,6 +34,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -40,6 +45,7 @@ import java.util.Set;
 public class MethodHandler implements IMethodHandler{
 
     private final ILightNetworkHandler lightNetworkHandler;
+    private final ResourceLocation GRADIENT = new ResourceLocation(LibMod.MOD_ID, "textures/blocks/gradient.png");
 
     public MethodHandler(){
         this.lightNetworkHandler = new LightNetworkHandler();
@@ -132,7 +138,6 @@ public class MethodHandler implements IMethodHandler{
         GlStateManager.pushMatrix();
 
         GlStateManager.disableLighting();
-        GlStateManager.disableTexture2D();
         GlStateManager.enableBlend();
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
         GlStateManager.depthMask(false);
@@ -141,31 +146,52 @@ public class MethodHandler implements IMethodHandler{
         GlStateManager.rotate((float)(180*pitch/Math.PI), 0, 0, 1);
         GlStateManager.rotate((float)rot, 1, 0, 0);
 
-        render.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR);
-        render.pos(length, beamWidth, beamWidth).color(r2, g2, b2, alpha).endVertex();
-        render.pos(0, beamWidth, beamWidth).color(r, g, b, alpha).endVertex();
-        render.pos(0, -beamWidth, beamWidth).color(r, g, b, alpha).endVertex();
-        render.pos(length, -beamWidth, beamWidth).color(r2, g2, b2, alpha).endVertex();
+        render.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);
+        Minecraft.getMinecraft().renderEngine.bindTexture(GRADIENT);
 
-        render.pos(length, -beamWidth, -beamWidth).color(r2, g2, b2, alpha).endVertex();
-        render.pos(0, -beamWidth, -beamWidth).color(r, g, b, alpha).endVertex();
-        render.pos(0, beamWidth, -beamWidth).color(r, g, b, alpha).endVertex();
-        render.pos(length, beamWidth, -beamWidth).color(r2, g2, b2, alpha).endVertex();
+        render.pos(length, -beamWidth, beamWidth).tex(0,0).color(r,g,b,alpha).endVertex();
+        render.pos(length, beamWidth, beamWidth).tex(0,1).color(r,g,b,alpha).endVertex();
+        render.pos(0, beamWidth, beamWidth).tex(1,1).color(r,g,b,alpha).endVertex();
+        render.pos(0, -beamWidth, beamWidth).tex(1,0).color(r,g,b,alpha).endVertex();
 
-        render.pos(length, beamWidth, -beamWidth).color(r2, g2, b2, alpha).endVertex();
-        render.pos(0, beamWidth, -beamWidth).color(r, g, b, alpha).endVertex();
-        render.pos(0, beamWidth, beamWidth).color(r, g, b, alpha).endVertex();
-        render.pos(length, beamWidth, beamWidth).color(r2, g2, b2, alpha).endVertex();
+        render.pos(length, -beamWidth, beamWidth).tex(1,0).color(r2,g2,b2,alpha).endVertex();
+        render.pos(length, beamWidth, beamWidth).tex(1,1).color(r2,g2,b2,alpha).endVertex();
+        render.pos(0, beamWidth, beamWidth).tex(0,1).color(r2,g2,b2,alpha).endVertex();
+        render.pos(0, -beamWidth, beamWidth).tex(0,0).color(r2,g2,b2,alpha).endVertex();
 
-        render.pos(length, -beamWidth, beamWidth).color(r2, g2, b2, alpha).endVertex();
-        render.pos(0, -beamWidth, beamWidth).color(r, g, b, alpha).endVertex();
-        render.pos(0, -beamWidth, -beamWidth).color(r, g, b, alpha).endVertex();
-        render.pos(length, -beamWidth, -beamWidth).color(r2, g2, b2, alpha).endVertex();
+        render.pos(length, beamWidth, -beamWidth).tex(0,0).color(r,g,b,alpha).endVertex();
+        render.pos(length, -beamWidth, -beamWidth).tex(0,1).color(r,g,b,alpha).endVertex();
+        render.pos(0, -beamWidth, -beamWidth).tex(1,1).color(r,g,b,alpha).endVertex();
+        render.pos(0, beamWidth, -beamWidth).tex(1,0).color(r,g,b,alpha).endVertex();
+
+        render.pos(length, beamWidth, -beamWidth).tex(1,0).color(r2,g2,b2,alpha).endVertex();
+        render.pos(length, -beamWidth, -beamWidth).tex(1,1).color(r2,g2,b2,alpha).endVertex();
+        render.pos(0, -beamWidth, -beamWidth).tex(0,1).color(r2,g2,b2,alpha).endVertex();
+        render.pos(0, beamWidth, -beamWidth).tex(0,0).color(r2,g2,b2,alpha).endVertex();
+
+        render.pos(length, beamWidth, beamWidth).tex(0,0).color(r,g,b,alpha).endVertex();
+        render.pos(length, beamWidth, -beamWidth).tex(0,1).color(r,g,b,alpha).endVertex();
+        render.pos(0, beamWidth, -beamWidth).tex(1,1).color(r,g,b,alpha).endVertex();
+        render.pos(0, beamWidth, beamWidth).tex(1,0).color(r,g,b,alpha).endVertex();
+
+        render.pos(length, beamWidth, beamWidth).tex(1,0).color(r2,g2,b2,alpha).endVertex();
+        render.pos(length, beamWidth, -beamWidth).tex(1,1).color(r2,g2,b2,alpha).endVertex();
+        render.pos(0, beamWidth, -beamWidth).tex(0,1).color(r2,g2,b2,alpha).endVertex();
+        render.pos(0, beamWidth, beamWidth).tex(0,0).color(r2,g2,b2,alpha).endVertex();
+
+        render.pos(length, -beamWidth, -beamWidth).tex(0,0).color(r,g,b,alpha).endVertex();
+        render.pos(length, -beamWidth, beamWidth).tex(0,1).color(r,g,b,alpha).endVertex();
+        render.pos(0, -beamWidth, beamWidth).tex(1,1).color(r,g,b,alpha).endVertex();
+        render.pos(0, -beamWidth, -beamWidth).tex(1,0).color(r,g,b,alpha).endVertex();
+
+        render.pos(length, -beamWidth, -beamWidth).tex(1,0).color(r2,g2,b2,alpha).endVertex();
+        render.pos(length, -beamWidth, beamWidth).tex(1,1).color(r2,g2,b2,alpha).endVertex();
+        render.pos(0, -beamWidth, beamWidth).tex(0,1).color(r2,g2,b2,alpha).endVertex();
+        render.pos(0, -beamWidth, -beamWidth).tex(0,0).color(r2,g2,b2,alpha).endVertex();
         tessy.draw();
 
         GlStateManager.disableBlend();
         GlStateManager.enableLighting();
-        GlStateManager.enableTexture2D();
         GlStateManager.depthMask(true);
         GlStateManager.popMatrix();
 
