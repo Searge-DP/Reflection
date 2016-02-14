@@ -87,53 +87,53 @@ public class TileCoallector extends TileLightComponent implements ITickable, IRo
     @Override
     public void update(){
         if(!this.worldObj.isRemote){
-            ILightNetwork network = WorldUtil.getNetworkForTile(this);
-            if(network != null){
-                boolean burnTimeWatcher = this.burnTime > 0;
-                if(this.burnTime <= 0){
-                    if(this.getWorld().getTotalWorldTime()%100 == 0){
-                        int range = 3;
-                        List<EntityItem> itemsAround = this.worldObj.getEntitiesWithinAABB(EntityItem.class, AxisAlignedBB.fromBounds(this.pos.getX()-range, this.pos.getY()-range, this.pos.getZ()-range, this.pos.getX()+range, this.pos.getY()+range, this.pos.getZ()+range));
-                        for(EntityItem item : itemsAround){
-                            if(item != null && !item.isDead){
-                                ItemStack entityStack = item.getEntityItem();
-                                if(entityStack != null && entityStack.stackSize > 0){
-                                    int stackBurnTime = TileEntityFurnace.getItemBurnTime(entityStack);
-                                    if(stackBurnTime > 0){
-                                        this.burnTime = stackBurnTime;
-                                        this.maxBurnTime = stackBurnTime;
+            boolean burnTimeWatcher = this.burnTime > 0;
+            if(this.burnTime <= 0){
+                if(this.getWorld().getTotalWorldTime()%100 == 0){
+                    int range = 3;
+                    List<EntityItem> itemsAround = this.worldObj.getEntitiesWithinAABB(EntityItem.class, AxisAlignedBB.fromBounds(this.pos.getX()-range, this.pos.getY()-range, this.pos.getZ()-range, this.pos.getX()+range, this.pos.getY()+range, this.pos.getZ()+range));
+                    for(EntityItem item : itemsAround){
+                        if(item != null && !item.isDead){
+                            ItemStack entityStack = item.getEntityItem();
+                            if(entityStack != null && entityStack.stackSize > 0){
+                                int stackBurnTime = TileEntityFurnace.getItemBurnTime(entityStack);
+                                if(stackBurnTime > 0){
+                                    this.burnTime = stackBurnTime;
+                                    this.maxBurnTime = stackBurnTime;
 
-                                        entityStack.stackSize--;
-                                        if(entityStack.stackSize <= 0){
-                                            Item entityItem = entityStack.getItem();
-                                            if(entityItem != null && entityItem.hasContainerItem(entityStack)){
-                                                item.setEntityItemStack(entityItem.getContainerItem(entityStack));
-                                            }
-                                            else{
-                                                item.setDead();
-                                            }
+                                    entityStack.stackSize--;
+                                    if(entityStack.stackSize <= 0){
+                                        Item entityItem = entityStack.getItem();
+                                        if(entityItem != null && entityItem.hasContainerItem(entityStack)){
+                                            item.setEntityItemStack(entityItem.getContainerItem(entityStack));
                                         }
+                                        else{
+                                            item.setDead();
+                                        }
+                                    }
 
-                                        if(this.worldObj instanceof WorldServer){
-                                            WorldServer worldServer = (WorldServer)this.worldObj;
-                                            worldServer.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, item.posX, item.posY, item.posZ, 30, 0, 0, 0, 0.05);
-                                        }
+                                    if(this.worldObj instanceof WorldServer){
+                                        WorldServer worldServer = (WorldServer)this.worldObj;
+                                        worldServer.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, item.posX, item.posY, item.posZ, 30, 0, 0, 0, 0.05);
                                     }
                                 }
                             }
                         }
                     }
                 }
-                else{
-                    this.burnTime--;
-                }
+            }
+            else{
+                this.burnTime--;
+            }
 
-                Chunk chunk = this.worldObj.getChunkFromBlockCoords(this.getPos());
-                boolean hasEnoughLight = chunk.getLightFor(EnumSkyBlock.SKY, this.getPos()) >= 10;
+            Chunk chunk = this.worldObj.getChunkFromBlockCoords(this.getPos());
+            boolean hasEnoughLight = chunk.getLightFor(EnumSkyBlock.SKY, this.getPos()) >= 10;
 
-                if(this.hadEnoughLight != hasEnoughLight || burnTimeWatcher != this.burnTime > 0){
-                    this.hadEnoughLight = hasEnoughLight;
+            if(this.hadEnoughLight != hasEnoughLight || burnTimeWatcher != this.burnTime > 0){
+                this.hadEnoughLight = hasEnoughLight;
 
+                ILightNetwork network = WorldUtil.getNetworkForTile(this);
+                if(network != null){
                     if(this.burnTime > 0 && hasEnoughLight){
                         network.addLightGen(this, 10);
                     }
