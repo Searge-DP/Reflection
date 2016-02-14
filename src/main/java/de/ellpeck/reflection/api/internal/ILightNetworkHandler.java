@@ -19,7 +19,7 @@ import java.util.Set;
 /**
  * An internal class for a LightNetworkHandler.
  * Use it from ReflectionAPI.
- *
+ * <p>
  * Do not implement this directly.
  */
 public interface ILightNetworkHandler{

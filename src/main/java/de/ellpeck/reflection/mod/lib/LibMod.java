@@ -23,10 +23,9 @@ public class LibMod{
 
     public static final String VERSION = "@VERSION@";
     public static final Logger LOGGER = LogManager.getLogger(MOD_NAME);
+    public static final Random RANDOM = new Random();
     private static final String PROXY_BASE = "de.ellpeck."+MOD_ID+".mod.proxy.";
     public static final String PROXY_CLIENT = PROXY_BASE+"ClientProxy";
     public static final String PROXY_SERVER = PROXY_BASE+"CommonProxy";
-
-    public static final Random RANDOM = new Random();
 
 }

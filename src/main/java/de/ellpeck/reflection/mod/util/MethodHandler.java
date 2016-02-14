@@ -41,16 +41,14 @@ import java.util.Set;
 
 public class MethodHandler implements IMethodHandler{
 
-    private final ILightNetworkHandler lightNetworkHandler;
-
     @SideOnly(Side.CLIENT)
     private static final ResourceLocation GRADIENT = new ResourceLocation(LibMod.MOD_ID, "textures/gradient.png");
+    private static final String TAG_CONNECTIONS = "Connections";
+    private final ILightNetworkHandler lightNetworkHandler;
 
     public MethodHandler(){
         this.lightNetworkHandler = new LightNetworkHandler();
     }
-
-    private static final String TAG_CONNECTIONS = "Connections";
 
     @Override
     public void writeConnectionInfoNBT(ILightComponent tile, NBTTagCompound compound){
@@ -116,22 +114,22 @@ public class MethodHandler implements IMethodHandler{
 
         GlStateManager.disableFog();
 
-        float r = secondColor[0];
-        float g = secondColor[1];
-        float b = secondColor[2];
+        float r = firstColor[0];
+        float g = firstColor[1];
+        float b = firstColor[2];
 
-        float r2 = firstColor[0];
-        float g2 = firstColor[1];
-        float b2 = firstColor[2];
+        float r2 = secondColor[0];
+        float g2 = secondColor[1];
+        float b2 = secondColor[2];
 
         Vec3d vec1 = new Vec3d(firstX, firstY, firstZ);
         Vec3d vec2 = new Vec3d(secondX, secondY, secondZ);
         Vec3d combinedVec = new Vec3d(vec2);
         combinedVec.sub(vec1);
 
-        double rot = rotationTime > 0 ? (360F*(((float)world.getTotalWorldTime()%(float)rotationTime)/(float)rotationTime)) : 0;
-        double pitch = Math.atan2(combinedVec.y, Math.sqrt(combinedVec.x * combinedVec.x + combinedVec.z * combinedVec.z));
-        double yaw =  Math.atan2(-combinedVec.z, combinedVec.x);
+        double rot = rotationTime > 0 ? (360D*((float)((world.getTotalWorldTime())%rotationTime)/(float)rotationTime)) : 0;
+        double pitch = Math.atan2(combinedVec.y, Math.sqrt(combinedVec.x*combinedVec.x+combinedVec.z*combinedVec.z));
+        double yaw = Math.atan2(-combinedVec.z, combinedVec.x);
 
         double length = combinedVec.length();
 
@@ -146,49 +144,77 @@ public class MethodHandler implements IMethodHandler{
         GlStateManager.rotate((float)(180*pitch/Math.PI), 0, 0, 1);
         GlStateManager.rotate((float)rot, 1, 0, 0);
 
-        render.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);
-        ClientUtil.mc().renderEngine.bindTexture(GRADIENT);
+        if(r != r2 || g != g2 || b != b2){
+            render.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);
+            ClientUtil.mc().renderEngine.bindTexture(GRADIENT);
 
-        render.pos(length, -beamWidth, beamWidth).tex(0,0).color(r,g,b,alpha).endVertex();
-        render.pos(length, beamWidth, beamWidth).tex(0,1).color(r,g,b,alpha).endVertex();
-        render.pos(0, beamWidth, beamWidth).tex(1,1).color(r,g,b,alpha).endVertex();
-        render.pos(0, -beamWidth, beamWidth).tex(1,0).color(r,g,b,alpha).endVertex();
+            render.pos(length, -beamWidth, beamWidth).tex(0, 0).color(r, g, b, alpha).endVertex();
+            render.pos(length, beamWidth, beamWidth).tex(0, 1).color(r, g, b, alpha).endVertex();
+            render.pos(0, beamWidth, beamWidth).tex(1, 1).color(r, g, b, alpha).endVertex();
+            render.pos(0, -beamWidth, beamWidth).tex(1, 0).color(r, g, b, alpha).endVertex();
 
-        render.pos(length, -beamWidth, beamWidth).tex(1,0).color(r2,g2,b2,alpha).endVertex();
-        render.pos(length, beamWidth, beamWidth).tex(1,1).color(r2,g2,b2,alpha).endVertex();
-        render.pos(0, beamWidth, beamWidth).tex(0,1).color(r2,g2,b2,alpha).endVertex();
-        render.pos(0, -beamWidth, beamWidth).tex(0,0).color(r2,g2,b2,alpha).endVertex();
+            render.pos(length, -beamWidth, beamWidth).tex(1, 0).color(r2, g2, b2, alpha).endVertex();
+            render.pos(length, beamWidth, beamWidth).tex(1, 1).color(r2, g2, b2, alpha).endVertex();
+            render.pos(0, beamWidth, beamWidth).tex(0, 1).color(r2, g2, b2, alpha).endVertex();
+            render.pos(0, -beamWidth, beamWidth).tex(0, 0).color(r2, g2, b2, alpha).endVertex();
 
-        render.pos(length, beamWidth, -beamWidth).tex(0,0).color(r,g,b,alpha).endVertex();
-        render.pos(length, -beamWidth, -beamWidth).tex(0,1).color(r,g,b,alpha).endVertex();
-        render.pos(0, -beamWidth, -beamWidth).tex(1,1).color(r,g,b,alpha).endVertex();
-        render.pos(0, beamWidth, -beamWidth).tex(1,0).color(r,g,b,alpha).endVertex();
+            render.pos(length, beamWidth, -beamWidth).tex(0, 0).color(r, g, b, alpha).endVertex();
+            render.pos(length, -beamWidth, -beamWidth).tex(0, 1).color(r, g, b, alpha).endVertex();
+            render.pos(0, -beamWidth, -beamWidth).tex(1, 1).color(r, g, b, alpha).endVertex();
+            render.pos(0, beamWidth, -beamWidth).tex(1, 0).color(r, g, b, alpha).endVertex();
 
-        render.pos(length, beamWidth, -beamWidth).tex(1,0).color(r2,g2,b2,alpha).endVertex();
-        render.pos(length, -beamWidth, -beamWidth).tex(1,1).color(r2,g2,b2,alpha).endVertex();
-        render.pos(0, -beamWidth, -beamWidth).tex(0,1).color(r2,g2,b2,alpha).endVertex();
-        render.pos(0, beamWidth, -beamWidth).tex(0,0).color(r2,g2,b2,alpha).endVertex();
+            render.pos(length, beamWidth, -beamWidth).tex(1, 0).color(r2, g2, b2, alpha).endVertex();
+            render.pos(length, -beamWidth, -beamWidth).tex(1, 1).color(r2, g2, b2, alpha).endVertex();
+            render.pos(0, -beamWidth, -beamWidth).tex(0, 1).color(r2, g2, b2, alpha).endVertex();
+            render.pos(0, beamWidth, -beamWidth).tex(0, 0).color(r2, g2, b2, alpha).endVertex();
 
-        render.pos(length, beamWidth, beamWidth).tex(0,0).color(r,g,b,alpha).endVertex();
-        render.pos(length, beamWidth, -beamWidth).tex(0,1).color(r,g,b,alpha).endVertex();
-        render.pos(0, beamWidth, -beamWidth).tex(1,1).color(r,g,b,alpha).endVertex();
-        render.pos(0, beamWidth, beamWidth).tex(1,0).color(r,g,b,alpha).endVertex();
+            render.pos(length, beamWidth, beamWidth).tex(0, 0).color(r, g, b, alpha).endVertex();
+            render.pos(length, beamWidth, -beamWidth).tex(0, 1).color(r, g, b, alpha).endVertex();
+            render.pos(0, beamWidth, -beamWidth).tex(1, 1).color(r, g, b, alpha).endVertex();
+            render.pos(0, beamWidth, beamWidth).tex(1, 0).color(r, g, b, alpha).endVertex();
 
-        render.pos(length, beamWidth, beamWidth).tex(1,0).color(r2,g2,b2,alpha).endVertex();
-        render.pos(length, beamWidth, -beamWidth).tex(1,1).color(r2,g2,b2,alpha).endVertex();
-        render.pos(0, beamWidth, -beamWidth).tex(0,1).color(r2,g2,b2,alpha).endVertex();
-        render.pos(0, beamWidth, beamWidth).tex(0,0).color(r2,g2,b2,alpha).endVertex();
+            render.pos(length, beamWidth, beamWidth).tex(1, 0).color(r2, g2, b2, alpha).endVertex();
+            render.pos(length, beamWidth, -beamWidth).tex(1, 1).color(r2, g2, b2, alpha).endVertex();
+            render.pos(0, beamWidth, -beamWidth).tex(0, 1).color(r2, g2, b2, alpha).endVertex();
+            render.pos(0, beamWidth, beamWidth).tex(0, 0).color(r2, g2, b2, alpha).endVertex();
 
-        render.pos(length, -beamWidth, -beamWidth).tex(0,0).color(r,g,b,alpha).endVertex();
-        render.pos(length, -beamWidth, beamWidth).tex(0,1).color(r,g,b,alpha).endVertex();
-        render.pos(0, -beamWidth, beamWidth).tex(1,1).color(r,g,b,alpha).endVertex();
-        render.pos(0, -beamWidth, -beamWidth).tex(1,0).color(r,g,b,alpha).endVertex();
+            render.pos(length, -beamWidth, -beamWidth).tex(0, 0).color(r, g, b, alpha).endVertex();
+            render.pos(length, -beamWidth, beamWidth).tex(0, 1).color(r, g, b, alpha).endVertex();
+            render.pos(0, -beamWidth, beamWidth).tex(1, 1).color(r, g, b, alpha).endVertex();
+            render.pos(0, -beamWidth, -beamWidth).tex(1, 0).color(r, g, b, alpha).endVertex();
 
-        render.pos(length, -beamWidth, -beamWidth).tex(1,0).color(r2,g2,b2,alpha).endVertex();
-        render.pos(length, -beamWidth, beamWidth).tex(1,1).color(r2,g2,b2,alpha).endVertex();
-        render.pos(0, -beamWidth, beamWidth).tex(0,1).color(r2,g2,b2,alpha).endVertex();
-        render.pos(0, -beamWidth, -beamWidth).tex(0,0).color(r2,g2,b2,alpha).endVertex();
-        tessy.draw();
+            render.pos(length, -beamWidth, -beamWidth).tex(1, 0).color(r2, g2, b2, alpha).endVertex();
+            render.pos(length, -beamWidth, beamWidth).tex(1, 1).color(r2, g2, b2, alpha).endVertex();
+            render.pos(0, -beamWidth, beamWidth).tex(0, 1).color(r2, g2, b2, alpha).endVertex();
+            render.pos(0, -beamWidth, -beamWidth).tex(0, 0).color(r2, g2, b2, alpha).endVertex();
+            tessy.draw();
+        }
+        else{
+            GlStateManager.disableTexture2D();
+            render.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR);
+            render.pos(length, beamWidth, beamWidth).color(r, g, b, alpha).endVertex();
+            render.pos(0, beamWidth, beamWidth).color(r, g, b, alpha).endVertex();
+            render.pos(0, -beamWidth, beamWidth).color(r, g, b, alpha).endVertex();
+            render.pos(length, -beamWidth, beamWidth).color(r, g, b, alpha).endVertex();
+
+            render.pos(length, -beamWidth, -beamWidth).color(r, g, b, alpha).endVertex();
+            render.pos(0, -beamWidth, -beamWidth).color(r, g, b, alpha).endVertex();
+            render.pos(0, beamWidth, -beamWidth).color(r, g, b, alpha).endVertex();
+            render.pos(length, beamWidth, -beamWidth).color(r, g, b, alpha).endVertex();
+
+            render.pos(length, beamWidth, -beamWidth).color(r, g, b, alpha).endVertex();
+            render.pos(0, beamWidth, -beamWidth).color(r, g, b, alpha).endVertex();
+            render.pos(0, beamWidth, beamWidth).color(r, g, b, alpha).endVertex();
+            render.pos(length, beamWidth, beamWidth).color(r, g, b, alpha).endVertex();
+
+            render.pos(length, -beamWidth, beamWidth).color(r, g, b, alpha).endVertex();
+            render.pos(0, -beamWidth, beamWidth).color(r, g, b, alpha).endVertex();
+            render.pos(0, -beamWidth, -beamWidth).color(r, g, b, alpha).endVertex();
+            render.pos(length, -beamWidth, -beamWidth).color(r, g, b, alpha).endVertex();
+            tessy.draw();
+
+            GlStateManager.enableTexture2D();
+        }
 
         GlStateManager.disableBlend();
         GlStateManager.enableLighting();

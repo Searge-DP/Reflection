@@ -50,11 +50,12 @@ public interface IMethodHandler{
 
     /**
      * Renders a lightbeam between two points
+     *
      * @param rotationTime The speed of the rotation (0 if it shouldn't rotate)
-     * @param alpha The alpha (transparency) of the beam
-     * @param beamWidth The width of the beam
-     * @param firstColor The color at the first pos
-     * @param secondColor The color at the second pos
+     * @param alpha        The alpha (transparency) of the beam
+     * @param beamWidth    The width of the beam
+     * @param firstColor   The color at the first pos
+     * @param secondColor  The color at the second pos
      */
     @SideOnly(Side.CLIENT)
     void renderLightBetweenTwoPoints(double firstX, double firstY, double firstZ, double secondX, double secondY, double secondZ, int rotationTime, float alpha, double beamWidth, float[] firstColor, float[] secondColor);
@@ -68,12 +69,14 @@ public interface IMethodHandler{
 
     /**
      * Inserts a given amount of light into any light containers the player has in their inventory
+     *
      * @return The amount that was added
      */
     int insertLightIntoInventory(InventoryPlayer inventory, int amount, boolean actuallyDo);
 
     /**
      * Extracts a given amount of light from any light containers the player has in their inventory
+     *
      * @return The amount that was extracted
      */
     int extractLightFromInventory(InventoryPlayer inventory, int amount, boolean actuallyDo);

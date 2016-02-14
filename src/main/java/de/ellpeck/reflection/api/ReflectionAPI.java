@@ -29,7 +29,7 @@ public class ReflectionAPI{
 
     /**
      * The method handler
-     *
+     * <p>
      * Gets initialized during the FMLPreInitializationEvent in Reflection's CommonProxy
      */
     public static IMethodHandler theMethodHandler;
