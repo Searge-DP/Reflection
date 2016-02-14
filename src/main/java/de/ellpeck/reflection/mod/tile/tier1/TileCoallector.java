@@ -13,29 +13,42 @@ package de.ellpeck.reflection.mod.tile.tier1;
 import de.ellpeck.reflection.api.ReflectionAPI;
 import de.ellpeck.reflection.api.internal.ILightNetwork;
 import de.ellpeck.reflection.api.light.ILightComponent;
+import de.ellpeck.reflection.api.light.IRodOverlay;
 import de.ellpeck.reflection.api.light.LightNetworkTier;
 import de.ellpeck.reflection.api.light.TileLightComponent;
+import de.ellpeck.reflection.mod.util.ClientUtil;
+import de.ellpeck.reflection.mod.util.VanillaPacketHandler;
 import de.ellpeck.reflection.mod.util.WorldUtil;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
 import net.minecraft.world.EnumSkyBlock;
+import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.chunk.Chunk;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class TileCoallector extends TileLightComponent implements ITickable{
+public class TileCoallector extends TileLightComponent implements ITickable, IRodOverlay{
 
     private static final String TAG_BURN_TIME = "BurnTime";
+    private static final String TAG_MAX_BURN_TIME = "MaxBurnTime";
 
     private boolean hadEnoughLight;
     private int burnTime;
+    private int maxBurnTime;
+
+    private int lastBurnTime;
+    private int lastMaxBurnTime;
 
     @Override
     public LightNetworkTier getTier(){
@@ -61,12 +74,14 @@ public class TileCoallector extends TileLightComponent implements ITickable{
     public void readNBT(NBTTagCompound compound, boolean sync){
         super.readNBT(compound, sync);
         this.burnTime = compound.getInteger(TAG_BURN_TIME);
+        this.maxBurnTime = compound.getInteger(TAG_MAX_BURN_TIME);
     }
 
     @Override
     public void writeNBT(NBTTagCompound compound, boolean sync){
         super.writeNBT(compound, sync);
         compound.setInteger(TAG_BURN_TIME, this.burnTime);
+        compound.setInteger(TAG_MAX_BURN_TIME, this.maxBurnTime);
     }
 
     @Override
@@ -86,6 +101,7 @@ public class TileCoallector extends TileLightComponent implements ITickable{
                                     int stackBurnTime = TileEntityFurnace.getItemBurnTime(entityStack);
                                     if(stackBurnTime > 0){
                                         this.burnTime = stackBurnTime;
+                                        this.maxBurnTime = stackBurnTime;
 
                                         entityStack.stackSize--;
                                         if(entityStack.stackSize <= 0){
@@ -126,6 +142,22 @@ public class TileCoallector extends TileLightComponent implements ITickable{
                     }
                 }
             }
+
+            if((this.burnTime != this.lastBurnTime || this.maxBurnTime != this.lastMaxBurnTime) && ClientUtil.totalTime()%10 == 0){
+                this.lastBurnTime = this.burnTime;
+                this.lastMaxBurnTime = this.maxBurnTime;
+                VanillaPacketHandler.sendTilePacketToAllAround(this);
+            }
+        }
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void displayOverlay(ItemStack heldStack, ScaledResolution resolution, BlockPos hitPos, World world){
+        ClientUtil.mc().renderEngine.bindTexture(ClientUtil.MISC_GRAPHICS);
+        if(this.burnTime > 0 && this.maxBurnTime > 0){
+            int scale = this.burnTime*13/this.maxBurnTime;
+            ClientUtil.drawTexturedModalRect(resolution.getScaledWidth()/2+5, resolution.getScaledHeight()/2+5+12-scale, 0, 13, 12-scale, 13, scale+1);
         }
     }
 }

@@ -11,8 +11,11 @@
 package de.ellpeck.reflection.mod.gui;
 
 import de.ellpeck.reflection.api.light.ILightStorageItem;
+import de.ellpeck.reflection.api.light.IRodOverlay;
+import de.ellpeck.reflection.mod.items.ItemLightConnector;
 import de.ellpeck.reflection.mod.lib.LibMod;
 import de.ellpeck.reflection.mod.util.ClientUtil;
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
@@ -20,6 +23,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.profiler.Profiler;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.World;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -35,9 +42,11 @@ public class HUDEvents{
             Profiler profiler = mc.mcProfiler;
             EntityPlayer player = mc.thePlayer;
             ScaledResolution res = event.resolution;
+            World world = mc.theWorld;
+            MovingObjectPosition posHit = mc.objectMouseOver;
 
             profiler.startSection(LibMod.MOD_NAME+"HUD");
-            profiler.startSection("LightHUD");
+            profiler.startSection("LightOverlay");
 
             int lightAmount = 0;
             int maxLightAmount = 0;
@@ -60,7 +69,7 @@ public class HUDEvents{
                 GlStateManager.pushMatrix();
                 GlStateManager.enableBlend();
 
-                float[] color = ClientUtil.getWheelColor(mc.theWorld.getTotalWorldTime()%256);
+                float[] color = ClientUtil.getWheelColor(world.getTotalWorldTime()%256);
                 GlStateManager.color(color[0]/255, color[1]/255, color[2]/255);
 
                 mc.renderEngine.bindTexture(ClientUtil.MISC_GRAPHICS);
@@ -77,6 +86,24 @@ public class HUDEvents{
 
                 GlStateManager.disableBlend();
                 GlStateManager.popMatrix();
+            }
+
+            profiler.endSection();
+            profiler.startSection("RodOverlay");
+
+            ItemStack heldStack = player.getHeldItem();
+            if(heldStack != null && heldStack.getItem() instanceof ItemLightConnector){
+                BlockPos hitPos = posHit.getBlockPos();
+                Block blockHit = world.getBlockState(hitPos).getBlock();
+                TileEntity tileHit = world.getTileEntity(hitPos);
+
+                if(blockHit instanceof IRodOverlay){
+                    ((IRodOverlay)blockHit).displayOverlay(heldStack, res, hitPos, world);
+                }
+
+                if(tileHit instanceof IRodOverlay){
+                    ((IRodOverlay)tileHit).displayOverlay(heldStack, res, hitPos, world);
+                }
             }
 
             profiler.endSection();

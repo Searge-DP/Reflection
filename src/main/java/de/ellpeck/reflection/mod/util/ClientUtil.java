@@ -28,6 +28,10 @@ public class ClientUtil{
         return Minecraft.getMinecraft();
     }
 
+    public static long totalTime(){
+        return mc().theWorld.getTotalWorldTime();
+    }
+
     public static void drawTexturedModalRect(int x, int y, double z, int textureX, int textureY, int width, int height){
         float f = 0.00390625F;
         Tessellator tessy = Tessellator.getInstance();
