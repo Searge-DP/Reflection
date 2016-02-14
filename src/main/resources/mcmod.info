@@ -1,0 +1,17 @@
+[
+{
+  "modid": "reflection",
+  "name": "Reflection",
+  "description": "A Minecraft mod about light beams and reflecting mirrors and machines powered by light! Shiny!",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "logoFile": "assets/reflection/textures/logo.png",
+  "url": "http://github.com/Ellpeck/Reflection",
+  "updateUrl": "",
+  "authorList": ["Ellpeck"],
+  "credits": "Thanks to: canitzp for some models, feldim2425 for the light beam renderer, xdjackiexd for lots of help and dqmhose for parts of the initial idea for the mod",
+  "parent": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
