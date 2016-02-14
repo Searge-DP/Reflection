@@ -114,20 +114,20 @@ public class MethodHandler implements IMethodHandler{
 
         GlStateManager.disableFog();
 
-        float r = firstColor[0];
-        float g = firstColor[1];
-        float b = firstColor[2];
+        float r = secondColor[0];
+        float g = secondColor[1];
+        float b = secondColor[2];
 
-        float r2 = secondColor[0];
-        float g2 = secondColor[1];
-        float b2 = secondColor[2];
+        float r2 = firstColor[0];
+        float g2 = firstColor[1];
+        float b2 = firstColor[2];
 
         Vec3d vec1 = new Vec3d(firstX, firstY, firstZ);
         Vec3d vec2 = new Vec3d(secondX, secondY, secondZ);
         Vec3d combinedVec = new Vec3d(vec2);
         combinedVec.sub(vec1);
 
-        double rot = rotationTime > 0 ? (360D*((float)((world.getTotalWorldTime())%rotationTime)/(float)rotationTime)) : 0;
+        double rot = rotationTime > 0 ? (360F*(((float)world.getTotalWorldTime()%(float)rotationTime)/(float)rotationTime)) : 0;
         double pitch = Math.atan2(combinedVec.y, Math.sqrt(combinedVec.x*combinedVec.x+combinedVec.z*combinedVec.z));
         double yaw = Math.atan2(-combinedVec.z, combinedVec.x);
 
