@@ -73,9 +73,10 @@ public class TileCharger extends TileLightComponent implements ITickable{
                         if(stack != null && stack.stackSize > 0){
                             if(stack.getItem() instanceof ILightStorageItem){
                                 ILightStorageItem lightStorage = (ILightStorageItem)stack.getItem();
-                                lightStorage.insertLight(stack, chargePerTick, true);
-                                chargedOnce = true;
-                                break;
+                                if(lightStorage.insertLight(stack, chargePerTick, true) > 0){
+                                    chargedOnce = true;
+                                    break;
+                                }
                             }
                         }
                     }
