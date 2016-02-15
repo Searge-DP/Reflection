@@ -47,7 +47,9 @@ public interface ILightComponent{
 
     /**
      * Returns the maximum distance between this component and another one
-     * Note that the smaller of the max distances of two components will always be picked
+     *
+     * Note that, if two components have a different max distance, the
+     * average between the two will be the max distance to connect.
      */
     int getMaxDistanceFromComponent();
 

@@ -13,6 +13,7 @@ package de.ellpeck.reflection.mod.proxy;
 import de.ellpeck.reflection.api.light.TileLightComponent;
 import de.ellpeck.reflection.mod.gui.HUDEvents;
 import de.ellpeck.reflection.mod.tile.render.TESRLightComponentBase;
+import de.ellpeck.reflection.mod.tile.special.TileConnectionTunnelBase;
 import de.ellpeck.reflection.mod.tile.special.TileConverter12;
 import de.ellpeck.reflection.mod.tile.tier1.TileCoallector;
 import de.ellpeck.reflection.mod.tile.tier1.TileReflectorBase;
@@ -57,6 +58,7 @@ public class ClientProxy extends CommonProxy{
         this.registerBeamRenderer(TileCoallector.class);
         this.registerBeamRenderer(TileReflectorBase.class);
         this.registerBeamRenderer(TileCharger.class);
+        this.registerBeamRenderer(TileConnectionTunnelBase.class);
 
         for(Map.Entry<ItemStack, ResourceLocation> entry : modelLocationsForRegistering.entrySet()){
             ClientUtil.mc().getRenderItem().getItemModelMesher().register(entry.getKey().getItem(), entry.getKey().getItemDamage(), new ModelResourceLocation(entry.getValue(), "inventory"));

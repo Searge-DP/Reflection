@@ -124,11 +124,14 @@ public class LightNetworkHandler implements ILightNetworkHandler{
                 else{
                     ILightComponent firstComp = (ILightComponent)firstTile;
                     ILightComponent secondComp = (ILightComponent)secondTile;
+                    int firstMax = firstComp.getMaxDistanceFromComponent();
+                    int secondMax = secondComp.getMaxDistanceFromComponent();
+                    int maxDistance = (firstMax+secondMax)/2;
 
                     if(!(firstComp.canBeInNetworkWith(secondComp) || secondComp.canBeInNetworkWith(firstComp))){
                         return "connectNetworkError";
                     }
-                    else if(Math.sqrt(first.distanceSq(second)) > Math.min(firstComp.getMaxDistanceFromComponent(), secondComp.getMaxDistanceFromComponent())){
+                    else if(Math.sqrt(first.distanceSq(second)) > maxDistance){
                         return "connectTooFarAway";
                     }
                     else{
