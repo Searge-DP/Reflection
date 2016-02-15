@@ -75,4 +75,9 @@ public abstract class TileLightComponent extends TileEntityBase implements ILigh
     public World getTheWorld(){
         return this.getWorld();
     }
+
+    @Override
+    public boolean canBeInNetworkWith(ILightComponent component){
+        return this.getTier() == component.getTier();
+    }
 }

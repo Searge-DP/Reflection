@@ -12,7 +12,6 @@ package de.ellpeck.reflection.mod.tile.tier1;
 
 import de.ellpeck.reflection.api.ReflectionAPI;
 import de.ellpeck.reflection.api.internal.ILightNetwork;
-import de.ellpeck.reflection.api.light.ILightComponent;
 import de.ellpeck.reflection.api.light.IRodOverlay;
 import de.ellpeck.reflection.api.light.LightNetworkTier;
 import de.ellpeck.reflection.api.light.TileLightComponent;
@@ -53,11 +52,6 @@ public class TileCoallector extends TileLightComponent implements ITickable, IRo
     @Override
     public LightNetworkTier getTier(){
         return ReflectionAPI.TIER_1;
-    }
-
-    @Override
-    public boolean canBeInNetworkWith(ILightComponent component){
-        return component.getTier() == this.getTier();
     }
 
     @Override
