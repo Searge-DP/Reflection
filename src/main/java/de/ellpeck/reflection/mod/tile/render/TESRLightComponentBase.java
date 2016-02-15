@@ -13,7 +13,10 @@ package de.ellpeck.reflection.mod.tile.render;
 import de.ellpeck.reflection.api.ReflectionAPI;
 import de.ellpeck.reflection.api.light.TileLightComponent;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class TESRLightComponentBase extends TileEntitySpecialRenderer<TileLightComponent>{
 
     @Override

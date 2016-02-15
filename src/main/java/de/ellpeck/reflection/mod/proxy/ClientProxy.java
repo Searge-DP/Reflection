@@ -16,6 +16,7 @@ import de.ellpeck.reflection.mod.tile.render.TESRLightComponentBase;
 import de.ellpeck.reflection.mod.tile.special.TileConverter12;
 import de.ellpeck.reflection.mod.tile.tier1.TileCoallector;
 import de.ellpeck.reflection.mod.tile.tier1.TileReflectorBase;
+import de.ellpeck.reflection.mod.tile.tier2.TileCharger;
 import de.ellpeck.reflection.mod.util.ClientUtil;
 import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelResourceLocation;
@@ -55,6 +56,7 @@ public class ClientProxy extends CommonProxy{
         this.registerBeamRenderer(TileConverter12.class);
         this.registerBeamRenderer(TileCoallector.class);
         this.registerBeamRenderer(TileReflectorBase.class);
+        this.registerBeamRenderer(TileCharger.class);
 
         for(Map.Entry<ItemStack, ResourceLocation> entry : modelLocationsForRegistering.entrySet()){
             ClientUtil.mc().getRenderItem().getItemModelMesher().register(entry.getKey().getItem(), entry.getKey().getItemDamage(), new ModelResourceLocation(entry.getValue(), "inventory"));

@@ -93,6 +93,9 @@ public class TileCharger extends TileLightComponent implements ITickable{
                     }
                 }
             }
+            else{
+                this.usesLightInNetwork = false;
+            }
         }
     }
 }
