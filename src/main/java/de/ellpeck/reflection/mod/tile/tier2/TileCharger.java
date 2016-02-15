@@ -62,20 +62,22 @@ public class TileCharger extends TileLightComponent implements ITickable{
             int needPerTick = 40;
             int chargePerTick = 3;
             ILightNetwork network = WorldUtil.getNetworkForTile(this);
-            if(network != null && network.getTotalLightExcluded(this) >= needPerTick){
-                int range = 3;
-                List<EntityItem> itemsAround = this.worldObj.getEntitiesWithinAABB(EntityItem.class, AxisAlignedBB.fromBounds(this.pos.getX()-range, this.pos.getY()-range, this.pos.getZ()-range, this.pos.getX()+range, this.pos.getY()+range, this.pos.getZ()+range));
-
+            if(network != null){
                 boolean chargedOnce = false;
-                for(EntityItem item : itemsAround){
-                    if(item != null && !item.isDead){
-                        ItemStack stack = item.getEntityItem();
-                        if(stack != null && stack.stackSize > 0){
-                            if(stack.getItem() instanceof ILightStorageItem){
-                                ILightStorageItem lightStorage = (ILightStorageItem)stack.getItem();
-                                if(lightStorage.insertLight(stack, chargePerTick, true) > 0){
-                                    chargedOnce = true;
-                                    break;
+                if(network.getTotalLightExcluded(this) >= needPerTick){
+                    int range = 3;
+                    List<EntityItem> itemsAround = this.worldObj.getEntitiesWithinAABB(EntityItem.class, AxisAlignedBB.fromBounds(this.pos.getX()-range, this.pos.getY()-range, this.pos.getZ()-range, this.pos.getX()+range, this.pos.getY()+range, this.pos.getZ()+range));
+
+                    for(EntityItem item : itemsAround){
+                        if(item != null && !item.isDead){
+                            ItemStack stack = item.getEntityItem();
+                            if(stack != null && stack.stackSize > 0){
+                                if(stack.getItem() instanceof ILightStorageItem){
+                                    ILightStorageItem lightStorage = (ILightStorageItem)stack.getItem();
+                                    if(lightStorage.insertLight(stack, chargePerTick, true) > 0){
+                                        chargedOnce = true;
+                                        break;
+                                    }
                                 }
                             }
                         }
