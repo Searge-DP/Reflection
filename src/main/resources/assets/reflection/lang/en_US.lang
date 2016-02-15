@@ -5,10 +5,13 @@ itemGroup.reflection=Reflection
 item.reflection.itemLightConnector.name=Rod of the Lights
 item.reflection.itemLightBatteryBase.name=Tiny Rounded Prism
 
+
 #Blocks
-tile.reflection.blockConverter12.name=Tier Shifter (1-2)
-tile.reflection.blockReflectorBase.name=Reflector of the Common
+tile.reflection.blockConverter12.name=Converter - Commoner's Apprenticeship
+tile.reflection.blockReflectorBase.name=Reflector of the Commoners
 tile.reflection.blockCoallector.name=Flame Focus
+tile.reflection.blockConnectionTunnelBase.name=Cube of Focusing
+tile.reflection.blockCharger.name=Charger of Apprenticeship
 
 #Misc
 misc.reflection.connectionWorked=You see a beam of light appear...
