@@ -29,6 +29,9 @@ public class LibNames{
     public static final String BLOCK_CHARGER_BASE_NAME = "blockCharger";
     public static final String TILE_CHARGER_BASE_NAME = "tileCharger";
 
+    public static final String BLOCK_CONNECTION_TUNNEL_BASE_NAME = "blockConnectionTunnelBase";
+    public static final String TILE_CONNECTION_TUNNEL_BASE_NAME = "tileConnectionTunnelBase";
+
     public static final String ITEM_LIGHT_CONNECTOR = "itemLightConnector";
     public static final String ITEM_LIGHT_BATTERY_BASE = "itemLightBatteryBase";
 
