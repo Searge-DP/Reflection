@@ -110,6 +110,8 @@ public class TileCoallector extends TileLightComponent implements ITickable, IRo
                                         WorldServer worldServer = (WorldServer)this.worldObj;
                                         worldServer.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, item.posX, item.posY, item.posZ, 30, 0, 0, 0, 0.05);
                                     }
+
+                                    break;
                                 }
                             }
                         }

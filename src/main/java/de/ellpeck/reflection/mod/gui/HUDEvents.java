@@ -107,7 +107,10 @@ public class HUDEvents{
 
                         TileEntity tileHit = world.getTileEntity(hitPos);
                         if(tileHit instanceof IRodOverlay){
+                            GlStateManager.pushMatrix();
+                            GlStateManager.color(1, 1, 1);
                             ((IRodOverlay)tileHit).displayOverlay(heldStack, res, hitPos, world);
+                            GlStateManager.popMatrix();
                         }
                     }
                 }

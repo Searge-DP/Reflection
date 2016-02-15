@@ -60,7 +60,7 @@ public class TileCharger extends TileLightComponent implements ITickable{
     public void update(){
         if(!this.worldObj.isRemote){
             int needPerTick = 40;
-            int chargePerTick = 20;
+            int chargePerTick = 3;
             ILightNetwork network = WorldUtil.getNetworkForTile(this);
             if(network != null && network.getTotalLightExcluded(this) >= needPerTick){
                 int range = 3;
@@ -75,6 +75,7 @@ public class TileCharger extends TileLightComponent implements ITickable{
                                 ILightStorageItem lightStorage = (ILightStorageItem)stack.getItem();
                                 lightStorage.insertLight(stack, chargePerTick, true);
                                 chargedOnce = true;
+                                break;
                             }
                         }
                     }

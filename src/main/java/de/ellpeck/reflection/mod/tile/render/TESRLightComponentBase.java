@@ -23,4 +23,9 @@ public class TESRLightComponentBase extends TileEntitySpecialRenderer<TileLightC
     public void renderTileEntityAt(TileLightComponent te, double x, double y, double z, float partialTicks, int destroyStage){
         ReflectionAPI.theMethodHandler.renderLightForConnections(te, x, y, z);
     }
+
+    @Override
+    public boolean func_181055_a(){
+        return true;
+    }
 }
