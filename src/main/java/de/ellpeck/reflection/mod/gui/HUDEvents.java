@@ -16,6 +16,7 @@ import de.ellpeck.reflection.mod.items.ItemLightConnector;
 import de.ellpeck.reflection.mod.lib.LibMod;
 import de.ellpeck.reflection.mod.util.ClientUtil;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
@@ -91,18 +92,24 @@ public class HUDEvents{
             profiler.endSection();
             profiler.startSection("RodOverlay");
 
-            ItemStack heldStack = player.getHeldItem();
-            if(heldStack != null && heldStack.getItem() instanceof ItemLightConnector){
-                BlockPos hitPos = posHit.getBlockPos();
-                Block blockHit = world.getBlockState(hitPos).getBlock();
-                TileEntity tileHit = world.getTileEntity(hitPos);
+            if(posHit != null){
+                ItemStack heldStack = player.getHeldItem();
+                if(heldStack != null && heldStack.getItem() instanceof ItemLightConnector){
+                    BlockPos hitPos = posHit.getBlockPos();
+                    if(hitPos != null){
+                        IBlockState stateHit = world.getBlockState(hitPos);
+                        if(stateHit != null){
+                            Block blockHit = stateHit.getBlock();
+                            if(blockHit instanceof IRodOverlay){
+                                ((IRodOverlay)blockHit).displayOverlay(heldStack, res, hitPos, world);
+                            }
+                        }
 
-                if(blockHit instanceof IRodOverlay){
-                    ((IRodOverlay)blockHit).displayOverlay(heldStack, res, hitPos, world);
-                }
-
-                if(tileHit instanceof IRodOverlay){
-                    ((IRodOverlay)tileHit).displayOverlay(heldStack, res, hitPos, world);
+                        TileEntity tileHit = world.getTileEntity(hitPos);
+                        if(tileHit instanceof IRodOverlay){
+                            ((IRodOverlay)tileHit).displayOverlay(heldStack, res, hitPos, world);
+                        }
+                    }
                 }
             }
 
