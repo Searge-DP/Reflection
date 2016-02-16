@@ -88,7 +88,7 @@ public class LightNetwork implements ILightNetwork{
         int used = 0;
         for(Map.Entry<BlockPos, Integer> entry : this.lightGenAndUsage.entrySet()){
             if((tile == null || !entry.getKey().equals(tile.getPos())) && entry.getValue() < 0){
-                used += entry.getValue();
+                used -= entry.getValue();
             }
         }
         return used;
@@ -117,13 +117,7 @@ public class LightNetwork implements ILightNetwork{
 
     @Override
     public int getTotalLightExcluded(TileEntity tile){
-        int light = 0;
-        for(Map.Entry<BlockPos, Integer> entry : this.lightGenAndUsage.entrySet()){
-            if(tile == null || !entry.getKey().equals(tile.getPos())){
-                light += entry.getValue();
-            }
-        }
-        return light;
+        return this.getTotalLightGeneratedExcluded(tile)-this.getTotalLightUsedExcluded(tile);
     }
 
     @Override
