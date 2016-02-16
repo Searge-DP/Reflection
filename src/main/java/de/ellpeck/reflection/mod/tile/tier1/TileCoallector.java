@@ -46,6 +46,7 @@ public class TileCoallector extends TileLightComponentBase implements ITickable,
 
     private int lastBurnTime;
     private int lastMaxBurnTime;
+    private boolean hadNetwork;
 
     @Override
     public int getMaxConnections(){
@@ -118,11 +119,14 @@ public class TileCoallector extends TileLightComponentBase implements ITickable,
             Chunk chunk = this.worldObj.getChunkFromBlockCoords(this.getPos());
             boolean hasEnoughLight = chunk.getLightFor(EnumSkyBlock.SKY, this.getPos()) >= 10;
 
-            if(this.hadEnoughLight != hasEnoughLight || burnTimeWatcher != this.burnTime > 0){
-                this.hadEnoughLight = hasEnoughLight;
+            ILightNetwork network = WorldUtil.getNetworkForTile(this);
+            boolean hasNetwork = network != null;
 
-                ILightNetwork network = WorldUtil.getNetworkForTile(this);
-                if(network != null){
+            if(this.hadNetwork != hasNetwork || this.hadEnoughLight != hasEnoughLight || burnTimeWatcher != this.burnTime > 0){
+                this.hadEnoughLight = hasEnoughLight;
+                this.hadNetwork = hasNetwork;
+
+                if(hasNetwork){
                     if(this.burnTime > 0 && hasEnoughLight){
                         network.addLightGen(this, 10);
                     }
