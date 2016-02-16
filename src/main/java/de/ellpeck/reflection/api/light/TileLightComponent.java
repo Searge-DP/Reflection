@@ -40,8 +40,14 @@ public abstract class TileLightComponent extends TileEntity implements ILightCom
         ReflectionAPI.getLightNetworkHandler().removeConnections(this.getPos(), this.worldObj);
     }
 
-    @Override
-    public Packet getDescriptionPacket(){
+    /**
+     * This is a workaround for the packet being sent in getDescriptionPacket() not giving back the
+     * NBT that you gave it making it impossible to properly override getDescriptionPacket().
+     *
+     * If you still want the syncing to happen, but override the NBT being sent in
+     * getDescriptionPacket(), just override this method instead.
+     */
+    public NBTTagCompound getDescriptionPacketCompound(){
         NBTTagCompound compound = new NBTTagCompound();
 
         //When syncing, the client will be notified of the network this component is in
@@ -50,7 +56,12 @@ public abstract class TileLightComponent extends TileEntity implements ILightCom
         //This is not necessary, but it is used for properly rendering the light beams in the TESR
         ReflectionAPI.theMethodHandler.writeConnectionInfoNBT(this, compound);
 
-        return new S35PacketUpdateTileEntity(this.getPos(), this.getBlockMetadata(), compound);
+        return compound;
+    }
+
+    @Override
+    public Packet getDescriptionPacket(){
+        return new S35PacketUpdateTileEntity(this.getPos(), this.getBlockMetadata(), this.getDescriptionPacketCompound());
     }
 
     @Override

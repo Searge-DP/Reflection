@@ -16,6 +16,9 @@ import de.ellpeck.reflection.api.light.LightNetworkTier;
 import de.ellpeck.reflection.api.light.TileLightComponent;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
@@ -35,5 +38,18 @@ public abstract class TileLightComponentBase extends TileLightComponent{
     @Override
     public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newSate){
         return !newSate.getBlock().isAssociatedBlock(oldState.getBlock());
+    }
+
+    @Override
+    public NBTTagCompound getDescriptionPacketCompound(){
+        NBTTagCompound compound = super.getDescriptionPacketCompound();
+        this.writeToNBT(compound);
+        return compound;
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt){
+        super.onDataPacket(net, pkt);
+        this.readFromNBT(pkt.getNbtCompound());
     }
 }
