@@ -30,6 +30,7 @@ public class ItemLightConnector extends ItemBase{
 
     public ItemLightConnector(){
         super(LibNames.ITEM_LIGHT_CONNECTOR, true);
+        this.setMaxStackSize(1);
     }
 
     @Override
