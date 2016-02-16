@@ -49,6 +49,9 @@ public class CreativeTab extends CreativeTabs{
         //Tier 2
         this.addBlock(InitBlocks.blockCharger);
 
+        //Tier 3
+        this.addBlock(InitBlocks.blockAdvancedCharger);
+
         //Items
         this.addItem(InitItems.itemLightConnector);
         this.addItem(InitItems.itemLightBatteryBase);

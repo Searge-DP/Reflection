@@ -25,7 +25,7 @@ import java.util.List;
 public class TileCharger extends TileLightComponentBase implements ITickable{
 
     private static final String TAG_USES_LIGHT = "UsesLight";
-    private boolean usesLightInNetwork;
+    protected boolean usesLightInNetwork;
 
     @Override
     public int getMaxConnections(){
@@ -52,32 +52,10 @@ public class TileCharger extends TileLightComponentBase implements ITickable{
     @Override
     public void update(){
         if(!this.worldObj.isRemote){
-            int needPerTick = 40;
-            int chargePerTick = 3;
+            int needPerTick = this.getUse();
             ILightNetwork network = WorldUtil.getNetworkForTile(this);
             if(network != null){
-                boolean chargedOnce = false;
-                if(network.getTotalLightExcluded(this) >= needPerTick){
-                    int range = 3;
-                    List<EntityItem> itemsAround = this.worldObj.getEntitiesWithinAABB(EntityItem.class, AxisAlignedBB.fromBounds(this.pos.getX()-range, this.pos.getY()-range, this.pos.getZ()-range, this.pos.getX()+range, this.pos.getY()+range, this.pos.getZ()+range));
-
-                    for(EntityItem item : itemsAround){
-                        if(item != null && !item.isDead){
-                            ItemStack stack = item.getEntityItem();
-                            if(stack != null && stack.stackSize > 0){
-                                if(stack.getItem() instanceof ILightStorageItem){
-                                    ILightStorageItem lightStorage = (ILightStorageItem)stack.getItem();
-                                    if(lightStorage.insertLight(stack, chargePerTick, true) > 0){
-                                        chargedOnce = true;
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if(chargedOnce){
+                if(network.getTotalLightExcluded(this) >= needPerTick && this.tryCharge()){
                     if(!this.usesLightInNetwork){
                         network.addLightUser(this, needPerTick);
                         this.usesLightInNetwork = true;
@@ -94,5 +72,29 @@ public class TileCharger extends TileLightComponentBase implements ITickable{
                 this.usesLightInNetwork = false;
             }
         }
+    }
+
+    protected int getUse(){
+        return 40;
+    }
+
+    protected boolean tryCharge(){
+        int range = 3;
+        List<EntityItem> itemsAround = this.worldObj.getEntitiesWithinAABB(EntityItem.class, AxisAlignedBB.fromBounds(this.pos.getX()-range, this.pos.getY()-range, this.pos.getZ()-range, this.pos.getX()+range, this.pos.getY()+range, this.pos.getZ()+range));
+
+        for(EntityItem item : itemsAround){
+            if(item != null && !item.isDead){
+                ItemStack stack = item.getEntityItem();
+                if(stack != null && stack.stackSize > 0){
+                    if(stack.getItem() instanceof ILightStorageItem){
+                        ILightStorageItem lightStorage = (ILightStorageItem)stack.getItem();
+                        if(lightStorage.insertLight(stack, 3, true) > 0){
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
     }
 }

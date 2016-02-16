@@ -15,6 +15,7 @@ import de.ellpeck.reflection.mod.blocks.tier1.BlockCoallector;
 import de.ellpeck.reflection.mod.blocks.tier1.BlockConnectionTunnelBase;
 import de.ellpeck.reflection.mod.blocks.tier1.BlockReflectorBase;
 import de.ellpeck.reflection.mod.blocks.tier2.BlockCharger;
+import de.ellpeck.reflection.mod.blocks.tier3.BlockAdvancedCharger;
 import net.minecraft.block.Block;
 
 public class InitBlocks{
@@ -30,6 +31,9 @@ public class InitBlocks{
     //Tier 2
     public static Block blockCharger;
 
+    //Tier 3
+    public static Block blockAdvancedCharger;
+
     public static void preInit(){
         //Special
         blockConverter12 = new BlockConverter12();
@@ -41,6 +45,9 @@ public class InitBlocks{
 
         //Tier 2
         blockCharger = new BlockCharger();
+
+        //Tier 3
+        blockAdvancedCharger = new BlockAdvancedCharger();
     }
 
 }
