@@ -15,14 +15,7 @@ import de.ellpeck.reflection.mod.blocks.tier1.BlockCoallector;
 import de.ellpeck.reflection.mod.blocks.tier1.BlockConnectionTunnelBase;
 import de.ellpeck.reflection.mod.blocks.tier1.BlockReflectorBase;
 import de.ellpeck.reflection.mod.blocks.tier2.BlockCharger;
-import de.ellpeck.reflection.mod.lib.LibNames;
-import de.ellpeck.reflection.mod.tile.special.TileConverter12;
-import de.ellpeck.reflection.mod.tile.tier1.TileCoallector;
-import de.ellpeck.reflection.mod.tile.tier1.TileConnectionTunnelBase;
-import de.ellpeck.reflection.mod.tile.tier1.TileReflectorBase;
-import de.ellpeck.reflection.mod.tile.tier2.TileCharger;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 
 public class InitBlocks{
 
@@ -39,15 +32,15 @@ public class InitBlocks{
 
     public static void preInit(){
         //Special
-        blockConverter12 = new BlockConverter12(Material.anvil, LibNames.BLOCK_CONVERTER12_BASE_NAME, true, TileConverter12.class, LibNames.TILE_CONVERTER12_BASE_NAME);
-        blockConnectionTunnelBase = new BlockConnectionTunnelBase(Material.anvil, LibNames.BLOCK_CONNECTION_TUNNEL_BASE_NAME, true, TileConnectionTunnelBase.class, LibNames.TILE_CONNECTION_TUNNEL_BASE_NAME);
+        blockConverter12 = new BlockConverter12();
+        blockConnectionTunnelBase = new BlockConnectionTunnelBase();
 
         //Tier 1
-        blockBasicReflector = new BlockReflectorBase(Material.anvil, LibNames.BLOCK_REFLECTOR_BASE_NAME, true, TileReflectorBase.class, LibNames.TILE_REFLECTOR_BASE_NAME);
-        blockCoallector = new BlockCoallector(Material.anvil, LibNames.BLOCK_COALLECTOR_BASE_NAME, true, TileCoallector.class, LibNames.TILE_COALLECTOR_BASE_NAME);
+        blockBasicReflector = new BlockReflectorBase();
+        blockCoallector = new BlockCoallector();
 
         //Tier 2
-        blockCharger = new BlockCharger(Material.anvil, LibNames.BLOCK_CHARGER_BASE_NAME, true, TileCharger.class, LibNames.TILE_CHARGER_BASE_NAME);
+        blockCharger = new BlockCharger();
     }
 
 }

@@ -28,8 +28,8 @@ import net.minecraft.world.World;
 
 public class ItemLightConnector extends ItemBase{
 
-    public ItemLightConnector(String name, boolean addTab){
-        super(name, addTab);
+    public ItemLightConnector(){
+        super(LibNames.ITEM_LIGHT_CONNECTOR, true);
     }
 
     @Override

@@ -12,12 +12,13 @@ package de.ellpeck.reflection.mod.blocks.special;
 
 import de.ellpeck.reflection.api.ReflectionAPI;
 import de.ellpeck.reflection.mod.blocks.BlockLightComponentBase;
-import de.ellpeck.reflection.mod.tile.TileLightComponentBase;
+import de.ellpeck.reflection.mod.lib.LibNames;
+import de.ellpeck.reflection.mod.tile.special.TileConverter12;
 import net.minecraft.block.material.Material;
 
 public class BlockConverter12 extends BlockLightComponentBase{
 
-    public BlockConverter12(Material material, String name, boolean addTab, Class<? extends TileLightComponentBase> tileClass, String tileName){
-        super(material, name, ReflectionAPI.TIER_SPECIAL, addTab, tileClass, tileName);
+    public BlockConverter12(){
+        super(Material.anvil, LibNames.BLOCK_CONVERTER12_BASE_NAME, ReflectionAPI.TIER_SPECIAL, true, TileConverter12.class, LibNames.TILE_CONVERTER12_BASE_NAME);
     }
 }

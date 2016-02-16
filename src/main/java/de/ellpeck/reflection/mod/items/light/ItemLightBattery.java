@@ -10,14 +10,15 @@
 
 package de.ellpeck.reflection.mod.items.light;
 
+import de.ellpeck.reflection.mod.lib.LibNames;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemLightBattery extends ItemLightStorageBase{
 
-    public ItemLightBattery(String name, boolean addTab, int maxLight){
-        super(name, addTab, maxLight);
+    public ItemLightBattery(){
+        super(LibNames.ITEM_LIGHT_BATTERY_BASE, true, 1000);
     }
 
     @Override

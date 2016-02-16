@@ -12,12 +12,13 @@ package de.ellpeck.reflection.mod.blocks.tier1;
 
 import de.ellpeck.reflection.api.ReflectionAPI;
 import de.ellpeck.reflection.mod.blocks.BlockLightComponentBase;
-import de.ellpeck.reflection.mod.tile.TileLightComponentBase;
+import de.ellpeck.reflection.mod.lib.LibNames;
+import de.ellpeck.reflection.mod.tile.tier1.TileConnectionTunnelBase;
 import net.minecraft.block.material.Material;
 
 public class BlockConnectionTunnelBase extends BlockLightComponentBase{
 
-    public BlockConnectionTunnelBase(Material material, String name, boolean addTab, Class<? extends TileLightComponentBase> tileClass, String tileName){
-        super(material, name, ReflectionAPI.TIER_1, addTab, tileClass, tileName);
+    public BlockConnectionTunnelBase(){
+        super(Material.anvil, LibNames.BLOCK_CONNECTION_TUNNEL_BASE_NAME, ReflectionAPI.TIER_1, true, TileConnectionTunnelBase.class, LibNames.TILE_CONNECTION_TUNNEL_BASE_NAME);
     }
 }
