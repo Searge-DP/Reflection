@@ -38,14 +38,14 @@ public class TileCharger extends TileLightComponentBase implements ITickable{
     }
 
     @Override
-    public void readNBT(NBTTagCompound compound, boolean sync){
-        super.readNBT(compound, sync);
+    public void readFromNBT(NBTTagCompound compound){
+        super.readFromNBT(compound);
         this.usesLightInNetwork = compound.getBoolean(TAG_USES_LIGHT);
     }
 
     @Override
-    public void writeNBT(NBTTagCompound compound, boolean sync){
-        super.writeNBT(compound, sync);
+    public void writeToNBT(NBTTagCompound compound){
+        super.writeToNBT(compound);
         compound.setBoolean(TAG_USES_LIGHT, this.usesLightInNetwork);
     }
 

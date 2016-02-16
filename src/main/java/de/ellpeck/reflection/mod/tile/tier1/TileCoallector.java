@@ -59,15 +59,15 @@ public class TileCoallector extends TileLightComponentBase implements ITickable,
     }
 
     @Override
-    public void readNBT(NBTTagCompound compound, boolean sync){
-        super.readNBT(compound, sync);
+    public void readFromNBT(NBTTagCompound compound){
+        super.readFromNBT(compound);
         this.burnTime = compound.getInteger(TAG_BURN_TIME);
         this.maxBurnTime = compound.getInteger(TAG_MAX_BURN_TIME);
     }
 
     @Override
-    public void writeNBT(NBTTagCompound compound, boolean sync){
-        super.writeNBT(compound, sync);
+    public void writeToNBT(NBTTagCompound compound){
+        super.writeToNBT(compound);
         compound.setInteger(TAG_BURN_TIME, this.burnTime);
         compound.setInteger(TAG_MAX_BURN_TIME, this.maxBurnTime);
     }
