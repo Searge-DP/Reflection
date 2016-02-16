@@ -12,15 +12,9 @@ package de.ellpeck.reflection.mod.tile.special;
 
 import de.ellpeck.reflection.api.ReflectionAPI;
 import de.ellpeck.reflection.api.light.ILightComponent;
-import de.ellpeck.reflection.api.light.LightNetworkTier;
-import de.ellpeck.reflection.api.light.TileLightComponent;
+import de.ellpeck.reflection.mod.tile.TileLightComponentBase;
 
-public class TileConverter12 extends TileLightComponent{
-
-    @Override
-    public LightNetworkTier getTier(){
-        return ReflectionAPI.TIER_SPECIAL;
-    }
+public class TileConverter12 extends TileLightComponentBase{
 
     @Override
     public boolean canBeInNetworkWith(ILightComponent component){

@@ -10,8 +10,8 @@
 
 package de.ellpeck.reflection.mod.proxy;
 
-import de.ellpeck.reflection.api.light.TileLightComponent;
-import de.ellpeck.reflection.mod.gui.HUDEvents;
+import de.ellpeck.reflection.mod.gui.OverlayEvents;
+import de.ellpeck.reflection.mod.tile.TileLightComponentBase;
 import de.ellpeck.reflection.mod.tile.render.TESRLightComponentBase;
 import de.ellpeck.reflection.mod.tile.special.TileConverter12;
 import de.ellpeck.reflection.mod.tile.tier1.TileCoallector;
@@ -52,7 +52,7 @@ public class ClientProxy extends CommonProxy{
     public void init(FMLInitializationEvent event){
         super.init(event);
 
-        MinecraftForge.EVENT_BUS.register(new HUDEvents());
+        MinecraftForge.EVENT_BUS.register(new OverlayEvents());
 
         this.registerBeamRenderer(TileConverter12.class);
         this.registerBeamRenderer(TileCoallector.class);
@@ -65,7 +65,7 @@ public class ClientProxy extends CommonProxy{
         }
     }
 
-    private void registerBeamRenderer(Class<? extends TileLightComponent> tile){
+    private void registerBeamRenderer(Class<? extends TileLightComponentBase> tile){
         ClientRegistry.bindTileEntitySpecialRenderer(tile, new TESRLightComponentBase());
     }
 

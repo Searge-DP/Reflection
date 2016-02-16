@@ -12,15 +12,9 @@ package de.ellpeck.reflection.mod.tile.tier1;
 
 import de.ellpeck.reflection.api.ReflectionAPI;
 import de.ellpeck.reflection.api.light.ILightComponent;
-import de.ellpeck.reflection.api.light.LightNetworkTier;
-import de.ellpeck.reflection.api.light.TileLightComponent;
+import de.ellpeck.reflection.mod.tile.TileLightComponentBase;
 
-public class TileConnectionTunnelBase extends TileLightComponent{
-
-    @Override
-    public LightNetworkTier getTier(){
-        return ReflectionAPI.TIER_SPECIAL;
-    }
+public class TileConnectionTunnelBase extends TileLightComponentBase{
 
     @Override
     public int getMaxConnections(){

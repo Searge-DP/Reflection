@@ -5,6 +5,10 @@ itemGroup.reflection=Reflection
 item.reflection.itemLightConnector.name=Rod of the Lights
 item.reflection.itemLightBatteryBase.name=Tiny Rounded Prism
 
+#Tiers
+lightNetworkTier.reflection.0=Tierless
+lightNetworkTier.reflection.1=Commoners
+lightNetworkTier.reflection.2=Apprentices
 
 #Blocks
 tile.reflection.blockConverter12.name=Converter - Commoner's Apprenticeship

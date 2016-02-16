@@ -11,6 +11,7 @@
 package de.ellpeck.reflection.mod.gui;
 
 import de.ellpeck.reflection.api.light.ILightStorageItem;
+import de.ellpeck.reflection.api.light.ILightTierDisplay;
 import de.ellpeck.reflection.api.light.IRodOverlay;
 import de.ellpeck.reflection.mod.items.ItemLightConnector;
 import de.ellpeck.reflection.mod.lib.LibMod;
@@ -26,15 +27,35 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.profiler.Profiler;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class HUDEvents{
+public class OverlayEvents{
+
+    @SubscribeEvent
+    public void onTooltip(ItemTooltipEvent event){
+        ItemStack stack = event.itemStack;
+        if(stack != null){
+            Item item = stack.getItem();
+            if(item != null){
+                Block block = Block.getBlockFromItem(item);
+                if(block instanceof ILightTierDisplay){
+                    event.toolTip.add(EnumChatFormatting.GOLD+StatCollector.translateToLocal(((ILightTierDisplay)block).getTier().getUnlocalizedName()));
+                }
+                if(item instanceof ILightTierDisplay){
+                    event.toolTip.add(EnumChatFormatting.GOLD+StatCollector.translateToLocal(((ILightTierDisplay)item).getTier().getUnlocalizedName()));
+                }
+            }
+        }
+    }
 
     @SubscribeEvent
     public void onGameOverlay(RenderGameOverlayEvent.Post event){

@@ -10,9 +10,9 @@
 
 package de.ellpeck.reflection.mod.blocks;
 
-import de.ellpeck.reflection.mod.blocks.special.BlockConnectionTunnelBase;
 import de.ellpeck.reflection.mod.blocks.special.BlockConverter12;
 import de.ellpeck.reflection.mod.blocks.tier1.BlockCoallector;
+import de.ellpeck.reflection.mod.blocks.tier1.BlockConnectionTunnelBase;
 import de.ellpeck.reflection.mod.blocks.tier1.BlockReflectorBase;
 import de.ellpeck.reflection.mod.blocks.tier2.BlockCharger;
 import de.ellpeck.reflection.mod.lib.LibNames;

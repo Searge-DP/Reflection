@@ -10,14 +10,15 @@
 
 package de.ellpeck.reflection.mod.blocks.tier2;
 
+import de.ellpeck.reflection.api.ReflectionAPI;
 import de.ellpeck.reflection.mod.blocks.BlockLightComponentBase;
+import de.ellpeck.reflection.mod.tile.TileLightComponentBase;
 import net.minecraft.block.material.Material;
-import net.minecraft.tileentity.TileEntity;
 
 public class BlockCharger extends BlockLightComponentBase{
 
-    public BlockCharger(Material material, String name, boolean addTab, Class<? extends TileEntity> tileClass, String tileName){
-        super(material, name, addTab, tileClass, tileName);
+    public BlockCharger(Material material, String name, boolean addTab, Class<? extends TileLightComponentBase> tileClass, String tileName){
+        super(material, name, ReflectionAPI.TIER_2, addTab, tileClass, tileName);
     }
 
 }

@@ -10,11 +10,9 @@
 
 package de.ellpeck.reflection.mod.tile.tier2;
 
-import de.ellpeck.reflection.api.ReflectionAPI;
 import de.ellpeck.reflection.api.internal.ILightNetwork;
 import de.ellpeck.reflection.api.light.ILightStorageItem;
-import de.ellpeck.reflection.api.light.LightNetworkTier;
-import de.ellpeck.reflection.api.light.TileLightComponent;
+import de.ellpeck.reflection.mod.tile.TileLightComponentBase;
 import de.ellpeck.reflection.mod.util.WorldUtil;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
@@ -24,15 +22,10 @@ import net.minecraft.util.ITickable;
 
 import java.util.List;
 
-public class TileCharger extends TileLightComponent implements ITickable{
+public class TileCharger extends TileLightComponentBase implements ITickable{
 
     private static final String TAG_USES_LIGHT = "UsesLight";
     private boolean usesLightInNetwork;
-
-    @Override
-    public LightNetworkTier getTier(){
-        return ReflectionAPI.TIER_2;
-    }
 
     @Override
     public int getMaxConnections(){

@@ -10,6 +10,7 @@
 
 package de.ellpeck.reflection.api.light;
 
+import de.ellpeck.reflection.api.internal.Values;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -44,5 +45,13 @@ public class LightNetworkTier{
     @SideOnly(Side.CLIENT)
     public float[] getColors(){
         return this.colors;
+    }
+
+    /**
+     * Returns the unlocalized name of this light network tier
+     * Used for ILightTierDisplay
+     */
+    public String getUnlocalizedName(){
+        return "lightNetworkTier."+Values.MOD_ID+"."+this.tierInt;
     }
 }

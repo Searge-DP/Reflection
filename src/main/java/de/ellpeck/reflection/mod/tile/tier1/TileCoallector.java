@@ -10,11 +10,9 @@
 
 package de.ellpeck.reflection.mod.tile.tier1;
 
-import de.ellpeck.reflection.api.ReflectionAPI;
 import de.ellpeck.reflection.api.internal.ILightNetwork;
 import de.ellpeck.reflection.api.light.IRodOverlay;
-import de.ellpeck.reflection.api.light.LightNetworkTier;
-import de.ellpeck.reflection.api.light.TileLightComponent;
+import de.ellpeck.reflection.mod.tile.TileLightComponentBase;
 import de.ellpeck.reflection.mod.util.ClientUtil;
 import de.ellpeck.reflection.mod.util.VanillaPacketHandler;
 import de.ellpeck.reflection.mod.util.WorldUtil;
@@ -37,7 +35,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class TileCoallector extends TileLightComponent implements ITickable, IRodOverlay{
+public class TileCoallector extends TileLightComponentBase implements ITickable, IRodOverlay{
 
     private static final String TAG_BURN_TIME = "BurnTime";
     private static final String TAG_MAX_BURN_TIME = "MaxBurnTime";
@@ -48,11 +46,6 @@ public class TileCoallector extends TileLightComponent implements ITickable, IRo
 
     private int lastBurnTime;
     private int lastMaxBurnTime;
-
-    @Override
-    public LightNetworkTier getTier(){
-        return ReflectionAPI.TIER_1;
-    }
 
     @Override
     public int getMaxConnections(){

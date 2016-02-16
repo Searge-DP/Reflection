@@ -16,7 +16,7 @@ package de.ellpeck.reflection.api.internal;
  */
 public class Values{
 
-    public static final String API_VERSION = "9";
+    public static final String API_VERSION = "10";
 
     public static final String MOD_ID = "reflection";
     public static final String MOD_NAME = "Reflection";
