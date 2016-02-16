@@ -11,8 +11,11 @@
 package de.ellpeck.reflection.api.light;
 
 import de.ellpeck.reflection.api.ReflectionAPI;
-import de.ellpeck.reflection.api.internal.TileEntityBase;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
@@ -21,8 +24,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * A TileEntity that generates or uses light and/or can be connected to a light network
+ *
+ * This is an example implementation, if you need to extend another class or can't use
+ * this directly for any other reason, implement ILightComponent directly and invoke
+ * all of the methods that are described as VERY IMPORTANT in here.
  */
-public abstract class TileLightComponent extends TileEntityBase implements ILightComponent{
+public abstract class TileLightComponent extends TileEntity implements ILightComponent{
 
     @Override
     public void invalidate(){
@@ -34,25 +41,25 @@ public abstract class TileLightComponent extends TileEntityBase implements ILigh
     }
 
     @Override
-    public void readNBT(NBTTagCompound compound, boolean sync){
+    public Packet getDescriptionPacket(){
+        NBTTagCompound compound = new NBTTagCompound();
+
         //When syncing, the client will be notified of the network this component is in
         //Be sure to use super when overriding this method
         //
         //This is not necessary, but it is used for properly rendering the light beams in the TESR
-        if(sync){
-            ReflectionAPI.theMethodHandler.readConnectionInfoNBT(this, compound);
-        }
+        ReflectionAPI.theMethodHandler.writeConnectionInfoNBT(this, compound);
+
+        return new S35PacketUpdateTileEntity(this.getPos(), this.getBlockMetadata(), compound);
     }
 
     @Override
-    public void writeNBT(NBTTagCompound compound, boolean sync){
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt){
         //When syncing, the client will be notified of the network this component is in
         //Be sure to use super when overriding this method
         //
         //This is not necessary, but it is used for properly rendering the light beams in the TESR
-        if(sync){
-            ReflectionAPI.theMethodHandler.writeConnectionInfoNBT(this, compound);
-        }
+        ReflectionAPI.theMethodHandler.readConnectionInfoNBT(this, pkt.getNbtCompound());
     }
 
     @Override
