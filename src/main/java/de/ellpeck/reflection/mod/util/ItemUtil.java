@@ -46,7 +46,7 @@ public class ItemUtil{
         if(!entity.worldObj.isRemote && entity instanceof EntityPlayer){
             InventoryPlayer inventory = ((EntityPlayer)entity).inventory;
             if(stack.getItemDamage() > 0){
-                if(entity.worldObj.getTotalWorldTime()%20 == 0){
+                if(entity.worldObj.getTotalWorldTime()%40 == 0){
                     int toExtract = 5;
 
                     int amountDrained = ReflectionAPI.theMethodHandler.extractLightFromInventory(inventory, toExtract, false);
