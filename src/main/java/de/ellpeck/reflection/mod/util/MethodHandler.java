@@ -24,7 +24,7 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -230,10 +230,10 @@ public class MethodHandler implements IMethodHandler{
     }
 
     @Override
-    public int insertLightIntoInventory(InventoryPlayer inventory, int amount, boolean actuallyDo){
+    public int insertLightIntoInventory(EntityPlayer player, int amount, boolean actuallyDo){
         int inserted = 0;
-        for(int i = 0; i < inventory.getSizeInventory(); i++){
-            ItemStack stack = inventory.getStackInSlot(i);
+        for(int i = 0; i < player.inventory.getSizeInventory(); i++){
+            ItemStack stack = player.inventory.getStackInSlot(i);
             if(stack != null){
                 Item item = stack.getItem();
                 if(item instanceof ILightStorageItem){
@@ -241,20 +241,26 @@ public class MethodHandler implements IMethodHandler{
                 }
             }
         }
+        if(inserted > 0){
+            player.inventoryContainer.detectAndSendChanges();
+        }
         return inserted;
     }
 
     @Override
-    public int extractLightFromInventory(InventoryPlayer inventory, int amount, boolean actuallyDo){
+    public int extractLightFromInventory(EntityPlayer player, int amount, boolean actuallyDo){
         int extracted = 0;
-        for(int i = 0; i < inventory.getSizeInventory(); i++){
-            ItemStack stack = inventory.getStackInSlot(i);
+        for(int i = 0; i < player.inventory.getSizeInventory(); i++){
+            ItemStack stack = player.inventory.getStackInSlot(i);
             if(stack != null){
                 Item item = stack.getItem();
                 if(item instanceof ILightStorageItem){
                     extracted += ((ILightStorageItem)item).extractLight(stack, amount-extracted, actuallyDo);
                 }
             }
+        }
+        if(extracted > 0){
+            player.inventoryContainer.detectAndSendChanges();
         }
         return extracted;
     }

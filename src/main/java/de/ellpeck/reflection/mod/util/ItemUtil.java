@@ -17,7 +17,6 @@ import de.ellpeck.reflection.mod.lib.LibNames;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -44,14 +43,14 @@ public class ItemUtil{
 
     public static void rechargeItemFromLight(ItemStack stack, Entity entity){
         if(!entity.worldObj.isRemote && entity instanceof EntityPlayer){
-            InventoryPlayer inventory = ((EntityPlayer)entity).inventory;
             if(stack.getItemDamage() > 0){
                 if(entity.worldObj.getTotalWorldTime()%40 == 0){
+                    EntityPlayer player = ((EntityPlayer)entity);
                     int toExtract = 5;
 
-                    int amountDrained = ReflectionAPI.theMethodHandler.extractLightFromInventory(inventory, toExtract, false);
+                    int amountDrained = ReflectionAPI.theMethodHandler.extractLightFromInventory(player, toExtract, false);
                     if(amountDrained >= toExtract){
-                        ReflectionAPI.theMethodHandler.extractLightFromInventory(inventory, amountDrained, true);
+                        ReflectionAPI.theMethodHandler.extractLightFromInventory(player, amountDrained, true);
                         stack.setItemDamage(stack.getItemDamage()-1);
                     }
                 }

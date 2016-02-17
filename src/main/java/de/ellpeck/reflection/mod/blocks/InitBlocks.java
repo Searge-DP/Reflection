@@ -34,6 +34,8 @@ public class InitBlocks{
     //Tier 3
     public static Block blockAdvancedCharger;
 
+    public static Block blockSparkle;
+
     public static void preInit(){
         //Special
         blockConverter12 = new BlockConverter12();
@@ -48,6 +50,8 @@ public class InitBlocks{
 
         //Tier 3
         blockAdvancedCharger = new BlockAdvancedCharger();
+
+        blockSparkle = new BlockSparkle();
     }
 
 }

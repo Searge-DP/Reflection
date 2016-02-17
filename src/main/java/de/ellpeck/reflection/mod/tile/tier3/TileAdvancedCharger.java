@@ -31,7 +31,7 @@ public class TileAdvancedCharger extends TileCharger{
 
         for(EntityPlayer player : playersAround){
             if(player != null && !player.isDead && player.inventory != null){
-                if(ReflectionAPI.theMethodHandler.insertLightIntoInventory(player.inventory, 5, true) > 0){
+                if(ReflectionAPI.theMethodHandler.insertLightIntoInventory(player, 5, true) > 0){
                     return true;
                 }
             }

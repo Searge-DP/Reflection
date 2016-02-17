@@ -11,10 +11,10 @@
 package de.ellpeck.reflection.mod.items;
 
 import de.ellpeck.reflection.mod.items.light.ItemLightBattery;
+import de.ellpeck.reflection.mod.items.tools.ItemHoeShovel;
 import de.ellpeck.reflection.mod.items.tools.ItemReflectionAxe;
-import de.ellpeck.reflection.mod.items.tools.ItemReflectionPickaxe;
-import de.ellpeck.reflection.mod.items.tools.ItemReflectionShovel;
 import de.ellpeck.reflection.mod.items.tools.ItemReflectionSword;
+import de.ellpeck.reflection.mod.items.tools.ItemSparklePickaxe;
 import de.ellpeck.reflection.mod.lib.LibMaterials;
 import de.ellpeck.reflection.mod.lib.LibNames;
 import net.minecraft.item.Item;
@@ -36,8 +36,8 @@ public class InitItems{
         itemLightBatteryBase = new ItemLightBattery();
 
         itemLightAxe = new ItemReflectionAxe(LibNames.ITEM_LIGHT_AXE, true, LibMaterials.TOOL_MATERIAL_LIGHT);
-        itemLightPickaxe = new ItemReflectionPickaxe(LibNames.ITEM_LIGHT_PICKAXE, true, LibMaterials.TOOL_MATERIAL_LIGHT);
-        itemLightShovel = new ItemReflectionShovel(LibNames.ITEM_LIGHT_SHOVEL, true, LibMaterials.TOOL_MATERIAL_LIGHT);
+        itemLightPickaxe = new ItemSparklePickaxe(LibNames.ITEM_LIGHT_PICKAXE, true, LibMaterials.TOOL_MATERIAL_LIGHT);
+        itemLightShovel = new ItemHoeShovel(LibNames.ITEM_LIGHT_SHOVEL, true, LibMaterials.TOOL_MATERIAL_LIGHT);
         itemLightSword = new ItemReflectionSword(LibNames.ITEM_LIGHT_SWORD, true, LibMaterials.TOOL_MATERIAL_LIGHT);
 
         itemGlassShards = new ItemBase(LibNames.ITEM_GLASS_SHARDS, true);

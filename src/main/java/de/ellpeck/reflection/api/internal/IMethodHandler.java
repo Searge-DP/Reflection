@@ -11,7 +11,7 @@
 package de.ellpeck.reflection.api.internal;
 
 import de.ellpeck.reflection.api.light.ILightComponent;
-import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -72,12 +72,12 @@ public interface IMethodHandler{
      *
      * @return The amount that was added
      */
-    int insertLightIntoInventory(InventoryPlayer inventory, int amount, boolean actuallyDo);
+    int insertLightIntoInventory(EntityPlayer player, int amount, boolean actuallyDo);
 
     /**
      * Extracts a given amount of light from any light containers the player has in their inventory
      *
      * @return The amount that was extracted
      */
-    int extractLightFromInventory(InventoryPlayer inventory, int amount, boolean actuallyDo);
+    int extractLightFromInventory(EntityPlayer player, int amount, boolean actuallyDo);
 }

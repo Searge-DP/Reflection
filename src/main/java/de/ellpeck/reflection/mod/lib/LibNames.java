@@ -35,6 +35,8 @@ public class LibNames{
     public static final String BLOCK_CONNECTION_TUNNEL = "blockConnectionTunnelBase";
     public static final String TILE_CONNECTION_TUNNEL = "tileConnectionTunnelBase";
 
+    public static final String BLOCK_SPARKLE = "blockSparkle";
+
     public static final String ITEM_LIGHT_CONNECTOR = "itemLightConnector";
     public static final String ITEM_LIGHT_BATTERY = "itemLightBatteryBase";
 
