@@ -19,6 +19,6 @@ import net.minecraft.block.material.Material;
 public class BlockCoallector extends BlockLightComponentBase{
 
     public BlockCoallector(){
-        super(Material.anvil, LibNames.BLOCK_COALLECTOR_BASE_NAME, ReflectionAPI.TIER_1, true, TileCoallector.class, LibNames.TILE_COALLECTOR_BASE_NAME);
+        super(Material.anvil, LibNames.BLOCK_COALLECTOR, ReflectionAPI.TIER_1, true, TileCoallector.class, LibNames.TILE_COALLECTOR);
     }
 }

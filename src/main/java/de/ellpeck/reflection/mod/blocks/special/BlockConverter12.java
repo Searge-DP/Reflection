@@ -19,6 +19,6 @@ import net.minecraft.block.material.Material;
 public class BlockConverter12 extends BlockLightComponentBase{
 
     public BlockConverter12(){
-        super(Material.anvil, LibNames.BLOCK_CONVERTER12_BASE_NAME, ReflectionAPI.TIER_SPECIAL, true, TileConverter12.class, LibNames.TILE_CONVERTER12_BASE_NAME);
+        super(Material.anvil, LibNames.BLOCK_CONVERTER12, ReflectionAPI.TIER_SPECIAL, true, TileConverter12.class, LibNames.TILE_CONVERTER12);
     }
 }

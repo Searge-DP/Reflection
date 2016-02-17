@@ -21,7 +21,7 @@ import net.minecraft.block.material.Material;
 public class BlockCharger extends BlockLightComponentBase{
 
     public BlockCharger(){
-        this(Material.anvil, LibNames.BLOCK_CHARGER_BASE_NAME, ReflectionAPI.TIER_2, true, TileCharger.class, LibNames.TILE_CHARGER_BASE_NAME);
+        this(Material.anvil, LibNames.BLOCK_CHARGER, ReflectionAPI.TIER_2, true, TileCharger.class, LibNames.TILE_CHARGER);
     }
 
     public BlockCharger(Material material, String name, LightNetworkTier tier, boolean addTab, Class<? extends TileLightComponentBase> tileClass, String tileName){

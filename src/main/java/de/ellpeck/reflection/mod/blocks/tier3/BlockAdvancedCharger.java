@@ -19,6 +19,6 @@ import net.minecraft.block.material.Material;
 public class BlockAdvancedCharger extends BlockCharger{
 
     public BlockAdvancedCharger(){
-        super(Material.anvil, LibNames.BLOCK_CHARGER_ADVANCED_NAME, ReflectionAPI.TIER_3, true, TileAdvancedCharger.class, LibNames.TILE_CHARGER_ADVANCED_NAME);
+        super(Material.anvil, LibNames.BLOCK_CHARGER_ADVANCED, ReflectionAPI.TIER_3, true, TileAdvancedCharger.class, LibNames.TILE_CHARGER_ADVANCED);
     }
 }

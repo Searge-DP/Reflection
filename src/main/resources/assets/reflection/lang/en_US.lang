@@ -8,6 +8,7 @@ item.reflection.itemLightShovel.name=Shovel of the Plowman
 item.reflection.itemLightPickaxe.name=Pickaxe of the Sparkle
 item.reflection.itemLightAxe.name=Axe of Lightanium
 item.reflection.itemLightSword.name=Sword of Lightanium
+item.reflection.itemGlassShards.name=Glass Shards
 
 #Tiers
 lightNetworkTier.reflection.0=Tierless

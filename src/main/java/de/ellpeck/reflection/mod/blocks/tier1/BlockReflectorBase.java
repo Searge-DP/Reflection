@@ -19,7 +19,7 @@ import net.minecraft.block.material.Material;
 public class BlockReflectorBase extends BlockLightComponentBase{
 
     public BlockReflectorBase(){
-        super(Material.anvil, LibNames.BLOCK_REFLECTOR_BASE_NAME, ReflectionAPI.TIER_1, true, TileReflectorBase.class, LibNames.TILE_REFLECTOR_BASE_NAME);
+        super(Material.anvil, LibNames.BLOCK_REFLECTOR, ReflectionAPI.TIER_1, true, TileReflectorBase.class, LibNames.TILE_REFLECTOR);
     }
 
 }

@@ -19,6 +19,6 @@ import net.minecraft.block.material.Material;
 public class BlockConnectionTunnelBase extends BlockLightComponentBase{
 
     public BlockConnectionTunnelBase(){
-        super(Material.anvil, LibNames.BLOCK_CONNECTION_TUNNEL_BASE_NAME, ReflectionAPI.TIER_1, true, TileConnectionTunnelBase.class, LibNames.TILE_CONNECTION_TUNNEL_BASE_NAME);
+        super(Material.anvil, LibNames.BLOCK_CONNECTION_TUNNEL, ReflectionAPI.TIER_1, true, TileConnectionTunnelBase.class, LibNames.TILE_CONNECTION_TUNNEL);
     }
 }
