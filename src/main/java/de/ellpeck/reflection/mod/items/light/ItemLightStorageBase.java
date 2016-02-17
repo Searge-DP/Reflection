@@ -59,7 +59,9 @@ public class ItemLightStorageBase extends ItemBase implements ILightStorageItem{
         int light = this.getLight(stack);
         if(light > 0){
             int extracted = Math.min(light, amount);
-            this.setLight(stack, light-extracted);
+            if(actuallyDo){
+                this.setLight(stack, light-extracted);
+            }
 
             return extracted;
         }
@@ -75,7 +77,9 @@ public class ItemLightStorageBase extends ItemBase implements ILightStorageItem{
         if(light < maxLight){
 
             int inserted = Math.min(amount, maxLight-light);
-            this.setLight(stack, light+inserted);
+            if(actuallyDo){
+                this.setLight(stack, light+inserted);
+            }
 
             return inserted;
         }

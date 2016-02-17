@@ -13,7 +13,7 @@ package de.ellpeck.reflection.mod.blocks;
 import de.ellpeck.reflection.mod.Reflection;
 import de.ellpeck.reflection.mod.lib.LibMod;
 import de.ellpeck.reflection.mod.lib.LibNames;
-import de.ellpeck.reflection.mod.util.RegistryUtil;
+import de.ellpeck.reflection.mod.util.ItemUtil;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
@@ -30,7 +30,7 @@ public class BlockContainerBase extends BlockContainer{
         super(material);
         this.tileClass = tileClass;
 
-        RegistryUtil.registerBlock(this, name, addTab);
+        ItemUtil.registerBlock(this, name, addTab);
         GameRegistry.registerTileEntity(tileClass, LibNames.BASE_REGISTRY+tileName);
         this.registerRendering(name);
     }

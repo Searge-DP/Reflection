@@ -55,6 +55,11 @@ public class CreativeTab extends CreativeTabs{
         //Items
         this.addItem(InitItems.itemLightConnector);
         this.addItem(InitItems.itemLightBatteryBase);
+
+        this.addItem(InitItems.itemLightAxe);
+        this.addItem(InitItems.itemLightPickaxe);
+        this.addItem(InitItems.itemLightShovel);
+        this.addItem(InitItems.itemLightSword);
     }
 
     private void addBlock(Block block){

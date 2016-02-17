@@ -10,14 +10,19 @@
 
 package de.ellpeck.reflection.mod.util;
 
+import de.ellpeck.reflection.api.ReflectionAPI;
 import de.ellpeck.reflection.mod.creative.CreativeTab;
 import de.ellpeck.reflection.mod.lib.LibMod;
 import de.ellpeck.reflection.mod.lib.LibNames;
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-public class RegistryUtil{
+public class ItemUtil{
 
     public static void registerBlock(Block block, String name, boolean addTab){
         block.setUnlocalizedName(LibNames.BASE_TRANSLATOR+name);
@@ -37,4 +42,20 @@ public class RegistryUtil{
         item.setCreativeTab(addTab ? CreativeTab.instance : null);
     }
 
+    public static void rechargeItemFromLight(ItemStack stack, Entity entity){
+        if(!entity.worldObj.isRemote && entity instanceof EntityPlayer){
+            InventoryPlayer inventory = ((EntityPlayer)entity).inventory;
+            if(stack.getItemDamage() > 0){
+                if(entity.worldObj.getTotalWorldTime()%20 == 0){
+                    int toExtract = 5;
+
+                    int amountDrained = ReflectionAPI.theMethodHandler.extractLightFromInventory(inventory, toExtract, false);
+                    if(amountDrained >= toExtract){
+                        ReflectionAPI.theMethodHandler.extractLightFromInventory(inventory, amountDrained, true);
+                        stack.setItemDamage(stack.getItemDamage()-1);
+                    }
+                }
+            }
+        }
+    }
 }
