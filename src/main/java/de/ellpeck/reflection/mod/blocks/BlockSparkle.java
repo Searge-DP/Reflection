@@ -58,4 +58,9 @@ public class BlockSparkle extends BlockBase{
     public boolean isFullCube(){
         return false;
     }
+
+    @Override
+    public int quantityDropped(Random random){
+        return 0;
+    }
 }
