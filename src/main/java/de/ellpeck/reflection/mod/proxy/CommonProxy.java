@@ -16,7 +16,6 @@ import de.ellpeck.reflection.mod.items.InitItems;
 import de.ellpeck.reflection.mod.tile.TileGlassShards;
 import de.ellpeck.reflection.mod.util.MethodHandler;
 import de.ellpeck.reflection.mod.world.WorldEvents;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -42,11 +41,7 @@ public class CommonProxy{
         TileGlassShards.postInit();
     }
 
-    public void addRenderRegister(ItemStack stack, ResourceLocation location){
-
-    }
-
-    public void addRenderVariant(Item item, ResourceLocation... location){
+    public void addToRenderRegistry(ItemStack stack, ResourceLocation location){
 
     }
 }

@@ -13,10 +13,6 @@ package de.ellpeck.reflection.mod.blocks;
 import de.ellpeck.reflection.mod.lib.LibNames;
 import de.ellpeck.reflection.mod.tile.TileGlassShards;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
 
 import java.util.Random;
 
@@ -24,11 +20,8 @@ public class BlockGlassShards extends BlockContainerBase{
 
     public BlockGlassShards(){
         super(Material.circuits, LibNames.BLOCK_GLASS_SHARDS, true, TileGlassShards.class, LibNames.TILE_GLASS_SHARDS);
-    }
 
-    @Override
-    public AxisAlignedBB getCollisionBoundingBox(World world, BlockPos pos, IBlockState state){
-        return null;
+        this.setBlockBounds(0F, 0F, 0F, 1F, 1F/16F, 1F);
     }
 
     @Override

@@ -28,7 +28,7 @@ public class BlockBase extends Block{
     }
 
     public void registerRendering(String name){
-        Reflection.proxy.addRenderRegister(new ItemStack(this), new ResourceLocation(LibMod.MOD_ID, name));
+        Reflection.proxy.addToRenderRegistry(new ItemStack(this), new ResourceLocation(LibMod.MOD_ID, name));
     }
 
 }
