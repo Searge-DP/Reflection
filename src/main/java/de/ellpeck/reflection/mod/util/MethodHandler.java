@@ -241,7 +241,7 @@ public class MethodHandler implements IMethodHandler{
                 }
             }
         }
-        if(inserted > 0){
+        if(actuallyDo && inserted > 0){
             player.inventoryContainer.detectAndSendChanges();
         }
         return inserted;
@@ -259,7 +259,7 @@ public class MethodHandler implements IMethodHandler{
                 }
             }
         }
-        if(extracted > 0){
+        if(actuallyDo && extracted > 0){
             player.inventoryContainer.detectAndSendChanges();
         }
         return extracted;
