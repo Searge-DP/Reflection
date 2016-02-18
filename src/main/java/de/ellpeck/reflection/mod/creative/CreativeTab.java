@@ -55,6 +55,7 @@ public class CreativeTab extends CreativeTabs{
         this.addBlock(InitBlocks.blockLightanium);
         this.addBlock(InitBlocks.blockOreLightanium);
         this.addBlock(InitBlocks.blockGlassShards);
+        this.addBlock(InitBlocks.blockSparkle);
 
         //Items
         this.addItem(InitItems.itemLightConnector);
