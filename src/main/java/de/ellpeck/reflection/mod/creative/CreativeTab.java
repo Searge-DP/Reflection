@@ -62,6 +62,10 @@ public class CreativeTab extends CreativeTabs{
         this.addItem(InitItems.itemLightBatteryBase);
         this.addItem(InitItems.itemLightBatteryAdvanced);
 
+        this.addItem(InitItems.itemLightaniumIngot);
+        this.addItem(InitItems.itemLightaniumDust);
+        this.addItem(InitItems.itemLightaniumNugget);
+
         this.addItem(InitItems.itemLightAxe);
         this.addItem(InitItems.itemLightPickaxe);
         this.addItem(InitItems.itemLightShovel);

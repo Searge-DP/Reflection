@@ -46,5 +46,13 @@ public class LibNames{
     public static final String ITEM_LIGHT_SHOVEL = "itemLightShovel";
     public static final String ITEM_LIGHT_SWORD = "itemLightSword";
     public static final String ITEM_LIGHT_BATTERY_ADVANCED = "itemLightBatteryAdvanced";
+    public static final String ITEM_LIGHTANIUM_INGOT = "itemLightaniumIngot";
+    public static final String ITEM_LIGHTANIUM_DUST = "itemLightaniumDust";
+    public static final String ITEM_LIGHTANIUM_NUGGET = "itemLightaniumNugget";
+
+    //Oredict
+    public static final String ORE_LIGHTANIUM_INGOT = "ingotLightanium";
+    public static final String ORE_LIGHTANIUM_DUST = "dustLightanium";
+    public static final String ORE_LIGHTANIUM_NUGGET = "nuggetLightanium";
 
 }

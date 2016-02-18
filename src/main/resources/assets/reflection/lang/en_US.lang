@@ -9,6 +9,9 @@ item.reflection.itemLightPickaxe.name=Pickaxe of the Sparkle
 item.reflection.itemLightAxe.name=Axe of Lightanium
 item.reflection.itemLightSword.name=Sword of Lightanium
 item.reflection.itemLightBatteryAdvanced.name=Rounded Prism
+item.reflection.itemLightaniumNugget.name=Lightanium Nugget
+item.reflection.itemLightaniumIngot.name=Lightanium Ingot
+item.reflection.itemLightaniumDust.name=Crushed Lightanium
 
 #Tiers
 lightNetworkTier.reflection.0=Tierless

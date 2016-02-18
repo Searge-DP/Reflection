@@ -14,6 +14,7 @@ import de.ellpeck.reflection.api.ReflectionAPI;
 import de.ellpeck.reflection.mod.blocks.InitBlocks;
 import de.ellpeck.reflection.mod.items.InitItems;
 import de.ellpeck.reflection.mod.tile.TileGlassShards;
+import de.ellpeck.reflection.mod.util.InitOreDictionary;
 import de.ellpeck.reflection.mod.util.MethodHandler;
 import de.ellpeck.reflection.mod.world.WorldEvents;
 import net.minecraft.item.ItemStack;
@@ -31,6 +32,7 @@ public class CommonProxy{
 
         InitBlocks.preInit();
         InitItems.preInit();
+        InitOreDictionary.preInit();
     }
 
     public void init(FMLInitializationEvent event){

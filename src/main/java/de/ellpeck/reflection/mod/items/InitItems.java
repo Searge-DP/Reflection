@@ -26,6 +26,10 @@ public class InitItems{
     public static Item itemLightBatteryBase;
     public static Item itemLightBatteryAdvanced;
 
+    public static Item itemLightaniumIngot;
+    public static Item itemLightaniumNugget;
+    public static Item itemLightaniumDust;
+
     public static Item itemLightAxe;
     public static Item itemLightPickaxe;
     public static Item itemLightShovel;
@@ -35,6 +39,10 @@ public class InitItems{
         itemLightConnector = new ItemLightConnector();
         itemLightBatteryBase = new ItemLightBattery();
         itemLightBatteryAdvanced = new ItemLightBatteryAdvanced();
+
+        itemLightaniumIngot = new ItemBase(LibNames.ITEM_LIGHTANIUM_INGOT, true);
+        itemLightaniumNugget = new ItemBase(LibNames.ITEM_LIGHTANIUM_NUGGET, true);
+        itemLightaniumDust = new ItemBase(LibNames.ITEM_LIGHTANIUM_DUST, true);
 
         itemLightAxe = new ItemReflectionAxe(LibNames.ITEM_LIGHT_AXE, true, LibMaterials.TOOL_MATERIAL_LIGHT);
         itemLightPickaxe = new ItemSparklePickaxe(LibNames.ITEM_LIGHT_PICKAXE, true, LibMaterials.TOOL_MATERIAL_LIGHT);
