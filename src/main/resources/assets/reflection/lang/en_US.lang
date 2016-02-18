@@ -8,12 +8,13 @@ item.reflection.itemLightShovel.name=Shovel of the Plowman
 item.reflection.itemLightPickaxe.name=Pickaxe of the Sparkle
 item.reflection.itemLightAxe.name=Axe of Lightanium
 item.reflection.itemLightSword.name=Sword of Lightanium
-item.reflection.itemGlassShards.name=Glass Shards
+item.reflection.itemLightBatteryAdvanced.name=Rounded Prism
 
 #Tiers
 lightNetworkTier.reflection.0=Tierless
 lightNetworkTier.reflection.1=Commoners
 lightNetworkTier.reflection.2=Apprentices
+lightNetworkTier.reflection.3=Gentries
 
 #Blocks
 tile.reflection.blockConverter12.name=Converter - Commoner's Apprenticeship
@@ -21,6 +22,10 @@ tile.reflection.blockReflectorBase.name=Reflector of the Commoners
 tile.reflection.blockCoallector.name=Flame Focus
 tile.reflection.blockConnectionTunnelBase.name=Cube of Focusing
 tile.reflection.blockCharger.name=Charger of Apprenticeship
+tile.reflection.blockChargerAdvanced.name=Charger of the Gentries
+tile.reflection.blockLightanium.name=Block of Lightanium
+tile.reflection.blockOreLightanium.name=Lightanium Ore
+tile.reflection.blockGlassShards.name=Shards of Glass
 
 #Misc
 misc.reflection.connectionWorked=You see a beam of light appear...

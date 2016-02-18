@@ -11,6 +11,7 @@
 package de.ellpeck.reflection.mod.items;
 
 import de.ellpeck.reflection.mod.items.light.ItemLightBattery;
+import de.ellpeck.reflection.mod.items.light.ItemLightBatteryAdvanced;
 import de.ellpeck.reflection.mod.items.tools.ItemHoeShovel;
 import de.ellpeck.reflection.mod.items.tools.ItemReflectionAxe;
 import de.ellpeck.reflection.mod.items.tools.ItemReflectionSword;
@@ -23,6 +24,7 @@ public class InitItems{
 
     public static Item itemLightConnector;
     public static Item itemLightBatteryBase;
+    public static Item itemLightBatteryAdvanced;
 
     public static Item itemLightAxe;
     public static Item itemLightPickaxe;
@@ -32,6 +34,7 @@ public class InitItems{
     public static void preInit(){
         itemLightConnector = new ItemLightConnector();
         itemLightBatteryBase = new ItemLightBattery();
+        itemLightBatteryAdvanced = new ItemLightBatteryAdvanced();
 
         itemLightAxe = new ItemReflectionAxe(LibNames.ITEM_LIGHT_AXE, true, LibMaterials.TOOL_MATERIAL_LIGHT);
         itemLightPickaxe = new ItemSparklePickaxe(LibNames.ITEM_LIGHT_PICKAXE, true, LibMaterials.TOOL_MATERIAL_LIGHT);

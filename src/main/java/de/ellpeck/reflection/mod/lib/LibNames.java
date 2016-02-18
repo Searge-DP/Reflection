@@ -45,4 +45,6 @@ public class LibNames{
     public static final String ITEM_LIGHT_PICKAXE = "itemLightPickaxe";
     public static final String ITEM_LIGHT_SHOVEL = "itemLightShovel";
     public static final String ITEM_LIGHT_SWORD = "itemLightSword";
+    public static final String ITEM_LIGHT_BATTERY_ADVANCED = "itemLightBatteryAdvanced";
+
 }
