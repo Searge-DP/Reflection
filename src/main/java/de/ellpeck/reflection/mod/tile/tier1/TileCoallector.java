@@ -26,10 +26,8 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
-import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -116,8 +114,7 @@ public class TileCoallector extends TileLightComponentBase implements ITickable,
                 this.burnTime--;
             }
 
-            Chunk chunk = this.worldObj.getChunkFromBlockCoords(this.getPos());
-            boolean hasEnoughLight = chunk.getLightFor(EnumSkyBlock.SKY, this.getPos()) >= 10;
+            boolean hasEnoughLight = WorldUtil.getSkylight(this) >= 10;
 
             ILightNetwork network = WorldUtil.getNetworkForTile(this);
             boolean hasNetwork = network != null;

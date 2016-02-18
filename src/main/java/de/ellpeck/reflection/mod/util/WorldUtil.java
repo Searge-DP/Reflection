@@ -15,7 +15,10 @@ import de.ellpeck.reflection.api.internal.IConnectionPair;
 import de.ellpeck.reflection.api.internal.ILightNetwork;
 import de.ellpeck.reflection.api.light.ILightComponent;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
+import net.minecraft.world.EnumSkyBlock;
+import net.minecraft.world.chunk.Chunk;
 
 import java.util.Set;
 
@@ -51,4 +54,8 @@ public class WorldUtil{
         return ReflectionAPI.getLightNetworkHandler().getConnectionsForComponent(tile.getPosition(), tile.getTheWorld().provider.getDimensionId());
     }
 
+    public static int getSkylight(TileEntity tile){
+        Chunk chunk = tile.getWorld().getChunkFromBlockCoords(tile.getPos());
+        return chunk.getLightFor(EnumSkyBlock.SKY, tile.getPos());
+    }
 }

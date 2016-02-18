@@ -13,6 +13,7 @@ package de.ellpeck.reflection.mod.proxy;
 import de.ellpeck.reflection.api.ReflectionAPI;
 import de.ellpeck.reflection.mod.blocks.InitBlocks;
 import de.ellpeck.reflection.mod.items.InitItems;
+import de.ellpeck.reflection.mod.tile.TileGlassShards;
 import de.ellpeck.reflection.mod.util.MethodHandler;
 import de.ellpeck.reflection.mod.world.WorldEvents;
 import net.minecraft.item.Item;
@@ -34,12 +35,11 @@ public class CommonProxy{
     }
 
     public void init(FMLInitializationEvent event){
-
         MinecraftForge.EVENT_BUS.register(new WorldEvents());
     }
 
     public void postInit(FMLPostInitializationEvent event){
-
+        TileGlassShards.postInit();
     }
 
     public void addRenderRegister(ItemStack stack, ResourceLocation location){

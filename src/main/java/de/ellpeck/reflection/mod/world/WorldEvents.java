@@ -10,6 +10,8 @@
 
 package de.ellpeck.reflection.mod.world;
 
+import de.ellpeck.reflection.mod.blocks.InitBlocks;
+import de.ellpeck.reflection.mod.lib.LibMod;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockGlass;
 import net.minecraft.block.BlockStainedGlass;
@@ -39,7 +41,7 @@ public class WorldEvents{
                 if(block instanceof BlockGlass || block instanceof BlockStainedGlass){
                     ItemStack stack = event.harvester.getCurrentEquippedItem();
                     if(stack != null && stack.getItem() == Items.flint){
-                        //event.drops.add(new ItemStack(InitItems.itemGlassShards, LibMod.RANDOM.nextInt(3)+1));
+                        event.drops.add(new ItemStack(InitBlocks.blockGlassShards, LibMod.RANDOM.nextInt(3)+1));
                     }
                 }
             }

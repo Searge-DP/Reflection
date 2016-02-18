@@ -16,7 +16,9 @@ import de.ellpeck.reflection.mod.blocks.tier1.BlockConnectionTunnelBase;
 import de.ellpeck.reflection.mod.blocks.tier1.BlockReflectorBase;
 import de.ellpeck.reflection.mod.blocks.tier2.BlockCharger;
 import de.ellpeck.reflection.mod.blocks.tier3.BlockAdvancedCharger;
+import de.ellpeck.reflection.mod.lib.LibNames;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 
 public class InitBlocks{
 
@@ -35,6 +37,9 @@ public class InitBlocks{
     public static Block blockAdvancedCharger;
 
     public static Block blockSparkle;
+    public static Block blockLightanium;
+    public static Block blockOreLightanium;
+    public static Block blockGlassShards;
 
     public static void preInit(){
         //Special
@@ -52,6 +57,9 @@ public class InitBlocks{
         blockAdvancedCharger = new BlockAdvancedCharger();
 
         blockSparkle = new BlockSparkle();
+        blockLightanium = new BlockBase(Material.iron, LibNames.BLOCK_LIGHTANIUM, true);
+        blockOreLightanium = new BlockBase(Material.rock, LibNames.BLOCK_ORE_LIGHTANIUM, true);
+        blockGlassShards = new BlockGlassShards();
     }
 
 }
