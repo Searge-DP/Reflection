@@ -36,18 +36,17 @@ public class ItemSparklePickaxe extends ItemReflectionPickaxe{
 
             Block block = InitBlocks.blockSparkle;
             if(world.canBlockBePlaced(block, pos, false, side, null, stack)){
-                if(!world.isRemote){
-                    int toExtract = 100;
-
-                    int amountDrained = ReflectionAPI.theMethodHandler.extractLightFromInventory(player, toExtract, false);
-                    if(amountDrained >= toExtract){
+                int toExtract = 100;
+                int amountDrained = ReflectionAPI.theMethodHandler.extractLightFromInventory(player, toExtract, false);
+                if(amountDrained >= toExtract){
+                    if(!world.isRemote){
                         ReflectionAPI.theMethodHandler.extractLightFromInventory(player, amountDrained, true);
                         if(world.setBlockState(pos, InitBlocks.blockSparkle.getDefaultState(), 3)){
                             world.playSoundEffect(pos.getX()+0.5, pos.getY()+0.5F, pos.getZ()+0.5F, block.stepSound.getPlaceSound(), (block.stepSound.getVolume()+1.0F)/2.0F, block.stepSound.getFrequency()*0.8F);
                         }
                     }
+                    return true;
                 }
-                return true;
             }
         }
         return false;

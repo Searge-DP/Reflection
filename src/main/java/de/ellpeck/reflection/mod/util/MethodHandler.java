@@ -241,7 +241,7 @@ public class MethodHandler implements IMethodHandler{
                 }
             }
         }
-        if(actuallyDo && inserted > 0){
+        if(!player.worldObj.isRemote && actuallyDo && inserted > 0){
             player.inventoryContainer.detectAndSendChanges();
         }
         return inserted;
@@ -259,7 +259,7 @@ public class MethodHandler implements IMethodHandler{
                 }
             }
         }
-        if(actuallyDo && extracted > 0){
+        if(!player.worldObj.isRemote && actuallyDo && extracted > 0){
             player.inventoryContainer.detectAndSendChanges();
         }
         return extracted;
