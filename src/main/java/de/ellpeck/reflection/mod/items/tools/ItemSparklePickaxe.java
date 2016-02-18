@@ -29,7 +29,7 @@ public class ItemSparklePickaxe extends ItemReflectionPickaxe{
     @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ){
         IBlockState state = world.getBlockState(pos);
-        if(stack != null && state.getBlock() != null){
+        if(state != null && state.getBlock() != null){
             if(!state.getBlock().isReplaceable(world, pos)){
                 pos = pos.offset(side);
             }
