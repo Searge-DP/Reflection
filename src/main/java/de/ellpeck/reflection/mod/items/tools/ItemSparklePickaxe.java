@@ -38,7 +38,7 @@ public class ItemSparklePickaxe extends ItemReflectionPickaxe{
             if(world.canBlockBePlaced(block, pos, false, side, null, stack)){
                 int toExtract = 100;
                 int amountDrained = ReflectionAPI.theMethodHandler.extractLightFromInventory(player, toExtract, false);
-                if(amountDrained >= toExtract){
+                if(amountDrained >= toExtract || player.capabilities.isCreativeMode){
                     if(!world.isRemote){
                         ReflectionAPI.theMethodHandler.extractLightFromInventory(player, amountDrained, true);
                         if(world.setBlockState(pos, InitBlocks.blockSparkle.getDefaultState(), 3)){
