@@ -13,6 +13,9 @@ package de.ellpeck.reflection.mod.blocks;
 import de.ellpeck.reflection.mod.lib.LibNames;
 import de.ellpeck.reflection.mod.tile.TileGlassShards;
 import net.minecraft.block.material.Material;
+import net.minecraft.util.EnumWorldBlockLayer;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
@@ -37,5 +40,11 @@ public class BlockGlassShards extends BlockContainerBase{
     @Override
     public int quantityDropped(Random random){
         return 0;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public EnumWorldBlockLayer getBlockLayer(){
+        return EnumWorldBlockLayer.CUTOUT;
     }
 }

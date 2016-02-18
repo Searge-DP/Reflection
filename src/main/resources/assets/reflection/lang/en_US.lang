@@ -26,6 +26,7 @@ tile.reflection.blockChargerAdvanced.name=Charger of the Gentries
 tile.reflection.blockLightanium.name=Block of Lightanium
 tile.reflection.blockOreLightanium.name=Lightanium Ore
 tile.reflection.blockGlassShards.name=Shards of Glass
+tile.reflection.blockSparkle.name=Sparkle
 
 #Misc
 misc.reflection.connectionWorked=You see a beam of light appear...
