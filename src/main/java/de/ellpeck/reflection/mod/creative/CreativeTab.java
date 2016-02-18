@@ -60,8 +60,6 @@ public class CreativeTab extends CreativeTabs{
         this.addItem(InitItems.itemLightPickaxe);
         this.addItem(InitItems.itemLightShovel);
         this.addItem(InitItems.itemLightSword);
-
-        this.addItem(InitItems.itemGlassShards);
     }
 
     private void addBlock(Block block){

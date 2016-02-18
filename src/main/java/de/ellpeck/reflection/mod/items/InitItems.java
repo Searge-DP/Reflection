@@ -29,8 +29,6 @@ public class InitItems{
     public static Item itemLightShovel;
     public static Item itemLightSword;
 
-    public static Item itemGlassShards;
-
     public static void preInit(){
         itemLightConnector = new ItemLightConnector();
         itemLightBatteryBase = new ItemLightBattery();
@@ -39,8 +37,6 @@ public class InitItems{
         itemLightPickaxe = new ItemSparklePickaxe(LibNames.ITEM_LIGHT_PICKAXE, true, LibMaterials.TOOL_MATERIAL_LIGHT);
         itemLightShovel = new ItemHoeShovel(LibNames.ITEM_LIGHT_SHOVEL, true, LibMaterials.TOOL_MATERIAL_LIGHT);
         itemLightSword = new ItemReflectionSword(LibNames.ITEM_LIGHT_SWORD, true, LibMaterials.TOOL_MATERIAL_LIGHT);
-
-        itemGlassShards = new ItemBase(LibNames.ITEM_GLASS_SHARDS, true);
     }
 
 }
