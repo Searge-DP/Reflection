@@ -55,7 +55,12 @@ public class WorldUtil{
     }
 
     public static int getSkylight(TileEntity tile){
-        Chunk chunk = tile.getWorld().getChunkFromBlockCoords(tile.getPos());
-        return chunk.getLightFor(EnumSkyBlock.SKY, tile.getPos());
+        if(tile.getWorld().isDaytime()){
+            Chunk chunk = tile.getWorld().getChunkFromBlockCoords(tile.getPos());
+            return chunk.getLightFor(EnumSkyBlock.SKY, tile.getPos());
+        }
+        else{
+            return 0;
+        }
     }
 }
