@@ -1,0 +1,13 @@
+{
+  "pack": {
+    "pack_format": 1,
+    "description": "Resources used for Reflection"
+  },
+  "language":{
+     "sa_LT":{
+        "name":"Salty Salty Salt",
+        "region":"Reflection",
+        "bidirectional":false
+     }
+  }
+}
