@@ -1,6 +1,11 @@
 #General Stuff
 itemGroup.reflection=Reflection
 
+#Damage
+death.reflection.glassShards.1=%s left some glass in his skin for too long.. ouch!
+death.reflection.glassShards.2=The glass that %s was holding started to hurt a bit...
+death.reflection.glassShards.3=Glass shards are nice to sit on... is what %s thought. He was wrong.
+
 #Items
 item.reflection.itemLightConnector.name=Rod of the Lights
 item.reflection.itemLightBatteryBase.name=Tiny Rounded Prism

@@ -8,7 +8,7 @@
  * © 2016 Ellpeck
  */
 
-package de.ellpeck.reflection.mod.util;
+package de.ellpeck.reflection.mod.misc;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;

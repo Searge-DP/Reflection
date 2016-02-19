@@ -8,7 +8,7 @@
  * © 2016 Ellpeck
  */
 
-package de.ellpeck.reflection.mod.util;
+package de.ellpeck.reflection.mod.misc;
 
 import de.ellpeck.reflection.mod.items.InitItems;
 import de.ellpeck.reflection.mod.lib.LibNames;

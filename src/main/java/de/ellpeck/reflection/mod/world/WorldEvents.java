@@ -10,8 +10,10 @@
 
 package de.ellpeck.reflection.mod.world;
 
+import de.ellpeck.reflection.mod.blocks.BlockGlassShards;
 import de.ellpeck.reflection.mod.blocks.InitBlocks;
 import de.ellpeck.reflection.mod.lib.LibMod;
+import de.ellpeck.reflection.mod.misc.DamageSources;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockGlass;
 import net.minecraft.block.BlockStainedGlass;
@@ -20,6 +22,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
 public class WorldEvents{
 
@@ -31,6 +34,18 @@ public class WorldEvents{
     @SubscribeEvent
     public void onSave(WorldEvent.Save event){
         WorldData.makeDirty();
+    }
+
+    @SubscribeEvent
+    public void onPickup(PlayerEvent.ItemPickupEvent event){
+        if(event.player != null && event.pickedUp != null){
+            ItemStack stack = event.pickedUp.getEntityItem();
+            if(stack != null){
+                if(Block.getBlockFromItem(stack.getItem()) instanceof BlockGlassShards){
+                    event.player.attackEntityFrom(DamageSources.DAMAGE_GLASS_SHARDS, 2.0F);
+                }
+            }
+        }
     }
 
     @SubscribeEvent

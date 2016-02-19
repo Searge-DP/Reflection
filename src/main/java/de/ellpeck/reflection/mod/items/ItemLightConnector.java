@@ -14,7 +14,7 @@ import de.ellpeck.reflection.api.ReflectionAPI;
 import de.ellpeck.reflection.api.internal.ILightNetwork;
 import de.ellpeck.reflection.api.light.ILightComponent;
 import de.ellpeck.reflection.mod.lib.LibNames;
-import de.ellpeck.reflection.mod.util.VanillaPacketHandler;
+import de.ellpeck.reflection.mod.misc.VanillaPacketHandler;
 import de.ellpeck.reflection.mod.util.WorldUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

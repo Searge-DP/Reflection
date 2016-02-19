@@ -11,9 +11,14 @@
 package de.ellpeck.reflection.mod.blocks;
 
 import de.ellpeck.reflection.mod.lib.LibNames;
+import de.ellpeck.reflection.mod.misc.DamageSources;
 import de.ellpeck.reflection.mod.tile.TileGlassShards;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumWorldBlockLayer;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -35,6 +40,11 @@ public class BlockGlassShards extends BlockContainerBase{
     @Override
     public boolean isFullCube(){
         return false;
+    }
+
+    @Override
+    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity){
+        entity.attackEntityFrom(DamageSources.DAMAGE_GLASS_SHARDS, 1.0F);
     }
 
     @Override

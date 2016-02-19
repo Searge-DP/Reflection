@@ -8,7 +8,7 @@
  * © 2016 Ellpeck
  */
 
-package de.ellpeck.reflection.mod.util;
+package de.ellpeck.reflection.mod.misc;
 
 import com.sun.javafx.geom.Vec3d;
 import de.ellpeck.reflection.api.ReflectionAPI;
@@ -19,6 +19,8 @@ import de.ellpeck.reflection.api.light.ILightComponent;
 import de.ellpeck.reflection.api.light.ILightStorageItem;
 import de.ellpeck.reflection.mod.lib.LibMod;
 import de.ellpeck.reflection.mod.network.LightNetworkHandler;
+import de.ellpeck.reflection.mod.util.ClientUtil;
+import de.ellpeck.reflection.mod.util.WorldUtil;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;

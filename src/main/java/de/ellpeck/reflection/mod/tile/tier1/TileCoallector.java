@@ -12,9 +12,9 @@ package de.ellpeck.reflection.mod.tile.tier1;
 
 import de.ellpeck.reflection.api.internal.ILightNetwork;
 import de.ellpeck.reflection.api.light.IRodOverlay;
+import de.ellpeck.reflection.mod.misc.VanillaPacketHandler;
 import de.ellpeck.reflection.mod.tile.TileLightComponentBase;
 import de.ellpeck.reflection.mod.util.ClientUtil;
-import de.ellpeck.reflection.mod.util.VanillaPacketHandler;
 import de.ellpeck.reflection.mod.util.WorldUtil;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.entity.item.EntityItem;
