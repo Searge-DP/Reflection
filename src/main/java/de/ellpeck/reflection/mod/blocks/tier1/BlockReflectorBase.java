@@ -20,6 +20,9 @@ public class BlockReflectorBase extends BlockLightComponentBase{
 
     public BlockReflectorBase(){
         super(Material.anvil, LibNames.BLOCK_REFLECTOR, ReflectionAPI.TIER_1, true, TileReflectorBase.class, LibNames.TILE_REFLECTOR);
+
+        float f = 1F/16F;
+        this.setBlockBounds(3*f, 0F, 3*f, 1F-3*f, 1F-3*f, 1F-3*f);
     }
 
 }

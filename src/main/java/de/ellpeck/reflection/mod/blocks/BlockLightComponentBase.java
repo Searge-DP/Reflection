@@ -14,6 +14,9 @@ import de.ellpeck.reflection.api.light.ILightTierDisplay;
 import de.ellpeck.reflection.api.light.LightNetworkTier;
 import de.ellpeck.reflection.mod.tile.TileLightComponentBase;
 import net.minecraft.block.material.Material;
+import net.minecraft.util.EnumWorldBlockLayer;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockLightComponentBase extends BlockContainerBase implements ILightTierDisplay{
 
@@ -28,5 +31,21 @@ public class BlockLightComponentBase extends BlockContainerBase implements ILigh
     @Override
     public LightNetworkTier getTier(){
         return this.theTier;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public EnumWorldBlockLayer getBlockLayer(){
+        return EnumWorldBlockLayer.CUTOUT;
+    }
+
+    @Override
+    public boolean isOpaqueCube(){
+        return false;
+    }
+
+    @Override
+    public boolean isFullCube(){
+        return false;
     }
 }
