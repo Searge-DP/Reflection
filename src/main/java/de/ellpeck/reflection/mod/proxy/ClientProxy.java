@@ -34,8 +34,6 @@ import java.util.Map;
 @SuppressWarnings("unused")
 public class ClientProxy extends CommonProxy{
 
-    private static final String INVENTORY = "inventory";
-
     private static Map<ItemStack, ResourceLocation> renderRegistry = new HashMap<ItemStack, ResourceLocation>();
 
     @Override
@@ -43,7 +41,7 @@ public class ClientProxy extends CommonProxy{
         super.preInit(event);
 
         for(Map.Entry<ItemStack, ResourceLocation> entry : renderRegistry.entrySet()){
-            ModelLoader.setCustomModelResourceLocation(entry.getKey().getItem(), entry.getKey().getItemDamage(), new ModelResourceLocation(entry.getValue(), INVENTORY));
+            ModelLoader.setCustomModelResourceLocation(entry.getKey().getItem(), entry.getKey().getItemDamage(), new ModelResourceLocation(entry.getValue(), "inventory"));
         }
     }
 
