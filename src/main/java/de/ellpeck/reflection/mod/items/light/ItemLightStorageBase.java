@@ -16,6 +16,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -25,11 +26,18 @@ public class ItemLightStorageBase extends ItemBase implements ILightStorageItem{
 
     private static final String TAG_LIGHT = "Light";
     private int maxLight;
+    private boolean staysForever;
 
-    public ItemLightStorageBase(String name, boolean addTab, int maxLight){
+    public ItemLightStorageBase(String name, boolean addTab, int maxLight, boolean staysForever){
         super(name, addTab);
         this.maxLight = maxLight;
         this.setMaxStackSize(1);
+        this.staysForever = staysForever;
+    }
+
+    @Override
+    public int getEntityLifespan(ItemStack stack, World world){
+        return this.staysForever ? Integer.MAX_VALUE : super.getEntityLifespan(stack, world);
     }
 
     @Override

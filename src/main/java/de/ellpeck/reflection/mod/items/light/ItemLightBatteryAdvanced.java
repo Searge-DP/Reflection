@@ -18,7 +18,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ItemLightBatteryAdvanced extends ItemLightStorageBase{
 
     public ItemLightBatteryAdvanced(){
-        super(LibNames.ITEM_LIGHT_BATTERY_ADVANCED, true, 30000);
+        super(LibNames.ITEM_LIGHT_BATTERY_ADVANCED, true, 30000, true);
     }
 
     @Override
