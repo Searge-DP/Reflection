@@ -12,6 +12,7 @@ package de.ellpeck.reflection.mod.crafting;
 
 import de.ellpeck.reflection.mod.blocks.InitBlocks;
 import de.ellpeck.reflection.mod.items.InitItems;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -35,6 +36,23 @@ public class InitCrafting{
         //Tools
         addTools(InitItems.itemLightPickaxe, InitItems.itemLightAxe, InitItems.itemLightShovel, InitItems.itemLightSword, new ItemStack(Items.iron_ingot), new ItemStack(InitItems.itemLightaniumIngot));
         addShaped(new ItemStack(InitItems.itemLightConnector), "  M", " H ", "H  ", 'H', new ItemStack(Items.iron_ingot), 'M', new ItemStack(InitItems.itemLightaniumIngot));
+
+        addShaped(new ItemStack(InitItems.itemLightBatteryBase), "GLG", "LLL", "GLG", 'G', new ItemStack(Blocks.glass), 'L', new ItemStack(InitItems.itemLightaniumIngot));
+        addShaped(new ItemStack(InitItems.itemLightBatteryAdvanced), "LGL", "GBG", "LGL", 'G', new ItemStack(Blocks.gold_block), 'L', new ItemStack(InitBlocks.blockLightanium), 'B', new ItemStack(InitItems.itemLightBatteryBase));
+
+        //Reflectors
+        addShaped(new ItemStack(InitBlocks.blockReflector1), " G ", "GLG", "SSS", 'G', new ItemStack(Blocks.glass), 'L', new ItemStack(InitItems.itemLightaniumIngot), 'S', new ItemStack(Blocks.stone_slab));
+        addShapeless(new ItemStack(InitBlocks.blockReflector2), new ItemStack(InitBlocks.blockReflector1), new ItemStack(Blocks.gold_block));
+
+        //Converters
+        addShapeless(new ItemStack(InitBlocks.blockConverter12), new ItemStack(InitBlocks.blockReflector1), new ItemStack(InitBlocks.blockReflector2));
+        addShapeless(new ItemStack(InitBlocks.blockConverter23), new ItemStack(InitBlocks.blockReflector2), new ItemStack(Blocks.gold_block));
+
+        //Machines
+        addShaped(new ItemStack(InitBlocks.blockCoallector), "NNN", "NRN", "LLL", 'N', new ItemStack(InitItems.itemLightaniumNugget), 'R', new ItemStack(InitBlocks.blockReflector1), 'L', new ItemStack(InitItems.itemLightaniumIngot));
+        addShapeless(new ItemStack(InitBlocks.blockConnectionTunnel1), new ItemStack(InitBlocks.blockReflector1), new ItemStack(InitBlocks.blockReflector1), new ItemStack(InitItems.itemLightaniumIngot));
+        addShaped(new ItemStack(InitBlocks.blockCharger), "NBN", "NRN", "LLL", 'B', new ItemStack(InitItems.itemLightBatteryBase), 'R', new ItemStack(InitBlocks.blockReflector1), 'N', new ItemStack(InitItems.itemLightaniumNugget), 'L', new ItemStack(InitItems.itemLightaniumIngot));
+        addShaped(new ItemStack(InitBlocks.blockAdvancedCharger), "NBN", "NRN", "LLL", 'B', new ItemStack(InitItems.itemLightBatteryAdvanced), 'R', new ItemStack(InitBlocks.blockReflector1), 'N', new ItemStack(InitItems.itemLightaniumNugget), 'L', new ItemStack(InitItems.itemLightaniumIngot));
     }
 
     private static void addTools(Item pick, Item axe, Item shovel, Item sword, ItemStack handle, ItemStack material){

@@ -109,7 +109,6 @@ public class ItemLightStorageBase extends ItemBase implements ILightStorageItem{
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list){
         ItemStack empty = new ItemStack(item);
-        this.setLight(empty, 0);
         list.add(empty);
 
         ItemStack full = new ItemStack(item);
