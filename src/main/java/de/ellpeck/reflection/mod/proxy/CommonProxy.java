@@ -12,6 +12,7 @@ package de.ellpeck.reflection.mod.proxy;
 
 import de.ellpeck.reflection.api.ReflectionAPI;
 import de.ellpeck.reflection.mod.blocks.InitBlocks;
+import de.ellpeck.reflection.mod.crafting.InitCrafting;
 import de.ellpeck.reflection.mod.items.InitItems;
 import de.ellpeck.reflection.mod.misc.InitOreDictionary;
 import de.ellpeck.reflection.mod.misc.MethodHandler;
@@ -37,6 +38,8 @@ public class CommonProxy{
 
     public void init(FMLInitializationEvent event){
         MinecraftForge.EVENT_BUS.register(new WorldEvents());
+
+        InitCrafting.init();
     }
 
     public void postInit(FMLPostInitializationEvent event){
