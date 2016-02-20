@@ -12,10 +12,12 @@ package de.ellpeck.reflection.mod.crafting;
 
 import de.ellpeck.reflection.mod.blocks.InitBlocks;
 import de.ellpeck.reflection.mod.items.InitItems;
+import de.ellpeck.reflection.mod.lib.LibMod;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -24,6 +26,8 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 public class InitCrafting{
 
     public static void init(){
+        int craftingSize = CraftingManager.getInstance().getRecipeList().size();
+
         //Materials
         addShapeless(new ItemStack(InitItems.itemLightaniumIngot, 9), new ItemStack(InitBlocks.blockLightanium));
         addShaped(new ItemStack(InitBlocks.blockLightanium), "XXX", "XXX", "XXX", 'X', new ItemStack(InitItems.itemLightaniumIngot));
@@ -53,6 +57,8 @@ public class InitCrafting{
         addShapeless(new ItemStack(InitBlocks.blockConnectionTunnel1), new ItemStack(InitBlocks.blockReflector1), new ItemStack(InitBlocks.blockReflector1), new ItemStack(InitItems.itemLightaniumIngot));
         addShaped(new ItemStack(InitBlocks.blockCharger), "NBN", "NRN", "LLL", 'B', new ItemStack(InitItems.itemLightBatteryBase), 'R', new ItemStack(InitBlocks.blockReflector1), 'N', new ItemStack(InitItems.itemLightaniumNugget), 'L', new ItemStack(InitItems.itemLightaniumIngot));
         addShaped(new ItemStack(InitBlocks.blockAdvancedCharger), "NBN", "NRN", "LLL", 'B', new ItemStack(InitItems.itemLightBatteryAdvanced), 'R', new ItemStack(InitBlocks.blockReflector1), 'N', new ItemStack(InitItems.itemLightaniumNugget), 'L', new ItemStack(InitItems.itemLightaniumIngot));
+
+        LibMod.LOGGER.info(String.format("%s has registered %s Crafting Recipes!", LibMod.MOD_NAME, CraftingManager.getInstance().getRecipeList().size()-craftingSize));
     }
 
     private static void addTools(Item pick, Item axe, Item shovel, Item sword, ItemStack handle, ItemStack material){

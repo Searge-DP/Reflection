@@ -17,6 +17,7 @@ import de.ellpeck.reflection.mod.items.tools.ItemReflectionAxe;
 import de.ellpeck.reflection.mod.items.tools.ItemReflectionSword;
 import de.ellpeck.reflection.mod.items.tools.ItemSparklePickaxe;
 import de.ellpeck.reflection.mod.lib.LibMaterials;
+import de.ellpeck.reflection.mod.lib.LibMod;
 import de.ellpeck.reflection.mod.lib.LibNames;
 import net.minecraft.item.Item;
 
@@ -36,6 +37,8 @@ public class InitItems{
     public static Item itemLightSword;
 
     public static void preInit(){
+        int itemSize = Item.itemRegistry.getKeys().size();
+
         itemLightConnector = new ItemLightConnector();
         itemLightBatteryBase = new ItemLightBattery();
         itemLightBatteryAdvanced = new ItemLightBatteryAdvanced();
@@ -48,6 +51,8 @@ public class InitItems{
         itemLightPickaxe = new ItemSparklePickaxe(LibNames.ITEM_LIGHT_PICKAXE, true, LibMaterials.TOOL_MATERIAL_LIGHT);
         itemLightShovel = new ItemHoeShovel(LibNames.ITEM_LIGHT_SHOVEL, true, LibMaterials.TOOL_MATERIAL_LIGHT);
         itemLightSword = new ItemReflectionSword(LibNames.ITEM_LIGHT_SWORD, true, LibMaterials.TOOL_MATERIAL_LIGHT);
+
+        LibMod.LOGGER.info(String.format("%s has registered %s Items!", LibMod.MOD_NAME, Item.itemRegistry.getKeys().size()-itemSize));
     }
 
 }

@@ -18,6 +18,7 @@ import de.ellpeck.reflection.mod.blocks.tier1.BlockReflector1;
 import de.ellpeck.reflection.mod.blocks.tier2.BlockCharger;
 import de.ellpeck.reflection.mod.blocks.tier2.BlockReflector2;
 import de.ellpeck.reflection.mod.blocks.tier3.BlockAdvancedCharger;
+import de.ellpeck.reflection.mod.lib.LibMod;
 import de.ellpeck.reflection.mod.lib.LibNames;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -46,6 +47,8 @@ public class InitBlocks{
     public static Block blockGlassShards;
 
     public static void preInit(){
+        int blockSize = Block.blockRegistry.getKeys().size();
+
         //Special
         blockConverter12 = new BlockConverter12();
         blockConverter23 = new BlockConverter23();
@@ -66,6 +69,8 @@ public class InitBlocks{
         blockLightanium = new BlockBase(Material.iron, LibNames.BLOCK_LIGHTANIUM, true);
         blockOreLightanium = new BlockBase(Material.rock, LibNames.BLOCK_ORE_LIGHTANIUM, true);
         blockGlassShards = new BlockGlassShards();
+
+        LibMod.LOGGER.info(String.format("%s has registered %s Blocks!", LibMod.MOD_NAME, Block.blockRegistry.getKeys().size()-blockSize));
     }
 
 }

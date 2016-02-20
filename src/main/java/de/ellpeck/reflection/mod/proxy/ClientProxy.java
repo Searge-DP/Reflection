@@ -11,6 +11,7 @@
 package de.ellpeck.reflection.mod.proxy;
 
 import de.ellpeck.reflection.mod.gui.OverlayEvents;
+import de.ellpeck.reflection.mod.lib.LibMod;
 import de.ellpeck.reflection.mod.tile.TileLightComponentBase;
 import de.ellpeck.reflection.mod.tile.render.TESRLightComponentBase;
 import de.ellpeck.reflection.mod.tile.special.TileConverter12;
@@ -45,6 +46,7 @@ public class ClientProxy extends CommonProxy{
         for(Map.Entry<ItemStack, ResourceLocation> entry : renderRegistry.entrySet()){
             ModelLoader.setCustomModelResourceLocation(entry.getKey().getItem(), entry.getKey().getItemDamage(), new ModelResourceLocation(entry.getValue(), "inventory"));
         }
+        LibMod.LOGGER.info(String.format("%s has registered %s Item and Block Renderers!", LibMod.MOD_NAME, renderRegistry.size()));
     }
 
     @Override
