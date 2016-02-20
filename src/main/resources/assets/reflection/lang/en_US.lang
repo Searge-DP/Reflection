@@ -26,15 +26,16 @@ lightNetworkTier.reflection.3=Gentries
 
 #Blocks
 tile.reflection.blockConverter12.name=Converter - Commoner's Apprenticeship
-tile.reflection.blockReflectorBase.name=Reflector of the Commoners
+tile.reflection.blockReflector1.name=Reflector of the Commoners
 tile.reflection.blockCoallector.name=Flame Focus
-tile.reflection.blockConnectionTunnelBase.name=Cube of Focusing
+tile.reflection.blockConnectionTunnel1.name=Cube of Focusing
 tile.reflection.blockCharger.name=Charger of Apprenticeship
 tile.reflection.blockChargerAdvanced.name=Charger of the Gentries
 tile.reflection.blockLightanium.name=Block of Lightanium
 tile.reflection.blockOreLightanium.name=Lightanium Ore
 tile.reflection.blockGlassShards.name=Shards of Glass
 tile.reflection.blockSparkle.name=Sparkle
+tile.reflection.blockReflector2.name=Reflector of Apprenticeship
 
 #Misc
 misc.reflection.connectionWorked=You see a beam of light appear...

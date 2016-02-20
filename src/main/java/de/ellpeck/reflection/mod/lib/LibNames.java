@@ -18,25 +18,27 @@ public class LibNames{
     public static final String MISC_TRANSLATOR = "misc."+BASE_TRANSLATOR;
 
     //Blocks
-    public static final String BLOCK_REFLECTOR = "blockReflectorBase";
-    public static final String BLOCK_CONVERTER12 = "blockConverter12";
+    public static final String BLOCK_REFLECTOR_1 = "blockReflector1";
+    public static final String BLOCK_CONVERTER_1_2 = "blockConverter12";
     public static final String BLOCK_COALLECTOR = "blockCoallector";
     public static final String BLOCK_CHARGER = "blockCharger";
     public static final String BLOCK_CHARGER_ADVANCED = "blockChargerAdvanced";
-    public static final String BLOCK_CONNECTION_TUNNEL = "blockConnectionTunnelBase";
+    public static final String BLOCK_CONNECTION_TUNNEL = "blockConnectionTunnel1";
     public static final String BLOCK_SPARKLE = "blockSparkle";
     public static final String BLOCK_GLASS_SHARDS = "blockGlassShards";
     public static final String BLOCK_LIGHTANIUM = "blockLightanium";
     public static final String BLOCK_ORE_LIGHTANIUM = "blockOreLightanium";
+    public static final String BLOCK_REFLECTOR_2 = "blockReflector2";
 
     //Tiles
-    public static final String TILE_CONNECTION_TUNNEL = "tileConnectionTunnelBase";
+    public static final String TILE_CONNECTION_TUNNEL = "tileConnectionTunnel1";
     public static final String TILE_CHARGER_ADVANCED = "tileChargerAdvanced";
     public static final String TILE_CHARGER = "tileCharger";
     public static final String TILE_COALLECTOR = "tileCoallector";
-    public static final String TILE_CONVERTER12 = "tileConverter12";
-    public static final String TILE_REFLECTOR = "tileReflectorBase";
+    public static final String TILE_CONVERTER_1_2 = "tileConverter12";
+    public static final String TILE_REFLECTOR_1 = "tileReflector1";
     public static final String TILE_GLASS_SHARDS = "tileGlassShards";
+    public static final String TILE_REFLECTOR_2 = "tileReflector2";
 
     //Items
     public static final String ITEM_LIGHT_CONNECTOR = "itemLightConnector";

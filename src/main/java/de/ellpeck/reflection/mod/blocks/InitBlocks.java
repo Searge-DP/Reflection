@@ -12,9 +12,10 @@ package de.ellpeck.reflection.mod.blocks;
 
 import de.ellpeck.reflection.mod.blocks.special.BlockConverter12;
 import de.ellpeck.reflection.mod.blocks.tier1.BlockCoallector;
-import de.ellpeck.reflection.mod.blocks.tier1.BlockConnectionTunnelBase;
-import de.ellpeck.reflection.mod.blocks.tier1.BlockReflectorBase;
+import de.ellpeck.reflection.mod.blocks.tier1.BlockConnectionTunnel1;
+import de.ellpeck.reflection.mod.blocks.tier1.BlockReflector1;
 import de.ellpeck.reflection.mod.blocks.tier2.BlockCharger;
+import de.ellpeck.reflection.mod.blocks.tier2.BlockReflector2;
 import de.ellpeck.reflection.mod.blocks.tier3.BlockAdvancedCharger;
 import de.ellpeck.reflection.mod.lib.LibNames;
 import net.minecraft.block.Block;
@@ -24,14 +25,16 @@ public class InitBlocks{
 
     //Special
     public static Block blockConverter12;
-    public static Block blockConnectionTunnelBase;
+
 
     //Tier 1
-    public static Block blockBasicReflector;
+    public static Block blockReflector1;
     public static Block blockCoallector;
+    public static Block blockConnectionTunnel1;
 
     //Tier 2
     public static Block blockCharger;
+    public static Block blockReflector2;
 
     //Tier 3
     public static Block blockAdvancedCharger;
@@ -44,14 +47,15 @@ public class InitBlocks{
     public static void preInit(){
         //Special
         blockConverter12 = new BlockConverter12();
-        blockConnectionTunnelBase = new BlockConnectionTunnelBase();
+        blockConnectionTunnel1 = new BlockConnectionTunnel1();
 
         //Tier 1
-        blockBasicReflector = new BlockReflectorBase();
+        blockReflector1 = new BlockReflector1();
         blockCoallector = new BlockCoallector();
 
         //Tier 2
         blockCharger = new BlockCharger();
+        blockReflector2 = new BlockReflector2();
 
         //Tier 3
         blockAdvancedCharger = new BlockAdvancedCharger();

@@ -1,9 +1,9 @@
 {
   "ambientocclusion": false,
   "textures": {
-    "all": "reflection:blocks/blockConnectionTunnelBase",
+    "all": "reflection:blocks/blockConnectionTunnel1",
     "glass": "blocks/glass",
-    "particle": "reflection:blocks/blockConnectionTunnelBase"
+    "particle": "reflection:blocks/blockConnectionTunnel1"
   },
   "elements": [
     {

@@ -42,12 +42,13 @@ public class CreativeTab extends CreativeTabs{
         this.addBlock(InitBlocks.blockConverter12);
 
         //Tier 1
-        this.addBlock(InitBlocks.blockBasicReflector);
+        this.addBlock(InitBlocks.blockReflector1);
         this.addBlock(InitBlocks.blockCoallector);
-        this.addBlock(InitBlocks.blockConnectionTunnelBase);
+        this.addBlock(InitBlocks.blockConnectionTunnel1);
 
         //Tier 2
         this.addBlock(InitBlocks.blockCharger);
+        this.addBlock(InitBlocks.blockReflector2);
 
         //Tier 3
         this.addBlock(InitBlocks.blockAdvancedCharger);

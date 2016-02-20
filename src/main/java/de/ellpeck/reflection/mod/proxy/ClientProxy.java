@@ -15,9 +15,10 @@ import de.ellpeck.reflection.mod.tile.TileLightComponentBase;
 import de.ellpeck.reflection.mod.tile.render.TESRLightComponentBase;
 import de.ellpeck.reflection.mod.tile.special.TileConverter12;
 import de.ellpeck.reflection.mod.tile.tier1.TileCoallector;
-import de.ellpeck.reflection.mod.tile.tier1.TileConnectionTunnelBase;
-import de.ellpeck.reflection.mod.tile.tier1.TileReflectorBase;
+import de.ellpeck.reflection.mod.tile.tier1.TileConnectionTunnel1;
+import de.ellpeck.reflection.mod.tile.tier1.TileReflector1;
 import de.ellpeck.reflection.mod.tile.tier2.TileCharger;
+import de.ellpeck.reflection.mod.tile.tier2.TileReflector2;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -53,9 +54,10 @@ public class ClientProxy extends CommonProxy{
 
         this.registerBeamRenderer(TileConverter12.class);
         this.registerBeamRenderer(TileCoallector.class);
-        this.registerBeamRenderer(TileReflectorBase.class);
+        this.registerBeamRenderer(TileReflector1.class);
         this.registerBeamRenderer(TileCharger.class);
-        this.registerBeamRenderer(TileConnectionTunnelBase.class);
+        this.registerBeamRenderer(TileConnectionTunnel1.class);
+        this.registerBeamRenderer(TileReflector2.class);
     }
 
     private void registerBeamRenderer(Class<? extends TileLightComponentBase> tile){

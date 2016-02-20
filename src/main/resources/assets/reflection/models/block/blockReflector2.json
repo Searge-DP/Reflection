@@ -1,8 +1,8 @@
 {
   "ambientocclusion": false,
   "textures": {
-    "all": "reflection:blocks/blockReflectorBase",
-    "particle": "reflection:blocks/blockReflectorBase"
+    "all": "reflection:blocks/blockReflector2",
+    "particle": "reflection:blocks/blockReflector2"
   },
   "elements": [
     {

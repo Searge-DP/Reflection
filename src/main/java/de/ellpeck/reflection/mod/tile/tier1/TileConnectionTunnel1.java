@@ -14,7 +14,7 @@ import de.ellpeck.reflection.api.ReflectionAPI;
 import de.ellpeck.reflection.api.light.ILightComponent;
 import de.ellpeck.reflection.mod.tile.TileLightComponentBase;
 
-public class TileConnectionTunnelBase extends TileLightComponentBase{
+public class TileConnectionTunnel1 extends TileLightComponentBase{
 
     @Override
     public int getMaxConnections(){

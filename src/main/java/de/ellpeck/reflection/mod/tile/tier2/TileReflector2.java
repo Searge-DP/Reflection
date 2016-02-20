@@ -1,5 +1,5 @@
 /*
- * This file ("TileReflectorBase.java") is part of the Reflection Mod for Minecraft.
+ * This file ("TileReflector2.java") is part of the Reflection Mod for Minecraft.
  * It is created and owned by Ellpeck and distributed
  * under the Reflection License to be found at
  * https://github.com/Ellpeck/Reflection/blob/master/LICENSE.md
@@ -8,11 +8,11 @@
  * © 2016 Ellpeck
  */
 
-package de.ellpeck.reflection.mod.tile.tier1;
+package de.ellpeck.reflection.mod.tile.tier2;
 
 import de.ellpeck.reflection.mod.tile.TileLightComponentBase;
 
-public class TileReflectorBase extends TileLightComponentBase{
+public class TileReflector2 extends TileLightComponentBase{
 
     @Override
     public int getMaxConnections(){
@@ -21,10 +21,6 @@ public class TileReflectorBase extends TileLightComponentBase{
 
     @Override
     public int getMaxDistanceFromComponent(){
-        return 5;
-    }
-
-    public String toString(){
-        return this.getPos().toString();
+        return 8;
     }
 }

@@ -130,10 +130,6 @@ public class LightNetwork implements ILightNetwork{
         return this.lightGenAndUsage;
     }
 
-    public String toString(){
-        return this.connections.toString();
-    }
-
     @Override
     public void writeToNBT(NBTTagCompound compound){
         NBTTagList light = new NBTTagList();
