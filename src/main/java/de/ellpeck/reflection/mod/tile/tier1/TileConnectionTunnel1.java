@@ -28,6 +28,6 @@ public class TileConnectionTunnel1 extends TileLightComponentBase{
 
     @Override
     public boolean canBeInNetworkWith(ILightComponent component){
-        return component.getTier() == ReflectionAPI.TIER_1;
+        return component.getTier() == ReflectionAPI.TIER_1 && !(component instanceof TileConnectionTunnel1);
     }
 }
