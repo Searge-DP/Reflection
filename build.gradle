@@ -12,7 +12,7 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.8.9-a1"
+version = "1.8.9-a2"
 group = "de.ellpeck.reflection"
 archivesBaseName = "Reflection"
 

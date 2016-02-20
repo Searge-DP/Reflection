@@ -10,7 +10,6 @@
 
 package de.ellpeck.reflection.mod.misc;
 
-import com.sun.javafx.geom.Vec3d;
 import de.ellpeck.reflection.api.ReflectionAPI;
 import de.ellpeck.reflection.api.internal.IConnectionPair;
 import de.ellpeck.reflection.api.internal.ILightNetworkHandler;
@@ -32,6 +31,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -119,16 +119,15 @@ public class MethodHandler implements IMethodHandler{
         float g2 = firstColor[1];
         float b2 = firstColor[2];
 
-        Vec3d vec1 = new Vec3d(firstX, firstY, firstZ);
-        Vec3d vec2 = new Vec3d(secondX, secondY, secondZ);
-        Vec3d combinedVec = new Vec3d(vec2);
-        combinedVec.sub(vec1);
+        Vec3 vec1 = new Vec3(firstX, firstY, firstZ);
+        Vec3 vec2 = new Vec3(secondX, secondY, secondZ);
+        Vec3 combinedVec = vec2.subtract(vec1);
 
         double rot = rotationTime > 0 ? (360F*(((float)WorldUtil.totalTime(world)%(float)rotationTime)/(float)rotationTime)) : 0;
-        double pitch = Math.atan2(combinedVec.y, Math.sqrt(combinedVec.x*combinedVec.x+combinedVec.z*combinedVec.z));
-        double yaw = Math.atan2(-combinedVec.z, combinedVec.x);
+        double pitch = Math.atan2(combinedVec.yCoord, Math.sqrt(combinedVec.xCoord*combinedVec.xCoord+combinedVec.zCoord*combinedVec.zCoord));
+        double yaw = Math.atan2(-combinedVec.zCoord, combinedVec.xCoord);
 
-        double length = combinedVec.length();
+        double length = combinedVec.lengthVector();
 
         GlStateManager.pushMatrix();
 
