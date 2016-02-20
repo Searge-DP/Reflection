@@ -129,7 +129,7 @@ public class MethodHandler implements IMethodHandler{
         Vec3d combinedVec = new Vec3d(vec2);
         combinedVec.sub(vec1);
 
-        double rot = rotationTime > 0 ? (360F*(((float)world.getTotalWorldTime()%(float)rotationTime)/(float)rotationTime)) : 0;
+        double rot = rotationTime > 0 ? (360F*(((float)WorldUtil.totalTime(world)%(float)rotationTime)/(float)rotationTime)) : 0;
         double pitch = Math.atan2(combinedVec.y, Math.sqrt(combinedVec.x*combinedVec.x+combinedVec.z*combinedVec.z));
         double yaw = Math.atan2(-combinedVec.z, combinedVec.x);
 

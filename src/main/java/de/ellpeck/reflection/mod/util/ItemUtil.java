@@ -44,7 +44,7 @@ public class ItemUtil{
     public static void rechargeItemFromLight(ItemStack stack, Entity entity){
         if(!entity.worldObj.isRemote && entity instanceof EntityPlayer){
             if(stack.getItemDamage() > 0){
-                if(entity.worldObj.getTotalWorldTime()%40 == 0){
+                if(WorldUtil.totalTime(entity.worldObj)%40 == 0){
                     EntityPlayer player = ((EntityPlayer)entity);
                     int toExtract = 5;
 

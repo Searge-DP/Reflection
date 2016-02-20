@@ -39,7 +39,7 @@ public class TileCoallector extends TileLightComponentBase implements ITickable,
     private static final String TAG_MAX_BURN_TIME = "MaxBurnTime";
 
     private boolean hadEnoughLight;
-    private int burnTime;
+    public int burnTime;
     private int maxBurnTime;
 
     private int lastBurnTime;
@@ -75,7 +75,7 @@ public class TileCoallector extends TileLightComponentBase implements ITickable,
         if(!this.worldObj.isRemote){
             boolean burnTimeWatcher = this.burnTime > 0;
             if(this.burnTime <= 0){
-                if(this.getWorld().getTotalWorldTime()%100 == 0){
+                if(WorldUtil.totalTime(this.worldObj)%100 == 0){
                     int range = 3;
                     List<EntityItem> itemsAround = this.worldObj.getEntitiesWithinAABB(EntityItem.class, AxisAlignedBB.fromBounds(this.pos.getX()-range, this.pos.getY()-range, this.pos.getZ()-range, this.pos.getX()+range, this.pos.getY()+range, this.pos.getZ()+range));
                     for(EntityItem item : itemsAround){
@@ -133,7 +133,7 @@ public class TileCoallector extends TileLightComponentBase implements ITickable,
                 }
             }
 
-            if((this.burnTime != this.lastBurnTime || this.maxBurnTime != this.lastMaxBurnTime) && ClientUtil.totalTime()%10 == 0){
+            if((this.burnTime != this.lastBurnTime || this.maxBurnTime != this.lastMaxBurnTime) && WorldUtil.totalTime(this.worldObj)%10 == 0){
                 this.lastBurnTime = this.burnTime;
                 this.lastMaxBurnTime = this.maxBurnTime;
                 VanillaPacketHandler.sendTilePacketToAllAround(this);

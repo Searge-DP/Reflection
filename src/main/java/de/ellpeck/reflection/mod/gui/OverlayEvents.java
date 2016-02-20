@@ -16,6 +16,7 @@ import de.ellpeck.reflection.api.light.IRodOverlay;
 import de.ellpeck.reflection.mod.items.ItemLightConnector;
 import de.ellpeck.reflection.mod.lib.LibMod;
 import de.ellpeck.reflection.mod.util.ClientUtil;
+import de.ellpeck.reflection.mod.util.WorldUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -91,7 +92,7 @@ public class OverlayEvents{
                 GlStateManager.pushMatrix();
                 GlStateManager.enableBlend();
 
-                float[] color = ClientUtil.getWheelColor(world.getTotalWorldTime()%256);
+                float[] color = ClientUtil.getWheelColor(WorldUtil.totalTime(world)%256);
                 GlStateManager.color(color[0]/255, color[1]/255, color[2]/255);
 
                 mc.renderEngine.bindTexture(ClientUtil.MISC_GRAPHICS);
