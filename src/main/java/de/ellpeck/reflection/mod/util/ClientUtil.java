@@ -22,6 +22,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ClientUtil{
 
+    public static final ResourceLocation LIGHT_BEAM_GRADIENT = new ResourceLocation(LibMod.MOD_ID, "textures/gradient.png");
     public static final ResourceLocation MISC_GRAPHICS = new ResourceLocation(LibMod.MOD_ID, "textures/gui/guiMisc.png");
 
     public static Minecraft mc(){

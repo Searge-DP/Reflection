@@ -17,7 +17,6 @@ import de.ellpeck.reflection.api.internal.ILightNetworkHandler;
 import de.ellpeck.reflection.api.internal.IMethodHandler;
 import de.ellpeck.reflection.api.light.ILightComponent;
 import de.ellpeck.reflection.api.light.ILightStorageItem;
-import de.ellpeck.reflection.mod.lib.LibMod;
 import de.ellpeck.reflection.mod.network.LightNetworkHandler;
 import de.ellpeck.reflection.mod.util.ClientUtil;
 import de.ellpeck.reflection.mod.util.WorldUtil;
@@ -33,7 +32,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -43,8 +41,6 @@ import java.util.Set;
 
 public class MethodHandler implements IMethodHandler{
 
-    @SideOnly(Side.CLIENT)
-    private static final ResourceLocation GRADIENT = new ResourceLocation(LibMod.MOD_ID, "textures/gradient.png");
     private static final String TAG_CONNECTIONS = "Connections";
     private final ILightNetworkHandler lightNetworkHandler;
 
@@ -106,7 +102,6 @@ public class MethodHandler implements IMethodHandler{
         }
     }
 
-    @SuppressWarnings("UnnecessaryLocalVariable")
     @Override
     @SideOnly(Side.CLIENT)
     public void renderLightBetweenTwoPoints(double firstX, double firstY, double firstZ, double secondX, double secondY, double secondZ, int rotationTime, float alpha, double beamWidth, float[] firstColor, float[] secondColor){
@@ -148,7 +143,7 @@ public class MethodHandler implements IMethodHandler{
 
         if(r != r2 || g != g2 || b != b2){
             render.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);
-            ClientUtil.mc().renderEngine.bindTexture(GRADIENT);
+            ClientUtil.mc().renderEngine.bindTexture(ClientUtil.LIGHT_BEAM_GRADIENT);
 
             render.pos(length, -beamWidth, beamWidth).tex(0, 0).color(r, g, b, alpha).endVertex();
             render.pos(length, beamWidth, beamWidth).tex(0, 1).color(r, g, b, alpha).endVertex();
