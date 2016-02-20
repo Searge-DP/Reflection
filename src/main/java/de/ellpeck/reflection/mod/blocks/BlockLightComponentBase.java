@@ -22,10 +22,13 @@ public class BlockLightComponentBase extends BlockContainerBase implements ILigh
 
     private LightNetworkTier theTier;
 
-    public BlockLightComponentBase(Material material, String name, LightNetworkTier tier, boolean addTab, Class<? extends TileLightComponentBase> tileClass, String tileName){
-        super(material, name, addTab, tileClass, tileName);
+    public BlockLightComponentBase(String name, LightNetworkTier tier, boolean addTab, Class<? extends TileLightComponentBase> tileClass, String tileName){
+        super(Material.glass, name, addTab, tileClass, tileName);
         this.theTier = tier;
+
+        this.setStepSound(soundTypeGlass);
         this.setLightOpacity(1);
+        this.setHardness(5.0F);
     }
 
     @Override

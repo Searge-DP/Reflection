@@ -14,11 +14,10 @@ import de.ellpeck.reflection.api.ReflectionAPI;
 import de.ellpeck.reflection.mod.blocks.BlockLightComponentBase;
 import de.ellpeck.reflection.mod.lib.LibNames;
 import de.ellpeck.reflection.mod.tile.tier1.TileConnectionTunnel1;
-import net.minecraft.block.material.Material;
 
 public class BlockConnectionTunnel1 extends BlockLightComponentBase{
 
     public BlockConnectionTunnel1(){
-        super(Material.anvil, LibNames.BLOCK_CONNECTION_TUNNEL, ReflectionAPI.TIER_1, true, TileConnectionTunnel1.class, LibNames.TILE_CONNECTION_TUNNEL);
+        super(LibNames.BLOCK_CONNECTION_TUNNEL, ReflectionAPI.TIER_1, true, TileConnectionTunnel1.class, LibNames.TILE_CONNECTION_TUNNEL);
     }
 }

@@ -14,11 +14,10 @@ import de.ellpeck.reflection.api.ReflectionAPI;
 import de.ellpeck.reflection.mod.blocks.tier2.BlockCharger;
 import de.ellpeck.reflection.mod.lib.LibNames;
 import de.ellpeck.reflection.mod.tile.tier3.TileAdvancedCharger;
-import net.minecraft.block.material.Material;
 
 public class BlockAdvancedCharger extends BlockCharger{
 
     public BlockAdvancedCharger(){
-        super(Material.anvil, LibNames.BLOCK_CHARGER_ADVANCED, ReflectionAPI.TIER_3, true, TileAdvancedCharger.class, LibNames.TILE_CHARGER_ADVANCED);
+        super(LibNames.BLOCK_CHARGER_ADVANCED, ReflectionAPI.TIER_3, true, TileAdvancedCharger.class, LibNames.TILE_CHARGER_ADVANCED);
     }
 }

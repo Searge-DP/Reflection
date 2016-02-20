@@ -15,7 +15,6 @@ import de.ellpeck.reflection.mod.blocks.BlockLightComponentBase;
 import de.ellpeck.reflection.mod.lib.LibMod;
 import de.ellpeck.reflection.mod.lib.LibNames;
 import de.ellpeck.reflection.mod.tile.tier1.TileCoallector;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
@@ -29,7 +28,7 @@ import java.util.Random;
 public class BlockCoallector extends BlockLightComponentBase{
 
     public BlockCoallector(){
-        super(Material.anvil, LibNames.BLOCK_COALLECTOR, ReflectionAPI.TIER_1, true, TileCoallector.class, LibNames.TILE_COALLECTOR);
+        super(LibNames.BLOCK_COALLECTOR, ReflectionAPI.TIER_1, true, TileCoallector.class, LibNames.TILE_COALLECTOR);
         this.setTickRandomly(true);
     }
 

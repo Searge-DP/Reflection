@@ -14,11 +14,10 @@ import de.ellpeck.reflection.api.ReflectionAPI;
 import de.ellpeck.reflection.mod.blocks.BlockLightComponentBase;
 import de.ellpeck.reflection.mod.lib.LibNames;
 import de.ellpeck.reflection.mod.tile.special.TileConverter12;
-import net.minecraft.block.material.Material;
 
 public class BlockConverter12 extends BlockLightComponentBase{
 
     public BlockConverter12(){
-        super(Material.anvil, LibNames.BLOCK_CONVERTER_1_2, ReflectionAPI.TIER_SPECIAL, true, TileConverter12.class, LibNames.TILE_CONVERTER_1_2);
+        super(LibNames.BLOCK_CONVERTER_1_2, ReflectionAPI.TIER_SPECIAL, true, TileConverter12.class, LibNames.TILE_CONVERTER_1_2);
     }
 }
