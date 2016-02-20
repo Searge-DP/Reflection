@@ -54,5 +54,7 @@ public class LibNames{
     public static final String ORE_LIGHTANIUM_INGOT = "ingotLightanium";
     public static final String ORE_LIGHTANIUM_DUST = "dustLightanium";
     public static final String ORE_LIGHTANIUM_NUGGET = "nuggetLightanium";
+    public static final String ORE_LIGHTANIUM_ORE = "oreLightanium";
+    public static final String ORE_LIGHTANIUM_BLOCK = "blockLightanium";
 
 }

@@ -10,8 +10,10 @@
 
 package de.ellpeck.reflection.mod.misc;
 
+import de.ellpeck.reflection.mod.blocks.InitBlocks;
 import de.ellpeck.reflection.mod.items.InitItems;
 import de.ellpeck.reflection.mod.lib.LibNames;
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -22,10 +24,16 @@ public class InitOreDictionary{
         register(InitItems.itemLightaniumIngot, LibNames.ORE_LIGHTANIUM_INGOT);
         register(InitItems.itemLightaniumNugget, LibNames.ORE_LIGHTANIUM_NUGGET);
         register(InitItems.itemLightaniumDust, LibNames.ORE_LIGHTANIUM_DUST);
+        register(InitBlocks.blockOreLightanium, LibNames.ORE_LIGHTANIUM_ORE);
+        register(InitBlocks.blockLightanium, LibNames.ORE_LIGHTANIUM_BLOCK);
     }
 
     private static void register(Item item, String name){
         register(new ItemStack(item), name);
+    }
+
+    private static void register(Block block, String name){
+        register(new ItemStack(block), name);
     }
 
     private static void register(ItemStack stack, String name){
