@@ -14,6 +14,7 @@ import de.ellpeck.reflection.mod.gui.OverlayEvents;
 import de.ellpeck.reflection.mod.tile.TileLightComponentBase;
 import de.ellpeck.reflection.mod.tile.render.TESRLightComponentBase;
 import de.ellpeck.reflection.mod.tile.special.TileConverter12;
+import de.ellpeck.reflection.mod.tile.special.TileConverter23;
 import de.ellpeck.reflection.mod.tile.tier1.TileCoallector;
 import de.ellpeck.reflection.mod.tile.tier1.TileConnectionTunnel1;
 import de.ellpeck.reflection.mod.tile.tier1.TileReflector1;
@@ -58,6 +59,7 @@ public class ClientProxy extends CommonProxy{
         this.registerBeamRenderer(TileCharger.class);
         this.registerBeamRenderer(TileConnectionTunnel1.class);
         this.registerBeamRenderer(TileReflector2.class);
+        this.registerBeamRenderer(TileConverter23.class);
     }
 
     private void registerBeamRenderer(Class<? extends TileLightComponentBase> tile){

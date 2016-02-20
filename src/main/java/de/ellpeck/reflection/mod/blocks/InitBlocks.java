@@ -11,6 +11,7 @@
 package de.ellpeck.reflection.mod.blocks;
 
 import de.ellpeck.reflection.mod.blocks.special.BlockConverter12;
+import de.ellpeck.reflection.mod.blocks.special.BlockConverter23;
 import de.ellpeck.reflection.mod.blocks.tier1.BlockCoallector;
 import de.ellpeck.reflection.mod.blocks.tier1.BlockConnectionTunnel1;
 import de.ellpeck.reflection.mod.blocks.tier1.BlockReflector1;
@@ -25,7 +26,7 @@ public class InitBlocks{
 
     //Special
     public static Block blockConverter12;
-
+    public static Block blockConverter23;
 
     //Tier 1
     public static Block blockReflector1;
@@ -47,11 +48,12 @@ public class InitBlocks{
     public static void preInit(){
         //Special
         blockConverter12 = new BlockConverter12();
-        blockConnectionTunnel1 = new BlockConnectionTunnel1();
+        blockConverter23 = new BlockConverter23();
 
         //Tier 1
         blockReflector1 = new BlockReflector1();
         blockCoallector = new BlockCoallector();
+        blockConnectionTunnel1 = new BlockConnectionTunnel1();
 
         //Tier 2
         blockCharger = new BlockCharger();

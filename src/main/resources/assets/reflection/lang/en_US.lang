@@ -36,6 +36,7 @@ tile.reflection.blockOreLightanium.name=Lightanium Ore
 tile.reflection.blockGlassShards.name=Shards of Glass
 tile.reflection.blockSparkle.name=Sparkle
 tile.reflection.blockReflector2.name=Reflector of Apprenticeship
+tile.reflection.blockConverter23.name=Converter - Apprentice's Gentry
 
 #Misc
 misc.reflection.connectionWorked=You see a beam of light appear...

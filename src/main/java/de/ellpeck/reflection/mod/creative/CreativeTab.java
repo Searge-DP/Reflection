@@ -40,6 +40,7 @@ public class CreativeTab extends CreativeTabs{
 
         //Special
         this.addBlock(InitBlocks.blockConverter12);
+        this.addBlock(InitBlocks.blockConverter23);
 
         //Tier 1
         this.addBlock(InitBlocks.blockReflector1);
