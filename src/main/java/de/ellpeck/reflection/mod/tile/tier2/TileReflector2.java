@@ -16,7 +16,7 @@ public class TileReflector2 extends TileLightComponentBase{
 
     @Override
     public int getMaxConnections(){
-        return 2;
+        return 3;
     }
 
     @Override
