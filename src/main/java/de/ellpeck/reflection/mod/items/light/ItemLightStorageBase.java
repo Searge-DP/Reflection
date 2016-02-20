@@ -42,9 +42,8 @@ public class ItemLightStorageBase extends ItemBase implements ILightStorageItem{
 
     @Override
     public int getLight(ItemStack stack){
-        NBTTagCompound compound = stack.getTagCompound();
-        if(compound != null){
-            return compound.getInteger(TAG_LIGHT);
+        if(stack.hasTagCompound()){
+            return stack.getTagCompound().getInteger(TAG_LIGHT);
         }
         else{
             return 0;
@@ -98,7 +97,7 @@ public class ItemLightStorageBase extends ItemBase implements ILightStorageItem{
 
     @Override
     public void setLight(ItemStack stack, int amount){
-        if(stack.getTagCompound() == null){
+        if(!stack.hasTagCompound()){
             stack.setTagCompound(new NBTTagCompound());
         }
 

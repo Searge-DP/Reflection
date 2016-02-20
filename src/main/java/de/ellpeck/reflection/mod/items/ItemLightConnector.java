@@ -28,6 +28,8 @@ import net.minecraft.world.World;
 
 public class ItemLightConnector extends ItemBase{
 
+    private static final String TAG_WORLD = "World";
+
     public ItemLightConnector(){
         super(LibNames.ITEM_LIGHT_CONNECTOR, true);
         this.setMaxStackSize(1);
@@ -85,25 +87,32 @@ public class ItemLightConnector extends ItemBase{
     }
 
     private void storePosition(ItemStack stack, ILightComponent component){
-        if(stack.getTagCompound() == null){
+        if(!stack.hasTagCompound()){
             stack.setTagCompound(new NBTTagCompound());
         }
+
         NBTTagCompound compound = stack.getTagCompound();
         WorldUtil.writeBlockPosToNBT(compound, component.getPosition());
+        compound.setInteger(TAG_WORLD, component.getTheWorld().provider.getDimensionId());
     }
 
     private ILightComponent getPosition(ItemStack stack, World world){
-        if(stack.getTagCompound() != null){
-            BlockPos pos = WorldUtil.readBlockPosFromNBT(stack.getTagCompound());
-            TileEntity tile = world.getTileEntity(pos);
-            if(tile instanceof ILightComponent){
-                return (ILightComponent)tile;
+        if(stack.hasTagCompound()){
+            NBTTagCompound compound = stack.getTagCompound();
+            BlockPos pos = WorldUtil.readBlockPosFromNBT(compound);
+            int savedWorld = compound.getInteger(TAG_WORLD);
+
+            if(world.provider.getDimensionId() == savedWorld){
+                TileEntity tile = world.getTileEntity(pos);
+                if(tile instanceof ILightComponent){
+                    return (ILightComponent)tile;
+                }
             }
         }
         return null;
     }
 
     private boolean hasStoredPosition(ItemStack stack){
-        return stack.getTagCompound() != null && WorldUtil.hasBlockPosData(stack.getTagCompound());
+        return stack.hasTagCompound() && WorldUtil.hasBlockPosData(stack.getTagCompound());
     }
 }
