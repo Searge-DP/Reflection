@@ -22,13 +22,12 @@ public class BlockCharger extends BlockLightComponentBase{
 
     public BlockCharger(){
         this(Material.anvil, LibNames.BLOCK_CHARGER, ReflectionAPI.TIER_2, true, TileCharger.class, LibNames.TILE_CHARGER);
-
-        float f = 1F/16F;
-        this.setBlockBounds(f, 0F, f, 1F-f, 1F-5*f, 1F-f);
-
     }
 
     public BlockCharger(Material material, String name, LightNetworkTier tier, boolean addTab, Class<? extends TileLightComponentBase> tileClass, String tileName){
         super(material, name, tier, addTab, tileClass, tileName);
+
+        float f = 1F/16F;
+        this.setBlockBounds(f, 0F, f, 1F-f, 1F-5*f, 1F-f);
     }
 }
