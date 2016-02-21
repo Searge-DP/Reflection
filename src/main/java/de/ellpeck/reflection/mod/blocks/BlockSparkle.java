@@ -24,6 +24,8 @@ public class BlockSparkle extends BlockBase{
     public BlockSparkle(){
         super(Material.cloth, LibNames.BLOCK_SPARKLE, false, 0.15F, soundTypeCloth);
 
+        this.setLightLevel(1F);
+
         float f = 1F/16F;
         this.setBlockBounds(6*f, 6*f, 6*f, 1F-6*f, 1F-6*f, 1F-6*f);
     }
