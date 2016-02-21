@@ -17,6 +17,11 @@ item.reflection.itemLightBatteryAdvanced.name=Rounded Prism
 item.reflection.itemLightaniumNugget.name=Lightanium Nugget
 item.reflection.itemLightaniumIngot.name=Lightanium Ingot
 item.reflection.itemLightaniumDust.name=Crushed Lightanium
+item.reflection.itemLightHelmet.name=Helmet of Lightanium
+item.reflection.itemLightChestplate.name=Chestplate of Lightanium
+item.reflection.itemLightPants.name=Pants of Lightanium
+item.reflection.itemLightBoots.name=Boots of Lightanium
+item.reflection.itemLightShears.name=Shears of Lightanium
 
 #Tiers
 lightNetworkTier.reflection.0=Tierless

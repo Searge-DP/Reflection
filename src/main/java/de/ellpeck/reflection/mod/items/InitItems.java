@@ -10,12 +10,10 @@
 
 package de.ellpeck.reflection.mod.items;
 
+import de.ellpeck.reflection.mod.items.armor.ItemReflectionArmor;
 import de.ellpeck.reflection.mod.items.light.ItemLightBattery;
 import de.ellpeck.reflection.mod.items.light.ItemLightBatteryAdvanced;
-import de.ellpeck.reflection.mod.items.tools.ItemHoeShovel;
-import de.ellpeck.reflection.mod.items.tools.ItemReflectionAxe;
-import de.ellpeck.reflection.mod.items.tools.ItemReflectionSword;
-import de.ellpeck.reflection.mod.items.tools.ItemSparklePickaxe;
+import de.ellpeck.reflection.mod.items.tools.*;
 import de.ellpeck.reflection.mod.lib.LibMaterials;
 import de.ellpeck.reflection.mod.lib.LibMod;
 import de.ellpeck.reflection.mod.lib.LibNames;
@@ -35,6 +33,12 @@ public class InitItems{
     public static Item itemLightPickaxe;
     public static Item itemLightShovel;
     public static Item itemLightSword;
+    public static Item itemLightShears;
+
+    public static Item itemLightHelmet;
+    public static Item itemLightChestplate;
+    public static Item itemLightPants;
+    public static Item itemLightBoots;
 
     public static void preInit(){
         int itemSize = Item.itemRegistry.getKeys().size();
@@ -51,6 +55,12 @@ public class InitItems{
         itemLightPickaxe = new ItemSparklePickaxe(LibNames.ITEM_LIGHT_PICKAXE, true, LibMaterials.TOOL_MATERIAL_LIGHT);
         itemLightShovel = new ItemHoeShovel(LibNames.ITEM_LIGHT_SHOVEL, true, LibMaterials.TOOL_MATERIAL_LIGHT);
         itemLightSword = new ItemReflectionSword(LibNames.ITEM_LIGHT_SWORD, true, LibMaterials.TOOL_MATERIAL_LIGHT);
+        itemLightShears = new ItemReflectionShears(LibNames.ITEM_LIGHT_SHEARS, true, 300);
+
+        itemLightHelmet = new ItemReflectionArmor(LibNames.ITEM_LIGHT_HELMET, true, LibMaterials.ARMOR_MATERIAL_LIGHT, 0);
+        itemLightChestplate = new ItemReflectionArmor(LibNames.ITEM_LIGHT_CHESTPLATE, true, LibMaterials.ARMOR_MATERIAL_LIGHT, 1);
+        itemLightPants = new ItemReflectionArmor(LibNames.ITEM_LIGHT_PANTS, true, LibMaterials.ARMOR_MATERIAL_LIGHT, 2);
+        itemLightBoots = new ItemReflectionArmor(LibNames.ITEM_LIGHT_BOOTS, true, LibMaterials.ARMOR_MATERIAL_LIGHT, 3);
 
         LibMod.LOGGER.info(String.format("%s has registered %s Items!", LibMod.MOD_NAME, Item.itemRegistry.getKeys().size()-itemSize));
     }

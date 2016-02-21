@@ -72,6 +72,12 @@ public class CreativeTab extends CreativeTabs{
         this.addItem(InitItems.itemLightPickaxe);
         this.addItem(InitItems.itemLightShovel);
         this.addItem(InitItems.itemLightSword);
+        this.addItem(InitItems.itemLightShears);
+
+        this.addItem(InitItems.itemLightHelmet);
+        this.addItem(InitItems.itemLightChestplate);
+        this.addItem(InitItems.itemLightPants);
+        this.addItem(InitItems.itemLightBoots);
     }
 
     private void addBlock(Block block){

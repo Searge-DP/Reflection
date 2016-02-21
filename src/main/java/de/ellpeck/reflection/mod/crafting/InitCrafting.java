@@ -36,13 +36,18 @@ public class InitCrafting{
         addShaped(new ItemStack(InitItems.itemLightaniumIngot), "XXX", "XXX", "XXX", 'X', new ItemStack(InitItems.itemLightaniumNugget));
 
         addFurnace(new ItemStack(InitItems.itemLightaniumIngot), new ItemStack(InitBlocks.blockOreLightanium), 1.0F);
+        addFurnace(new ItemStack(InitItems.itemLightaniumIngot), new ItemStack(InitItems.itemLightaniumDust), 0.75F);
 
         //Tools
         addTools(InitItems.itemLightPickaxe, InitItems.itemLightAxe, InitItems.itemLightShovel, InitItems.itemLightSword, new ItemStack(Items.iron_ingot), new ItemStack(InitItems.itemLightaniumIngot));
         addShaped(new ItemStack(InitItems.itemLightConnector), "  M", " H ", "H  ", 'H', new ItemStack(Items.iron_ingot), 'M', new ItemStack(InitItems.itemLightaniumIngot));
+        addShaped(new ItemStack(InitItems.itemLightShears), " M", "M ", 'M', new ItemStack(InitItems.itemLightaniumIngot));
 
         addShaped(new ItemStack(InitItems.itemLightBatteryBase), "GLG", "LLL", "GLG", 'G', new ItemStack(Blocks.glass), 'L', new ItemStack(InitItems.itemLightaniumIngot));
         addShaped(new ItemStack(InitItems.itemLightBatteryAdvanced), "LGL", "GBG", "LGL", 'G', new ItemStack(Blocks.gold_block), 'L', new ItemStack(InitBlocks.blockLightanium), 'B', new ItemStack(InitItems.itemLightBatteryBase));
+
+        //Armor
+        addArmor(InitItems.itemLightHelmet, InitItems.itemLightChestplate, InitItems.itemLightPants, InitItems.itemLightBoots, new ItemStack(InitItems.itemLightaniumIngot));
 
         //Reflectors
         addShaped(new ItemStack(InitBlocks.blockReflector1), " G ", "GLG", "SSS", 'G', new ItemStack(Blocks.glass), 'L', new ItemStack(InitItems.itemLightaniumIngot), 'S', new ItemStack(Blocks.stone_slab));
@@ -66,6 +71,13 @@ public class InitCrafting{
         addShaped(new ItemStack(axe), "MM ", "MH ", " H ", 'M', material, 'H', handle);
         addShaped(new ItemStack(shovel), "M", "H", "H", 'M', material, 'H', handle);
         addShaped(new ItemStack(sword), "M", "M", "H", 'M', material, 'H', handle);
+    }
+
+    private static void addArmor(Item helm, Item chest, Item pants, Item boots, ItemStack material){
+        addShaped(new ItemStack(helm), "MMM", "M M", 'M', material);
+        addShaped(new ItemStack(chest), "M M", "MMM", "MMM", 'M', material);
+        addShaped(new ItemStack(pants), "MMM", "M M", "M M", 'M', material);
+        addShaped(new ItemStack(boots), "M M", "M M", 'M', material);
     }
 
     private static void addShaped(ItemStack result, Object... inputs){

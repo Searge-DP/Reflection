@@ -53,6 +53,11 @@ public class LibNames{
     public static final String ITEM_LIGHTANIUM_INGOT = "itemLightaniumIngot";
     public static final String ITEM_LIGHTANIUM_DUST = "itemLightaniumDust";
     public static final String ITEM_LIGHTANIUM_NUGGET = "itemLightaniumNugget";
+    public static final String ITEM_LIGHT_HELMET = "itemLightHelmet";
+    public static final String ITEM_LIGHT_CHESTPLATE = "itemLightChestplate";
+    public static final String ITEM_LIGHT_PANTS = "itemLightPants";
+    public static final String ITEM_LIGHT_BOOTS = "itemLightBoots";
+    public static final String ITEM_LIGHT_SHEARS = "itemLightShears";
 
     //Oredict
     public static final String ORE_LIGHTANIUM_INGOT = "ingotLightanium";
