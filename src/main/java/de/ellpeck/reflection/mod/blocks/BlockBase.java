@@ -20,11 +20,19 @@ import net.minecraft.util.ResourceLocation;
 
 public class BlockBase extends Block{
 
-    public BlockBase(Material material, String name, boolean addTab){
+    public BlockBase(Material material, String name, boolean addTab, float hardness, SoundType stepSound, String harvestTool, int harvestLevel){
         super(material);
+
+        this.setHarvestLevel(harvestTool, harvestLevel);
+        this.setStepSound(stepSound);
+        this.setHardness(hardness);
 
         ItemUtil.registerBlock(this, name, addTab);
         this.registerRendering(name);
+    }
+
+    public BlockBase(Material material, String name, boolean addTab, float hardness, SoundType stepSound){
+        this(material, name, addTab, hardness, stepSound, null, -1);
     }
 
     public void registerRendering(String name){

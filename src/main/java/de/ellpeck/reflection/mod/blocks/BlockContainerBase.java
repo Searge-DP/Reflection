@@ -26,13 +26,21 @@ public class BlockContainerBase extends BlockContainer{
 
     private Class<? extends TileEntity> tileClass;
 
-    public BlockContainerBase(Material material, String name, boolean addTab, Class<? extends TileEntity> tileClass, String tileName){
+    public BlockContainerBase(Material material, String name, boolean addTab, float hardness, SoundType stepSound, String harvestTool, int harvestLevel, Class<? extends TileEntity> tileClass, String tileName){
         super(material);
         this.tileClass = tileClass;
+
+        this.setHarvestLevel(harvestTool, harvestLevel);
+        this.setStepSound(stepSound);
+        this.setHardness(hardness);
 
         ItemUtil.registerBlock(this, name, addTab);
         GameRegistry.registerTileEntity(tileClass, LibNames.BASE_REGISTRY+tileName);
         this.registerRendering(name);
+    }
+
+    public BlockContainerBase(Material material, String name, boolean addTab, float hardness, SoundType stepSound, Class<? extends TileEntity> tileClass, String tileName){
+        this(material, name, addTab, hardness, stepSound, null, -1, tileClass, tileName);
     }
 
     public void registerRendering(String name){

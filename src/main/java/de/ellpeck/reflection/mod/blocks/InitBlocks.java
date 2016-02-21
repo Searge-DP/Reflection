@@ -66,8 +66,8 @@ public class InitBlocks{
         blockAdvancedCharger = new BlockAdvancedCharger();
 
         blockSparkle = new BlockSparkle();
-        blockLightanium = new BlockBase(Material.iron, LibNames.BLOCK_LIGHTANIUM, true).setHardness(3.0F).setStepSound(Block.soundTypeStone);
-        blockOreLightanium = new BlockBase(Material.rock, LibNames.BLOCK_ORE_LIGHTANIUM, true).setHardness(3.0F).setStepSound(Block.soundTypeStone);
+        blockLightanium = new BlockBase(Material.iron, LibNames.BLOCK_LIGHTANIUM, true, 3.0F, Block.soundTypeMetal, "pickaxe", 1);
+        blockOreLightanium = new BlockBase(Material.rock, LibNames.BLOCK_ORE_LIGHTANIUM, true, 3.0F, BlockSparkle.soundTypeStone, "pickaxe", 1);
         blockGlassShards = new BlockGlassShards();
 
         LibMod.LOGGER.info(String.format("%s has registered %s Blocks!", LibMod.MOD_NAME, Block.blockRegistry.getKeys().size()-blockSize));

@@ -27,9 +27,7 @@ import java.util.Random;
 public class BlockGlassShards extends BlockContainerBase{
 
     public BlockGlassShards(){
-        super(Material.glass, LibNames.BLOCK_GLASS_SHARDS, true, TileGlassShards.class, LibNames.TILE_GLASS_SHARDS);
-        this.setStepSound(soundTypeGlass);
-        this.setHardness(2.0F);
+        super(Material.glass, LibNames.BLOCK_GLASS_SHARDS, true, 0.25F, soundTypeGlass, TileGlassShards.class, LibNames.TILE_GLASS_SHARDS);
 
         this.setBlockBounds(0F, 0F, 0F, 1F, 1F/16F, 1F);
     }
