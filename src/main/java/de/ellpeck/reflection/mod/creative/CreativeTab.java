@@ -79,6 +79,10 @@ public class CreativeTab extends CreativeTabs{
         this.addItem(InitItems.itemLightChestplate);
         this.addItem(InitItems.itemLightPants);
         this.addItem(InitItems.itemLightBoots);
+
+        this.addItem(InitItems.itemMochiWhite);
+        this.addItem(InitItems.itemMochiGreen);
+        this.addItem(InitItems.itemMochiRed);
     }
 
     private void addBlock(Block block){

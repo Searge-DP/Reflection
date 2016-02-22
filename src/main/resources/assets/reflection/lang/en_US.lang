@@ -22,6 +22,9 @@ item.reflection.itemLightChestplate.name=Chestplate of Lightanium
 item.reflection.itemLightPants.name=Pants of Lightanium
 item.reflection.itemLightBoots.name=Boots of Lightanium
 item.reflection.itemLightShears.name=Shears of Lightanium
+item.reflection.itemMochiRed.name=Sakura Mochi
+item.reflection.itemMochiGreen.name=Macha Mochi
+item.reflection.itemMochiWhite.name=Mochi
 
 #Tiers
 lightNetworkTier.reflection.0=Tierless

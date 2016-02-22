@@ -60,6 +60,9 @@ public class LibNames{
     public static final String ITEM_LIGHT_PANTS = "itemLightPants";
     public static final String ITEM_LIGHT_BOOTS = "itemLightBoots";
     public static final String ITEM_LIGHT_SHEARS = "itemLightShears";
+    public static final String ITEM_MOCHI_WHITE = "itemMochiWhite";
+    public static final String ITEM_MOCHI_GREEN = "itemMochiGreen";
+    public static final String ITEM_MOCHI_RED = "itemMochiRed";
 
     //Oredict
     public static final String ORE_LIGHTANIUM_INGOT = "ingotLightanium";

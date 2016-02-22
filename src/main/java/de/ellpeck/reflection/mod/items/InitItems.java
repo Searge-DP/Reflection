@@ -40,6 +40,10 @@ public class InitItems{
     public static Item itemLightPants;
     public static Item itemLightBoots;
 
+    public static Item itemMochiWhite;
+    public static Item itemMochiGreen;
+    public static Item itemMochiRed;
+
     public static void preInit(){
         int itemSize = Item.itemRegistry.getKeys().size();
 
@@ -61,6 +65,10 @@ public class InitItems{
         itemLightChestplate = new ItemReflectionArmor(LibNames.ITEM_LIGHT_CHESTPLATE, true, LibMaterials.ARMOR_MATERIAL_LIGHT, 1);
         itemLightPants = new ItemReflectionArmor(LibNames.ITEM_LIGHT_PANTS, true, LibMaterials.ARMOR_MATERIAL_LIGHT, 2);
         itemLightBoots = new ItemReflectionArmor(LibNames.ITEM_LIGHT_BOOTS, true, LibMaterials.ARMOR_MATERIAL_LIGHT, 3);
+
+        itemMochiWhite = new ItemFoodBase(LibNames.ITEM_MOCHI_WHITE, true, 12, 1F, false).setPotionEffect(1, 180, 1, 1.0F).setAlwaysEdible();
+        itemMochiGreen = new ItemFoodBase(LibNames.ITEM_MOCHI_GREEN, true, 12, 1F, false).setPotionEffect(14, 180, 0, 1.0F).setAlwaysEdible();
+        itemMochiRed = new ItemFoodBase(LibNames.ITEM_MOCHI_RED, true, 12, 1F, false).setPotionEffect(21, 300, 1, 1.0F).setAlwaysEdible();
 
         LibMod.LOGGER.info(String.format("%s has registered %s Items!", LibMod.MOD_NAME, Item.itemRegistry.getKeys().size()-itemSize));
     }
