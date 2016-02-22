@@ -16,6 +16,7 @@ import de.ellpeck.reflection.mod.blocks.tier1.BlockCoallector;
 import de.ellpeck.reflection.mod.blocks.tier1.BlockConnectionTunnel1;
 import de.ellpeck.reflection.mod.blocks.tier1.BlockReflector1;
 import de.ellpeck.reflection.mod.blocks.tier2.BlockCharger;
+import de.ellpeck.reflection.mod.blocks.tier2.BlockPassiveMobGen;
 import de.ellpeck.reflection.mod.blocks.tier2.BlockReflector2;
 import de.ellpeck.reflection.mod.blocks.tier3.BlockAdvancedCharger;
 import de.ellpeck.reflection.mod.lib.LibMod;
@@ -37,6 +38,7 @@ public class InitBlocks{
     //Tier 2
     public static Block blockCharger;
     public static Block blockReflector2;
+    public static Block blockPassiveMobGen;
 
     //Tier 3
     public static Block blockAdvancedCharger;
@@ -61,6 +63,7 @@ public class InitBlocks{
         //Tier 2
         blockCharger = new BlockCharger();
         blockReflector2 = new BlockReflector2();
+        blockPassiveMobGen = new BlockPassiveMobGen();
 
         //Tier 3
         blockAdvancedCharger = new BlockAdvancedCharger();

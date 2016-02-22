@@ -50,6 +50,7 @@ public class CreativeTab extends CreativeTabs{
         //Tier 2
         this.addBlock(InitBlocks.blockCharger);
         this.addBlock(InitBlocks.blockReflector2);
+        this.addBlock(InitBlocks.blockPassiveMobGen);
 
         //Tier 3
         this.addBlock(InitBlocks.blockAdvancedCharger);

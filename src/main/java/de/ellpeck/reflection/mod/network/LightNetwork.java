@@ -19,9 +19,9 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class LightNetwork implements ILightNetwork{
 
@@ -34,7 +34,7 @@ public class LightNetwork implements ILightNetwork{
 
     public LightNetwork(){
         this.connections = new ConcurrentSet<IConnectionPair>();
-        this.lightGenAndUsage = new HashMap<BlockPos, Integer>();
+        this.lightGenAndUsage = new ConcurrentHashMap<BlockPos, Integer>();
     }
 
     public static LightNetwork readFromNBT(NBTTagCompound compound){
