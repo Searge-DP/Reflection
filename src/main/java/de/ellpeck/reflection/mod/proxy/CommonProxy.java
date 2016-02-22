@@ -14,6 +14,7 @@ import de.ellpeck.reflection.api.ReflectionAPI;
 import de.ellpeck.reflection.mod.blocks.InitBlocks;
 import de.ellpeck.reflection.mod.crafting.InitCrafting;
 import de.ellpeck.reflection.mod.items.InitItems;
+import de.ellpeck.reflection.mod.misc.InitDungeonLoot;
 import de.ellpeck.reflection.mod.misc.InitOreDictionary;
 import de.ellpeck.reflection.mod.misc.MethodHandler;
 import de.ellpeck.reflection.mod.tile.TileGlassShards;
@@ -40,6 +41,7 @@ public class CommonProxy{
         MinecraftForge.EVENT_BUS.register(new WorldEvents());
 
         InitCrafting.init();
+        InitDungeonLoot.init();
     }
 
     public void postInit(FMLPostInitializationEvent event){
