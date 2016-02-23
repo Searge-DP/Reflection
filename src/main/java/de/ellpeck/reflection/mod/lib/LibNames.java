@@ -17,6 +17,8 @@ public class LibNames{
 
     public static final String MISC_TRANSLATOR = "misc."+BASE_TRANSLATOR;
 
+    public static final String HARVEST_TOOL_PICKAXE = "pickaxe";
+
     //Blocks
     public static final String BLOCK_REFLECTOR_1 = "blockReflector1";
     public static final String BLOCK_CONVERTER_1_2 = "blockConverter12";
@@ -31,6 +33,8 @@ public class LibNames{
     public static final String BLOCK_REFLECTOR_2 = "blockReflector2";
     public static final String BLOCK_CONVERTER_2_3 = "blockConverter23";
     public static final String BLOCK_PASSIVE_MOB_GEN = "blockPassiveMobGen";
+    public static final String BLOCK_DARKNESS = "blockDarkness";
+    public static final String BLOCK_ORE_DARKNESS = "blockOreDarkness";
 
     //Tiles
     public static final String TILE_CONNECTION_TUNNEL = "tileConnectionTunnel1";
@@ -63,6 +67,9 @@ public class LibNames{
     public static final String ITEM_MOCHI_WHITE = "itemMochiWhite";
     public static final String ITEM_MOCHI_GREEN = "itemMochiGreen";
     public static final String ITEM_MOCHI_RED = "itemMochiRed";
+    public static final String ITEM_DARKNESS_INGOT = "itemDarknessIngot";
+    public static final String ITEM_DARKNESS_NUGGET = "itemDarknessNugget";
+    public static final String ITEM_DARKNESS_DUST = "itemDarknessDust";
 
     //Oredict
     public static final String ORE_LIGHTANIUM_INGOT = "ingotLightanium";

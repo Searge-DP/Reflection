@@ -29,6 +29,10 @@ public class InitItems{
     public static Item itemLightaniumNugget;
     public static Item itemLightaniumDust;
 
+    public static Item itemDarknessIngot;
+    public static Item itemDarknessNugget;
+    public static Item itemDarknessDust;
+
     public static Item itemLightAxe;
     public static Item itemLightPickaxe;
     public static Item itemLightShovel;
@@ -54,6 +58,10 @@ public class InitItems{
         itemLightaniumIngot = new ItemBase(LibNames.ITEM_LIGHTANIUM_INGOT, true);
         itemLightaniumNugget = new ItemBase(LibNames.ITEM_LIGHTANIUM_NUGGET, true);
         itemLightaniumDust = new ItemBase(LibNames.ITEM_LIGHTANIUM_DUST, true);
+
+        itemDarknessIngot = new ItemBase(LibNames.ITEM_DARKNESS_INGOT, true);
+        itemDarknessNugget = new ItemBase(LibNames.ITEM_DARKNESS_NUGGET, true);
+        itemDarknessDust = new ItemBase(LibNames.ITEM_DARKNESS_DUST, true);
 
         itemLightAxe = new ItemReflectionAxe(LibNames.ITEM_LIGHT_AXE, true, LibMaterials.TOOL_MATERIAL_LIGHT);
         itemLightPickaxe = new ItemSparklePickaxe(LibNames.ITEM_LIGHT_PICKAXE, true, LibMaterials.TOOL_MATERIAL_LIGHT);

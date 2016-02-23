@@ -16,7 +16,7 @@ item.reflection.itemLightSword.name=Sword of Lightanium
 item.reflection.itemLightBatteryAdvanced.name=Rounded Prism
 item.reflection.itemLightaniumNugget.name=Lightanium Nugget
 item.reflection.itemLightaniumIngot.name=Lightanium Ingot
-item.reflection.itemLightaniumDust.name=Crushed Lightanium
+item.reflection.itemLightaniumDust.name=Powdered Lightanium
 item.reflection.itemLightHelmet.name=Helmet of Lightanium
 item.reflection.itemLightChestplate.name=Chestplate of Lightanium
 item.reflection.itemLightPants.name=Pants of Lightanium
@@ -25,6 +25,9 @@ item.reflection.itemLightShears.name=Shears of Lightanium
 item.reflection.itemMochiRed.name=Sakura Mochi
 item.reflection.itemMochiGreen.name=Macha Mochi
 item.reflection.itemMochiWhite.name=Mochi
+item.reflection.itemDarknessIngot.name=Ingot of the Dark
+item.reflection.itemDarknessNugget.name=Nugget of the Dark
+item.reflection.itemDarknessDust.name=Powder of the Dark
 
 #Tiers
 lightNetworkTier.reflection.0=Tierless
@@ -46,6 +49,8 @@ tile.reflection.blockSparkle.name=Sparkle
 tile.reflection.blockReflector2.name=Reflector of Apprenticeship
 tile.reflection.blockConverter23.name=Converter - Apprentice's Gentry
 tile.reflection.blockPassiveMobGen.name=Condenser of the Passive Light
+tile.reflection.blockOreDarkness.name=Ore of the Dark
+tile.reflection.blockDarkness.name=Block of the Dark
 
 #Misc
 misc.reflection.connectionWorked=You see a beam of light appear...

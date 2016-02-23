@@ -44,9 +44,13 @@ public class InitBlocks{
     public static Block blockAdvancedCharger;
 
     public static Block blockSparkle;
+    public static Block blockGlassShards;
+
     public static Block blockLightanium;
     public static Block blockOreLightanium;
-    public static Block blockGlassShards;
+
+    public static Block blockDarkness;
+    public static Block blockOreDarkness;
 
     public static void preInit(){
         int blockSize = Block.blockRegistry.getKeys().size();
@@ -69,9 +73,13 @@ public class InitBlocks{
         blockAdvancedCharger = new BlockAdvancedCharger();
 
         blockSparkle = new BlockSparkle();
-        blockLightanium = new BlockBase(Material.iron, LibNames.BLOCK_LIGHTANIUM, true, 3.0F, Block.soundTypeMetal, "pickaxe", 1);
-        blockOreLightanium = new BlockBase(Material.rock, LibNames.BLOCK_ORE_LIGHTANIUM, true, 3.0F, BlockSparkle.soundTypeStone, "pickaxe", 1);
         blockGlassShards = new BlockGlassShards();
+
+        blockLightanium = new BlockBase(Material.iron, LibNames.BLOCK_LIGHTANIUM, true, 3.0F, Block.soundTypeMetal, LibNames.HARVEST_TOOL_PICKAXE, 1);
+        blockOreLightanium = new BlockBase(Material.rock, LibNames.BLOCK_ORE_LIGHTANIUM, true, 3.0F, BlockSparkle.soundTypeStone, LibNames.HARVEST_TOOL_PICKAXE, 1);
+
+        blockDarkness = new BlockBase(Material.iron, LibNames.BLOCK_DARKNESS, true, 4.0F, Block.soundTypeMetal, LibNames.HARVEST_TOOL_PICKAXE, 2);
+        blockOreDarkness = new BlockBase(Material.iron, LibNames.BLOCK_ORE_DARKNESS, true, 4.0F, Block.soundTypeStone, LibNames.HARVEST_TOOL_PICKAXE, 2);
 
         LibMod.LOGGER.info(String.format("%s has registered %s Blocks!", LibMod.MOD_NAME, Block.blockRegistry.getKeys().size()-blockSize));
     }

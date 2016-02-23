@@ -57,8 +57,12 @@ public class CreativeTab extends CreativeTabs{
 
         this.addBlock(InitBlocks.blockLightanium);
         this.addBlock(InitBlocks.blockOreLightanium);
-        this.addBlock(InitBlocks.blockGlassShards);
+
+        this.addBlock(InitBlocks.blockDarkness);
+        this.addBlock(InitBlocks.blockOreDarkness);
+
         this.addBlock(InitBlocks.blockSparkle);
+        this.addBlock(InitBlocks.blockGlassShards);
 
         //Items
         this.addItem(InitItems.itemLightConnector);
@@ -68,6 +72,10 @@ public class CreativeTab extends CreativeTabs{
         this.addItem(InitItems.itemLightaniumIngot);
         this.addItem(InitItems.itemLightaniumDust);
         this.addItem(InitItems.itemLightaniumNugget);
+
+        this.addItem(InitItems.itemDarknessIngot);
+        this.addItem(InitItems.itemDarknessDust);
+        this.addItem(InitItems.itemDarknessNugget);
 
         this.addItem(InitItems.itemLightAxe);
         this.addItem(InitItems.itemLightPickaxe);

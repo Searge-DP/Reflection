@@ -38,6 +38,15 @@ public class InitCrafting{
         addFurnace(new ItemStack(InitItems.itemLightaniumIngot), new ItemStack(InitBlocks.blockOreLightanium), 1.0F);
         addFurnace(new ItemStack(InitItems.itemLightaniumIngot), new ItemStack(InitItems.itemLightaniumDust), 0.75F);
 
+        addShapeless(new ItemStack(InitItems.itemDarknessIngot, 9), new ItemStack(InitBlocks.blockDarkness));
+        addShaped(new ItemStack(InitBlocks.blockDarkness), "XXX", "XXX", "XXX", 'X', new ItemStack(InitItems.itemDarknessIngot));
+
+        addShapeless(new ItemStack(InitItems.itemDarknessNugget, 9), new ItemStack(InitItems.itemDarknessIngot));
+        addShaped(new ItemStack(InitItems.itemDarknessIngot), "XXX", "XXX", "XXX", 'X', new ItemStack(InitItems.itemDarknessNugget));
+
+        addFurnace(new ItemStack(InitItems.itemDarknessIngot), new ItemStack(InitBlocks.blockOreDarkness), 1.0F);
+        addFurnace(new ItemStack(InitItems.itemDarknessIngot), new ItemStack(InitItems.itemDarknessDust), 0.75F);
+
         //Tools
         addTools(InitItems.itemLightPickaxe, InitItems.itemLightAxe, InitItems.itemLightShovel, InitItems.itemLightSword, new ItemStack(Items.iron_ingot), new ItemStack(InitItems.itemLightaniumIngot));
         addShaped(new ItemStack(InitItems.itemLightConnector), "  M", " H ", "H  ", 'H', new ItemStack(Items.iron_ingot), 'M', new ItemStack(InitItems.itemLightaniumIngot));
