@@ -18,6 +18,6 @@ import de.ellpeck.reflection.mod.tile.tier3.TileAdvancedCharger;
 public class BlockAdvancedCharger extends BlockCharger{
 
     public BlockAdvancedCharger(){
-        super(LibNames.BLOCK_CHARGER_ADVANCED, ReflectionAPI.TIER_3, true, TileAdvancedCharger.class, LibNames.TILE_CHARGER_ADVANCED);
+        super(LibNames.BLOCK_CHARGER_ADVANCED, ReflectionAPI.TIER_3, true, TileAdvancedCharger.class, LibNames.TILE_CHARGER_ADVANCED, true);
     }
 }

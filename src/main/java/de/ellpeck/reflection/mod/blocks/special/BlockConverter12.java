@@ -18,6 +18,6 @@ import de.ellpeck.reflection.mod.tile.special.TileConverter12;
 public class BlockConverter12 extends BlockLightComponentBase{
 
     public BlockConverter12(){
-        super(LibNames.BLOCK_CONVERTER_1_2, ReflectionAPI.TIER_SPECIAL, true, TileConverter12.class, LibNames.TILE_CONVERTER_1_2);
+        super(LibNames.BLOCK_CONVERTER_1_2, ReflectionAPI.TIER_SPECIAL, true, TileConverter12.class, LibNames.TILE_CONVERTER_1_2, true);
     }
 }

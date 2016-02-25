@@ -28,7 +28,7 @@ import java.util.Random;
 public class BlockCoallector extends BlockLightComponentBase{
 
     public BlockCoallector(){
-        super(LibNames.BLOCK_COALLECTOR, ReflectionAPI.TIER_1, true, TileCoallector.class, LibNames.TILE_COALLECTOR);
+        super(LibNames.BLOCK_COALLECTOR, ReflectionAPI.TIER_1, true, TileCoallector.class, LibNames.TILE_COALLECTOR, true);
         this.setTickRandomly(true);
     }
 

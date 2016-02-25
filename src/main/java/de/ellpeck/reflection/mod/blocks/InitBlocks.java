@@ -21,6 +21,7 @@ import de.ellpeck.reflection.mod.blocks.tier2.BlockReflector2;
 import de.ellpeck.reflection.mod.blocks.tier3.BlockAdvancedCharger;
 import de.ellpeck.reflection.mod.lib.LibMod;
 import de.ellpeck.reflection.mod.lib.LibNames;
+import de.ellpeck.reflection.mod.tile.TileGlassShards;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
@@ -84,4 +85,7 @@ public class InitBlocks{
         LibMod.LOGGER.info(String.format("%s has registered %s Blocks!", LibMod.MOD_NAME, Block.blockRegistry.getKeys().size()-blockSize));
     }
 
+    public static void postInit(){
+        TileGlassShards.postInit();
+    }
 }

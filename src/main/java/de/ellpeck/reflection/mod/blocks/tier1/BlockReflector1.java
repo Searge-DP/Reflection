@@ -18,7 +18,7 @@ import de.ellpeck.reflection.mod.tile.tier1.TileReflector1;
 public class BlockReflector1 extends BlockLightComponentBase{
 
     public BlockReflector1(){
-        super(LibNames.BLOCK_REFLECTOR_1, ReflectionAPI.TIER_1, true, TileReflector1.class, LibNames.TILE_REFLECTOR_1);
+        super(LibNames.BLOCK_REFLECTOR_1, ReflectionAPI.TIER_1, true, TileReflector1.class, LibNames.TILE_REFLECTOR_1, true);
 
         float f = 1F/16F;
         this.setBlockBounds(3*f, 0F, 3*f, 1F-3*f, 1F-3*f, 1F-3*f);

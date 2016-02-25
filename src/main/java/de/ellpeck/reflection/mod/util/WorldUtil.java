@@ -14,12 +14,14 @@ import de.ellpeck.reflection.api.ReflectionAPI;
 import de.ellpeck.reflection.api.internal.IConnectionPair;
 import de.ellpeck.reflection.api.internal.ILightNetwork;
 import de.ellpeck.reflection.api.light.ILightComponent;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 
+import java.util.Map;
 import java.util.Set;
 
 public class WorldUtil{
@@ -65,5 +67,17 @@ public class WorldUtil{
 
     public static long totalTime(World world){
         return world.getTotalWorldTime();
+    }
+
+    public static boolean areBlocksInRelativePlaces(World world, BlockPos start, Map<BlockPos, IBlockState> blocks){
+        for(Map.Entry<BlockPos, IBlockState> entry : blocks.entrySet()){
+            BlockPos relative = entry.getKey();
+
+            BlockPos newPos = new BlockPos(relative.getX()+start.getX(), relative.getY()+start.getY(), relative.getZ()+start.getZ());
+            if(world.getBlockState(newPos).equals(entry.getValue())){
+                return false;
+            }
+        }
+        return true;
     }
 }

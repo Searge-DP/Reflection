@@ -14,14 +14,6 @@ import de.ellpeck.reflection.mod.gui.OverlayEvents;
 import de.ellpeck.reflection.mod.lib.LibMod;
 import de.ellpeck.reflection.mod.tile.TileLightComponentBase;
 import de.ellpeck.reflection.mod.tile.render.TESRLightComponentBase;
-import de.ellpeck.reflection.mod.tile.special.TileConverter12;
-import de.ellpeck.reflection.mod.tile.special.TileConverter23;
-import de.ellpeck.reflection.mod.tile.tier1.TileCoallector;
-import de.ellpeck.reflection.mod.tile.tier1.TileConnectionTunnel1;
-import de.ellpeck.reflection.mod.tile.tier1.TileReflector1;
-import de.ellpeck.reflection.mod.tile.tier2.TileCharger;
-import de.ellpeck.reflection.mod.tile.tier2.TilePassiveMobGen;
-import de.ellpeck.reflection.mod.tile.tier2.TileReflector2;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -33,12 +25,15 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 @SuppressWarnings("unused")
 public class ClientProxy extends CommonProxy{
 
     private static Map<ItemStack, ResourceLocation> renderRegistry = new HashMap<ItemStack, ResourceLocation>();
+    private static Set<Class<? extends TileLightComponentBase>> lightBeamRenderRegistry = new HashSet<Class<? extends TileLightComponentBase>>();
 
     @Override
     public void preInit(FMLPreInitializationEvent event){
@@ -56,18 +51,9 @@ public class ClientProxy extends CommonProxy{
 
         MinecraftForge.EVENT_BUS.register(new OverlayEvents());
 
-        this.registerBeamRenderer(TileConverter12.class);
-        this.registerBeamRenderer(TileCoallector.class);
-        this.registerBeamRenderer(TileReflector1.class);
-        this.registerBeamRenderer(TileCharger.class);
-        this.registerBeamRenderer(TileConnectionTunnel1.class);
-        this.registerBeamRenderer(TileReflector2.class);
-        this.registerBeamRenderer(TileConverter23.class);
-        this.registerBeamRenderer(TilePassiveMobGen.class);
-    }
-
-    private void registerBeamRenderer(Class<? extends TileLightComponentBase> tile){
-        ClientRegistry.bindTileEntitySpecialRenderer(tile, new TESRLightComponentBase());
+        for(Class<? extends TileLightComponentBase> tile : lightBeamRenderRegistry){
+            ClientRegistry.bindTileEntitySpecialRenderer(tile, new TESRLightComponentBase());
+        }
     }
 
     @Override
@@ -77,8 +63,11 @@ public class ClientProxy extends CommonProxy{
 
     @Override
     public void addToRenderRegistry(ItemStack stack, ResourceLocation location){
-        super.addToRenderRegistry(stack, location);
-
         renderRegistry.put(stack, location);
+    }
+
+    @Override
+    public void addToLightBeamRenderRegistry(Class<? extends TileLightComponentBase> tile){
+        lightBeamRenderRegistry.add(tile);
     }
 }

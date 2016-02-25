@@ -18,7 +18,7 @@ import de.ellpeck.reflection.mod.tile.tier2.TilePassiveMobGen;
 public class BlockPassiveMobGen extends BlockLightComponentBase{
 
     public BlockPassiveMobGen(){
-        super(LibNames.BLOCK_PASSIVE_MOB_GEN, ReflectionAPI.TIER_2, true, TilePassiveMobGen.class, LibNames.TILE_PASSIVE_MOB_GEN);
+        super(LibNames.BLOCK_PASSIVE_MOB_GEN, ReflectionAPI.TIER_2, true, TilePassiveMobGen.class, LibNames.TILE_PASSIVE_MOB_GEN, true);
     }
 
 }

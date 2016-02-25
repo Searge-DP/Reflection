@@ -12,6 +12,7 @@ package de.ellpeck.reflection.mod.blocks;
 
 import de.ellpeck.reflection.api.light.ILightTierDisplay;
 import de.ellpeck.reflection.api.light.LightNetworkTier;
+import de.ellpeck.reflection.mod.Reflection;
 import de.ellpeck.reflection.mod.tile.TileLightComponentBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.EnumWorldBlockLayer;
@@ -22,9 +23,13 @@ public class BlockLightComponentBase extends BlockContainerBase implements ILigh
 
     private LightNetworkTier theTier;
 
-    public BlockLightComponentBase(String name, LightNetworkTier tier, boolean addTab, Class<? extends TileLightComponentBase> tileClass, String tileName){
+    public BlockLightComponentBase(String name, LightNetworkTier tier, boolean addTab, Class<? extends TileLightComponentBase> tileClass, String tileName, boolean registerBeamRenderer){
         super(Material.glass, name, addTab, 2.0F, soundTypeMetal, "pickaxe", 0, tileClass, tileName);
         this.theTier = tier;
+
+        if(registerBeamRenderer){
+            Reflection.proxy.addToLightBeamRenderRegistry(tileClass);
+        }
     }
 
     @Override

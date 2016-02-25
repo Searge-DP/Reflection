@@ -17,7 +17,7 @@ import de.ellpeck.reflection.mod.items.InitItems;
 import de.ellpeck.reflection.mod.misc.InitDungeonLoot;
 import de.ellpeck.reflection.mod.misc.InitOreDictionary;
 import de.ellpeck.reflection.mod.misc.MethodHandler;
-import de.ellpeck.reflection.mod.tile.TileGlassShards;
+import de.ellpeck.reflection.mod.tile.TileLightComponentBase;
 import de.ellpeck.reflection.mod.world.WorldEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -40,15 +40,20 @@ public class CommonProxy{
     public void init(FMLInitializationEvent event){
         MinecraftForge.EVENT_BUS.register(new WorldEvents());
 
+        InitItems.init();
         InitCrafting.init();
         InitDungeonLoot.init();
     }
 
     public void postInit(FMLPostInitializationEvent event){
-        TileGlassShards.postInit();
+        InitBlocks.postInit();
     }
 
     public void addToRenderRegistry(ItemStack stack, ResourceLocation location){
+
+    }
+
+    public void addToLightBeamRenderRegistry(Class<? extends TileLightComponentBase> tile){
 
     }
 }

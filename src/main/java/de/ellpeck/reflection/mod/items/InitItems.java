@@ -24,6 +24,7 @@ public class InitItems{
     public static Item itemLightConnector;
     public static Item itemLightBatteryBase;
     public static Item itemLightBatteryAdvanced;
+    public static Item itemDarknessBall;
 
     public static Item itemLightaniumIngot;
     public static Item itemLightaniumNugget;
@@ -54,6 +55,7 @@ public class InitItems{
         itemLightConnector = new ItemLightConnector();
         itemLightBatteryBase = new ItemLightBattery();
         itemLightBatteryAdvanced = new ItemLightBatteryAdvanced();
+        itemDarknessBall = new ItemDarknessBall();
 
         itemLightaniumIngot = new ItemBase(LibNames.ITEM_LIGHTANIUM_INGOT, true);
         itemLightaniumNugget = new ItemBase(LibNames.ITEM_LIGHTANIUM_NUGGET, true);
@@ -81,4 +83,7 @@ public class InitItems{
         LibMod.LOGGER.info(String.format("%s has registered %s Items!", LibMod.MOD_NAME, Item.itemRegistry.getKeys().size()-itemSize));
     }
 
+    public static void init(){
+        ItemDarknessBall.init();
+    }
 }

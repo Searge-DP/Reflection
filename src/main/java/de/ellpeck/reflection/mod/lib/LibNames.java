@@ -70,6 +70,7 @@ public class LibNames{
     public static final String ITEM_DARKNESS_INGOT = "itemDarknessIngot";
     public static final String ITEM_DARKNESS_NUGGET = "itemDarknessNugget";
     public static final String ITEM_DARKNESS_DUST = "itemDarknessDust";
+    public static final String ITEM_DARKNESS_BALL = "itemDarknessBall";
 
     //Oredict
     public static final String ORE_LIGHTANIUM_INGOT = "ingotLightanium";
