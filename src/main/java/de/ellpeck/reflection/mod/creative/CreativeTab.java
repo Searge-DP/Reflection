@@ -73,6 +73,7 @@ public class CreativeTab extends CreativeTabs{
         this.addItem(InitItems.itemLightaniumDust);
         this.addItem(InitItems.itemLightaniumNugget);
 
+        this.addItem(InitItems.itemDarknessBall);
         this.addItem(InitItems.itemDarknessIngot);
         this.addItem(InitItems.itemDarknessDust);
         this.addItem(InitItems.itemDarknessNugget);

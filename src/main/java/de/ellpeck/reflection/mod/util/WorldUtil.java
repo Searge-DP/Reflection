@@ -71,13 +71,18 @@ public class WorldUtil{
 
     public static boolean areBlocksInRelativePlaces(World world, BlockPos start, Map<BlockPos, IBlockState> blocks){
         for(Map.Entry<BlockPos, IBlockState> entry : blocks.entrySet()){
-            BlockPos relative = entry.getKey();
-
-            BlockPos newPos = new BlockPos(relative.getX()+start.getX(), relative.getY()+start.getY(), relative.getZ()+start.getZ());
-            if(world.getBlockState(newPos).equals(entry.getValue())){
+            if(!world.getBlockState(getPosFromRelative(start, entry.getKey())).equals(entry.getValue())){
                 return false;
             }
         }
         return true;
+    }
+
+    public static BlockPos getPosFromRelative(BlockPos start, BlockPos relative){
+        return getPosFromRelative(start, relative.getX(), relative.getY(), relative.getZ());
+    }
+
+    public static BlockPos getPosFromRelative(BlockPos start, int x, int y, int z){
+        return new BlockPos(start.getX()+x, start.getY()+y, start.getZ()+z);
     }
 }

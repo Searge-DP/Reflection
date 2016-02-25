@@ -13,6 +13,7 @@ package de.ellpeck.reflection.mod.items;
 import de.ellpeck.reflection.mod.blocks.InitBlocks;
 import de.ellpeck.reflection.mod.lib.LibNames;
 import de.ellpeck.reflection.mod.util.WorldUtil;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -51,7 +52,28 @@ public class ItemDarknessBall extends ItemBase{
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos posHit, EnumFacing side, float hitX, float hitY, float hitZ){
         if(WorldUtil.areBlocksInRelativePlaces(world, posHit, multiblock)){
             if(!world.isRemote){
+                for(Map.Entry<BlockPos, IBlockState> entry : multiblock.entrySet()){
+                    Block toConvert = entry.getValue().getBlock();
 
+                    Block newBlock;
+                    if(toConvert == InitBlocks.blockOreLightanium){
+                        newBlock = InitBlocks.blockOreDarkness;
+                    }
+                    else if(toConvert == Blocks.diamond_block){
+                        newBlock = Blocks.obsidian;
+                    }
+                    else{
+                        newBlock = InitBlocks.blockDarkness;
+                    }
+
+                    BlockPos relative = WorldUtil.getPosFromRelative(posHit, entry.getKey());
+                    IBlockState newState = newBlock.getDefaultState();
+
+                    world.setBlockState(relative, newState);
+                    world.playAuxSFX(2001, relative, Block.getStateId(newState));
+                }
+
+                stack.stackSize--;
             }
             return true;
         }
