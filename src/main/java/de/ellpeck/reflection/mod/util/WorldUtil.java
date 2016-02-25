@@ -71,11 +71,11 @@ public class WorldUtil{
     }
 
     public static boolean areBlocksInRelativePlaces(World world, BlockPos start, Map<BlockPos, IBlockState> blocks){
-        return setBlocksInRelativePlaces(world, start, blocks, null);
+        return replaceBlocksInRelativePlaces(world, start, blocks, null);
     }
 
-    public static boolean setBlocksInRelativePlaces(World world, BlockPos start, Map<BlockPos, IBlockState> blocks, Map<IBlockState, IBlockState> replacements){
-        for(Map.Entry<BlockPos, IBlockState> entry : blocks.entrySet()){
+    public static boolean replaceBlocksInRelativePlaces(World world, BlockPos start, Map<BlockPos, IBlockState> originals, Map<IBlockState, IBlockState> replacements){
+        for(Map.Entry<BlockPos, IBlockState> entry : originals.entrySet()){
             BlockPos relative = getPosFromRelative(start, entry.getKey());
             IBlockState toBeReplaced = entry.getValue();
 
