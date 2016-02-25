@@ -14,6 +14,7 @@ import de.ellpeck.reflection.api.ReflectionAPI;
 import de.ellpeck.reflection.api.internal.IConnectionPair;
 import de.ellpeck.reflection.api.internal.ILightNetwork;
 import de.ellpeck.reflection.api.light.ILightComponent;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -70,8 +71,25 @@ public class WorldUtil{
     }
 
     public static boolean areBlocksInRelativePlaces(World world, BlockPos start, Map<BlockPos, IBlockState> blocks){
+        return setBlocksInRelativePlaces(world, start, blocks, null);
+    }
+
+    public static boolean setBlocksInRelativePlaces(World world, BlockPos start, Map<BlockPos, IBlockState> blocks, Map<IBlockState, IBlockState> replacements){
         for(Map.Entry<BlockPos, IBlockState> entry : blocks.entrySet()){
-            if(!world.getBlockState(getPosFromRelative(start, entry.getKey())).equals(entry.getValue())){
+            BlockPos relative = getPosFromRelative(start, entry.getKey());
+            IBlockState toBeReplaced = entry.getValue();
+
+            if(world.getBlockState(relative).equals(toBeReplaced)){
+                if(replacements != null && !replacements.isEmpty()){
+
+                    IBlockState replacement = replacements.get(toBeReplaced);
+                    if(replacement != null){
+                        world.setBlockState(relative, replacement);
+                        world.playAuxSFX(2001, relative, Block.getStateId(replacement));
+                    }
+                }
+            }
+            else{
                 return false;
             }
         }
