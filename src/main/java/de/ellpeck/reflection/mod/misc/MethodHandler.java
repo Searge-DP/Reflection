@@ -56,7 +56,7 @@ public class MethodHandler implements IMethodHandler{
         if(connections != null && !connections.isEmpty()){
             for(IConnectionPair pair : connections){
                 NBTTagCompound pairCompound = new NBTTagCompound();
-                pair.writeToNBT(pairCompound);
+                LightNetworkHandler.ConnectionPair.writeToNBT(pairCompound, pair);
                 list.appendTag(pairCompound);
             }
         }

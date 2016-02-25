@@ -10,7 +10,6 @@
 
 package de.ellpeck.reflection.api.internal;
 
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 
 /**
@@ -34,9 +33,4 @@ public interface IConnectionPair{
      */
     BlockPos getSecond();
 
-    /**
-     * Writes this connection to NBT.
-     * (For internal use only, you'll never have to call this.)
-     */
-    void writeToNBT(NBTTagCompound compound);
 }

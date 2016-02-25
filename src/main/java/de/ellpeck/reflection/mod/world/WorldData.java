@@ -102,7 +102,7 @@ public class WorldData extends WorldSavedData{
             NBTTagList allNetworks = new NBTTagList();
             for(ILightNetwork network : networks.getValue()){
                 NBTTagCompound networkCompound = new NBTTagCompound();
-                network.writeToNBT(networkCompound);
+                LightNetwork.writeToNBT(networkCompound, network);
                 allNetworks.appendTag(networkCompound);
             }
             dimCompound.setTag(TAG_NETWORKS, allNetworks);

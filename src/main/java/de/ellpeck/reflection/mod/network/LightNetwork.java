@@ -130,10 +130,9 @@ public class LightNetwork implements ILightNetwork{
         return this.lightGenAndUsage;
     }
 
-    @Override
-    public void writeToNBT(NBTTagCompound compound){
+    public static void writeToNBT(NBTTagCompound compound, ILightNetwork network){
         NBTTagList light = new NBTTagList();
-        for(Map.Entry<BlockPos, Integer> entry : this.lightGenAndUsage.entrySet()){
+        for(Map.Entry<BlockPos, Integer> entry : network.getLightGenAndUsageMap().entrySet()){
             NBTTagCompound lightCompound = new NBTTagCompound();
             WorldUtil.writeBlockPosToNBT(lightCompound, entry.getKey());
             lightCompound.setInteger(TAG_AMOUNT, entry.getValue());
@@ -142,9 +141,9 @@ public class LightNetwork implements ILightNetwork{
         compound.setTag(TAG_LIGHT, light);
 
         NBTTagList aNetwork = new NBTTagList();
-        for(IConnectionPair pair : this.connections){
+        for(IConnectionPair pair : network.getConnections()){
             NBTTagCompound pairCompound = new NBTTagCompound();
-            pair.writeToNBT(pairCompound);
+            LightNetworkHandler.ConnectionPair.writeToNBT(pairCompound, pair);
             aNetwork.appendTag(pairCompound);
         }
         compound.setTag(TAG_NETWORK, aNetwork);

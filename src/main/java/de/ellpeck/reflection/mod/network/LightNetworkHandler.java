@@ -213,14 +213,13 @@ public class LightNetworkHandler implements ILightNetworkHandler{
             return component.equals(this.first) || component.equals(this.second);
         }
 
-        @Override
-        public void writeToNBT(NBTTagCompound compound){
+        public static void writeToNBT(NBTTagCompound compound, IConnectionPair pair){
             NBTTagCompound firstCompound = new NBTTagCompound();
-            WorldUtil.writeBlockPosToNBT(firstCompound, this.first);
+            WorldUtil.writeBlockPosToNBT(firstCompound, pair.getFirst());
             compound.setTag(TAG_FIRST, firstCompound);
 
             NBTTagCompound secondCompound = new NBTTagCompound();
-            WorldUtil.writeBlockPosToNBT(secondCompound, this.second);
+            WorldUtil.writeBlockPosToNBT(secondCompound, pair.getSecond());
             compound.setTag(TAG_SECOND, secondCompound);
         }
 

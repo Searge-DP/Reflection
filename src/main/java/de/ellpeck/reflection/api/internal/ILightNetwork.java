@@ -10,7 +10,6 @@
 
 package de.ellpeck.reflection.api.internal;
 
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 
@@ -92,11 +91,5 @@ public interface ILightNetwork{
      * Light users have a negative value, light generators have a positive value.
      */
     Map<BlockPos, Integer> getLightGenAndUsageMap();
-
-    /**
-     * Writes this network to NBT.
-     * (For internal use only, you'll never have to call this.)
-     */
-    void writeToNBT(NBTTagCompound compound);
 
 }
