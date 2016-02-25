@@ -28,6 +28,7 @@ item.reflection.itemMochiWhite.name=Mochi
 item.reflection.itemDarknessIngot.name=Ingot of the Dark
 item.reflection.itemDarknessNugget.name=Nugget of the Dark
 item.reflection.itemDarknessDust.name=Powder of the Dark
+item.reflection.itemDarknessBall.name=Ball of the Dark Conversion
 
 #Tiers
 lightNetworkTier.reflection.0=Tierless
