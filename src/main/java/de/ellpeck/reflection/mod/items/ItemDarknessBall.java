@@ -56,7 +56,7 @@ public class ItemDarknessBall extends ItemBase{
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos posHit, EnumFacing side, float hitX, float hitY, float hitZ){
         if(WorldUtil.areBlocksInRelativePlaces(world, posHit, multiblock)){
             if(!world.isRemote){
-                WorldUtil.setBlocksInRelativePlaces(world, posHit, multiblock, replacements);
+                WorldUtil.replaceBlocksInRelativePlaces(world, posHit, multiblock, replacements);
 
                 stack.stackSize--;
             }
