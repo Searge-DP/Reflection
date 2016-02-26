@@ -52,6 +52,7 @@ tile.reflection.blockConverter23.name=Converter - Apprentice's Gentry
 tile.reflection.blockPassiveMobGen.name=Condenser of the Passive Light
 tile.reflection.blockOreDarkness.name=Ore of the Dark
 tile.reflection.blockDarkness.name=Block of the Dark
+tile.reflection.blockFireGen.name=Absorber of Infernos
 
 #Misc
 misc.reflection.connectionWorked=You see a beam of light appear...
