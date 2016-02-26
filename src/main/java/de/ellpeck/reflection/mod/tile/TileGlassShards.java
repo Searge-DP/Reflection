@@ -57,6 +57,9 @@ public class TileGlassShards extends TileEntity implements ITickable{
                                     IBlockState newStateBelow = newBlockBelow.getDefaultState();
                                     this.worldObj.setBlockState(posBelow, newStateBelow);
                                     this.worldObj.playAuxSFX(2001, posBelow, Block.getStateId(newStateBelow));
+
+                                    this.worldObj.playAuxSFX(2001, this.pos, Block.getStateId(this.worldObj.getBlockState(this.pos)));
+                                    this.worldObj.setBlockToAir(this.pos);
                                 }
                             }
                         }
