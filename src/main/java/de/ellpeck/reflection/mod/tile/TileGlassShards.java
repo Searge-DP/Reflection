@@ -15,6 +15,7 @@ import de.ellpeck.reflection.mod.lib.LibMod;
 import de.ellpeck.reflection.mod.util.WorldUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -55,11 +56,9 @@ public class TileGlassShards extends TileEntity implements ITickable{
                                 Block newBlockBelow = this.getConversion(blockBelow);
                                 if(newBlockBelow != null){
                                     IBlockState newStateBelow = newBlockBelow.getDefaultState();
-                                    this.worldObj.setBlockState(posBelow, newStateBelow);
-                                    this.worldObj.playAuxSFX(2001, posBelow, Block.getStateId(newStateBelow));
+                                    WorldUtil.setBlockWithParticles(this.worldObj, posBelow, newStateBelow, true);
 
-                                    this.worldObj.playAuxSFX(2001, this.pos, Block.getStateId(this.worldObj.getBlockState(this.pos)));
-                                    this.worldObj.setBlockToAir(this.pos);
+                                    WorldUtil.setBlockWithParticles(this.worldObj, this.pos, Blocks.air.getDefaultState(), false);
                                 }
                             }
                         }

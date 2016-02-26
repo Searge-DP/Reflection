@@ -66,6 +66,18 @@ public class WorldUtil{
         }
     }
 
+    public static void setBlockWithParticles(World world, BlockPos pos, IBlockState newBlock, boolean newBlockParticles){
+        IBlockState state = world.getBlockState(pos);
+        if(state != null){
+            world.setBlockState(pos, newBlock);
+            displayBlockBreakingParticles(world, pos, newBlockParticles ? newBlock : state);
+        }
+    }
+
+    public static void displayBlockBreakingParticles(World world, BlockPos pos, IBlockState state){
+        world.playAuxSFX(2001, pos, Block.getStateId(state));
+    }
+
     public static long totalTime(World world){
         return world.getTotalWorldTime();
     }
@@ -84,8 +96,7 @@ public class WorldUtil{
 
                     IBlockState replacement = replacements.get(toBeReplaced);
                     if(replacement != null){
-                        world.setBlockState(relative, replacement);
-                        world.playAuxSFX(2001, relative, Block.getStateId(replacement));
+                        setBlockWithParticles(world, relative, replacement, true);
                     }
                 }
             }
