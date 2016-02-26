@@ -65,7 +65,7 @@ public class TilePassiveMobGen extends TileLightComponentBase implements ITickab
                 if(genAmount > 0){
                     if(this.amountGeneratedInNetwork != genAmount){
                         this.amountGeneratedInNetwork = genAmount;
-                        network.addLightGen(this, genAmount);
+                        network.addLightGen(this, this.amountGeneratedInNetwork);
                     }
                 }
                 else{
