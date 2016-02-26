@@ -47,6 +47,8 @@ public class InitCrafting{
         addFurnace(new ItemStack(InitItems.itemDarknessIngot), new ItemStack(InitBlocks.blockOreDarkness), 1.0F);
         addFurnace(new ItemStack(InitItems.itemDarknessIngot), new ItemStack(InitItems.itemDarknessDust), 0.75F);
 
+        addShaped(new ItemStack(InitItems.itemDarknessBall), "FLF", "FOF", "FNF", 'F', new ItemStack(Items.fire_charge), 'L', new ItemStack(InitItems.itemLightaniumIngot), 'N', new ItemStack(Items.netherbrick), 'O', new ItemStack(Blocks.obsidian));
+
         //Tools
         addTools(InitItems.itemLightPickaxe, InitItems.itemLightAxe, InitItems.itemLightShovel, InitItems.itemLightSword, new ItemStack(Items.iron_ingot), new ItemStack(InitItems.itemLightaniumIngot));
         addShaped(new ItemStack(InitItems.itemLightConnector), "  M", " H ", "H  ", 'H', new ItemStack(Items.iron_ingot), 'M', new ItemStack(InitItems.itemLightaniumIngot));
@@ -60,17 +62,18 @@ public class InitCrafting{
 
         //Reflectors
         addShaped(new ItemStack(InitBlocks.blockReflector1), " G ", "GLG", "SSS", 'G', new ItemStack(Blocks.glass), 'L', new ItemStack(InitItems.itemLightaniumIngot), 'S', new ItemStack(Blocks.stone_slab));
-        addShapeless(new ItemStack(InitBlocks.blockReflector2), new ItemStack(InitBlocks.blockReflector1), new ItemStack(Blocks.gold_block));
+        addShapeless(new ItemStack(InitBlocks.blockReflector2), new ItemStack(InitBlocks.blockReflector1), new ItemStack(Items.gold_ingot));
 
         //Converters
         addShapeless(new ItemStack(InitBlocks.blockConverter12), new ItemStack(InitBlocks.blockReflector1), new ItemStack(InitBlocks.blockReflector2));
         addShapeless(new ItemStack(InitBlocks.blockConverter23), new ItemStack(InitBlocks.blockReflector2), new ItemStack(Blocks.gold_block));
 
         //Machines
-        addShaped(new ItemStack(InitBlocks.blockCoallector), "NNN", "NRN", "LLL", 'N', new ItemStack(InitItems.itemLightaniumNugget), 'R', new ItemStack(InitBlocks.blockReflector1), 'L', new ItemStack(InitItems.itemLightaniumIngot));
+        addShaped(new ItemStack(InitBlocks.blockCoallector), "NNN", "NRN", "LLL", 'N', new ItemStack(InitItems.itemLightaniumNugget), 'R', new ItemStack(Items.coal), 'L', new ItemStack(InitItems.itemLightaniumIngot));
         addShapeless(new ItemStack(InitBlocks.blockConnectionTunnel1), new ItemStack(InitBlocks.blockReflector1), new ItemStack(InitBlocks.blockReflector1), new ItemStack(InitItems.itemLightaniumIngot));
         addShaped(new ItemStack(InitBlocks.blockCharger), "NBN", "NRN", "LLL", 'B', new ItemStack(InitItems.itemLightBatteryBase), 'R', new ItemStack(InitBlocks.blockReflector1), 'N', new ItemStack(InitItems.itemLightaniumNugget), 'L', new ItemStack(InitItems.itemLightaniumIngot));
         addShaped(new ItemStack(InitBlocks.blockAdvancedCharger), "NBN", "NRN", "LLL", 'B', new ItemStack(InitItems.itemLightBatteryAdvanced), 'R', new ItemStack(InitBlocks.blockReflector1), 'N', new ItemStack(InitItems.itemLightaniumNugget), 'L', new ItemStack(InitItems.itemLightaniumIngot));
+        addShaped(new ItemStack(InitBlocks.blockPassiveMobGen), "NNN", "NRN", "DDD", 'N', new ItemStack(InitItems.itemLightaniumNugget), 'R', new ItemStack(Items.leather), 'D', new ItemStack(InitItems.itemDarknessIngot));
 
         LibMod.LOGGER.info(String.format("%s has registered %s Crafting Recipes!", LibMod.MOD_NAME, CraftingManager.getInstance().getRecipeList().size()-craftingSize));
     }
