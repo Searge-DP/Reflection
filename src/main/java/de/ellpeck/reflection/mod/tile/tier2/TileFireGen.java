@@ -15,11 +15,12 @@ import de.ellpeck.reflection.mod.tile.TileLightComponentBase;
 import de.ellpeck.reflection.mod.util.WorldUtil;
 import net.minecraft.block.BlockFire;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
 import net.minecraft.world.WorldProviderHell;
+import net.minecraft.world.WorldServer;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -60,29 +61,37 @@ public class TileFireGen extends TileLightComponentBase implements ITickable{
             if(this.worldObj.provider instanceof WorldProviderHell){
                 boolean cooldownWatcher = this.fireCooldown > 0;
                 if(this.fireCooldown <= 0){
-                    int range = 5;
+                    if(WorldUtil.totalTime(this.worldObj)%100 == 0){
+                        int range = 5;
 
-                    List<BlockPos> possiblePositions = new ArrayList<BlockPos>();
-                    for(int x = -range; x <= range; x++){
-                        for(int z = -range; z <= range; z++){
-                            for(int y = -range; y <= range; y++){
-                                BlockPos possiblePos = new BlockPos(this.getPos().getX()+x, this.getPos().getY()+y, this.getPos().getZ()+z);
-                                IBlockState state = this.worldObj.getBlockState(possiblePos);
+                        List<BlockPos> possiblePositions = new ArrayList<BlockPos>();
+                        for(int x = -range; x <= range; x++){
+                            for(int z = -range; z <= range; z++){
+                                for(int y = -range; y <= range; y++){
+                                    BlockPos possiblePos = new BlockPos(this.getPos().getX()+x, this.getPos().getY()+y, this.getPos().getZ()+z);
+                                    IBlockState state = this.worldObj.getBlockState(possiblePos);
 
-                                if(state != null && state.getBlock() instanceof BlockFire){
-                                    possiblePositions.add(possiblePos);
+                                    if(state != null && state.getBlock() instanceof BlockFire){
+                                        possiblePositions.add(possiblePos);
+                                    }
                                 }
                             }
                         }
-                    }
 
-                    if(!possiblePositions.isEmpty()){
-                        Collections.shuffle(possiblePositions);
+                        if(!possiblePositions.isEmpty()){
+                            Collections.shuffle(possiblePositions);
 
-                        BlockPos toEat = possiblePositions.get(0);
-                        WorldUtil.setBlockWithParticles(this.worldObj, toEat, Blocks.air.getDefaultState(), false);
+                            BlockPos toEat = possiblePositions.get(0);
+                            this.worldObj.setBlockToAir(toEat);
 
-                        this.fireCooldown = 50;
+                            this.fireCooldown = 50;
+
+                            if(this.worldObj instanceof WorldServer){
+                                WorldServer worldServer = (WorldServer)this.worldObj;
+                                worldServer.spawnParticle(EnumParticleTypes.CLOUD, toEat.getX()+0.5, toEat.getY()+0.5, toEat.getZ()+0.5, 30, 0, 0, 0, 0.05);
+                            }
+                            this.worldObj.playAuxSFX(1004, toEat, 0);
+                        }
                     }
                 }
                 else{
@@ -97,7 +106,7 @@ public class TileFireGen extends TileLightComponentBase implements ITickable{
 
                     if(hasNetwork){
                         if(this.fireCooldown > 0){
-                            network.addLightGen(this, 30);
+                            network.addLightGen(this, 50);
                         }
                         else{
                             network.removeLightGen(this);
