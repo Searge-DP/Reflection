@@ -15,6 +15,7 @@ import cofh.api.energy.IEnergyProvider;
 import de.ellpeck.reflection.api.internal.ILightNetwork;
 import de.ellpeck.reflection.mod.tile.TileLightComponentBase;
 import de.ellpeck.reflection.mod.util.WorldUtil;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 
@@ -32,6 +33,18 @@ public class TileRFConverter extends TileLightComponentBase implements IEnergyPr
     @Override
     public int getMaxDistanceFromComponent(){
         return 10;
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound compound){
+        super.readFromNBT(compound);
+        this.storage.readFromNBT(compound);
+    }
+
+    @Override
+    public void writeToNBT(NBTTagCompound compound){
+        super.writeToNBT(compound);
+        this.storage.writeToNBT(compound);
     }
 
     @Override
@@ -65,13 +78,13 @@ public class TileRFConverter extends TileLightComponentBase implements IEnergyPr
                     this.storage.receiveEnergy(rfGen, false);
 
                     if(!this.usesLightInNetwork){
-                        network.addLightGen(this, need);
+                        network.addLightUser(this, need);
                         this.usesLightInNetwork = true;
                     }
                 }
                 else{
                     if(this.usesLightInNetwork){
-                        network.removeLightGen(this);
+                        network.removeLightUser(this);
                         this.usesLightInNetwork = false;
                     }
                 }

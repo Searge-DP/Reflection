@@ -41,6 +41,7 @@ public class CreativeTab extends CreativeTabs{
         //Special
         this.addBlock(InitBlocks.blockConverter12);
         this.addBlock(InitBlocks.blockConverter23);
+        this.addBlock(InitBlocks.blockConverter34);
 
         //Tier 1
         this.addBlock(InitBlocks.blockReflector1);
@@ -55,9 +56,11 @@ public class CreativeTab extends CreativeTabs{
 
         //Tier 3
         this.addBlock(InitBlocks.blockAdvancedCharger);
+        this.addBlock(InitBlocks.blockReflector3);
 
         //Tier 4
         this.addBlock(InitBlocks.blockRFConverter);
+        this.addBlock(InitBlocks.blockReflector4);
 
         this.addBlock(InitBlocks.blockLightanium);
         this.addBlock(InitBlocks.blockOreLightanium);

@@ -37,6 +37,9 @@ public class LibNames{
     public static final String BLOCK_ORE_DARKNESS = "blockOreDarkness";
     public static final String BLOCK_FIRE_GEN = "blockFireGen";
     public static final String BLOCK_RF_CONVERTER = "blockRFConverter";
+    public static final String BLOCK_CONVERTER_3_4 = "blockConverter34";
+    public static final String BLOCK_REFLECTOR_3 = "blockReflector3";
+    public static final String BLOCK_REFLECTOR_4 = "blockReflector4";
 
     //Tiles
     public static final String TILE_CONNECTION_TUNNEL = "tileConnectionTunnel1";
@@ -51,6 +54,9 @@ public class LibNames{
     public static final String TILE_PASSIVE_MOB_GEN = "tilePassiveMobGen";
     public static final String TILE_FIRE_GEN = "tileFireGen";
     public static final String TILE_RF_CONVERTER = "tileRFConverter";
+    public static final String TILE_CONVERTER_3_4 = "tileConverter34";
+    public static final String TILE_REFLECTOR_3 = "tileReflector3";
+    public static final String TILE_REFLECTOR_4 = "tileReflector4";
 
     //Items
     public static final String ITEM_LIGHT_CONNECTOR = "itemLightConnector";

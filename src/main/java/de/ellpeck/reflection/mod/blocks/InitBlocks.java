@@ -12,6 +12,7 @@ package de.ellpeck.reflection.mod.blocks;
 
 import de.ellpeck.reflection.mod.blocks.special.BlockConverter12;
 import de.ellpeck.reflection.mod.blocks.special.BlockConverter23;
+import de.ellpeck.reflection.mod.blocks.special.BlockConverter34;
 import de.ellpeck.reflection.mod.blocks.tier1.BlockCoallector;
 import de.ellpeck.reflection.mod.blocks.tier1.BlockConnectionTunnel1;
 import de.ellpeck.reflection.mod.blocks.tier1.BlockReflector1;
@@ -20,7 +21,9 @@ import de.ellpeck.reflection.mod.blocks.tier2.BlockFireGen;
 import de.ellpeck.reflection.mod.blocks.tier2.BlockPassiveMobGen;
 import de.ellpeck.reflection.mod.blocks.tier2.BlockReflector2;
 import de.ellpeck.reflection.mod.blocks.tier3.BlockAdvancedCharger;
+import de.ellpeck.reflection.mod.blocks.tier3.BlockReflector3;
 import de.ellpeck.reflection.mod.blocks.tier4.BlockRFConverter;
+import de.ellpeck.reflection.mod.blocks.tier4.BlockReflector4;
 import de.ellpeck.reflection.mod.lib.LibMod;
 import de.ellpeck.reflection.mod.lib.LibNames;
 import de.ellpeck.reflection.mod.tile.TileGlassShards;
@@ -32,6 +35,7 @@ public class InitBlocks{
     //Special
     public static Block blockConverter12;
     public static Block blockConverter23;
+    public static Block blockConverter34;
 
     //Tier 1
     public static Block blockReflector1;
@@ -46,9 +50,11 @@ public class InitBlocks{
 
     //Tier 3
     public static Block blockAdvancedCharger;
+    public static Block blockReflector3;
 
     //Tier 4
     public static Block blockRFConverter;
+    public static Block blockReflector4;
 
     public static Block blockSparkle;
     public static Block blockGlassShards;
@@ -65,6 +71,7 @@ public class InitBlocks{
         //Special
         blockConverter12 = new BlockConverter12();
         blockConverter23 = new BlockConverter23();
+        blockConverter34 = new BlockConverter34();
 
         //Tier 1
         blockReflector1 = new BlockReflector1();
@@ -79,9 +86,11 @@ public class InitBlocks{
 
         //Tier 3
         blockAdvancedCharger = new BlockAdvancedCharger();
+        blockReflector3 = new BlockReflector3();
 
         //Tier 4
         blockRFConverter = new BlockRFConverter();
+        blockReflector4 = new BlockReflector4();
 
         blockSparkle = new BlockSparkle();
         blockGlassShards = new BlockGlassShards();

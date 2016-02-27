@@ -55,6 +55,9 @@ tile.reflection.blockOreDarkness.name=Ore of the Dark
 tile.reflection.blockDarkness.name=Block of the Dark
 tile.reflection.blockFireGen.name=Absorber of Infernos
 tile.reflection.blockRFConverter.name=Converter of the Fluxified
+tile.reflection.blockConverter34.name=Converter - Gentry's Baronship
+tile.reflection.blockReflector3.name=Reflector of the Gentries
+tile.reflection.blockReflector4.name=Reflector of the Barons
 
 #Misc
 misc.reflection.connectionWorked=You see a beam of light appear...
