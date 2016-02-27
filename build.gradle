@@ -17,7 +17,7 @@ group = "de.ellpeck.reflection"
 archivesBaseName = "Reflection"
 
 minecraft {
-    version = "1.8.9-11.15.1.1732"
+    version = "1.8.9-11.15.1.1763"
     runDir = "run"
 
     mappings = "stable_20"
