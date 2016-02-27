@@ -16,7 +16,6 @@ import de.ellpeck.reflection.mod.tile.TileLightComponentBase;
 import de.ellpeck.reflection.mod.util.WorldUtil;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ITickable;
 
@@ -24,8 +23,7 @@ import java.util.List;
 
 public class TileCharger extends TileLightComponentBase implements ITickable{
 
-    private static final String TAG_USES_LIGHT = "UsesLight";
-    protected boolean usesLightInNetwork;
+    private boolean usesLightInNetwork;
 
     @Override
     public int getMaxConnections(){
@@ -35,18 +33,6 @@ public class TileCharger extends TileLightComponentBase implements ITickable{
     @Override
     public int getMaxDistanceFromComponent(){
         return 10;
-    }
-
-    @Override
-    public void readFromNBT(NBTTagCompound compound){
-        super.readFromNBT(compound);
-        this.usesLightInNetwork = compound.getBoolean(TAG_USES_LIGHT);
-    }
-
-    @Override
-    public void writeToNBT(NBTTagCompound compound){
-        super.writeToNBT(compound);
-        compound.setBoolean(TAG_USES_LIGHT, this.usesLightInNetwork);
     }
 
     @Override

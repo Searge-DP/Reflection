@@ -20,6 +20,7 @@ import de.ellpeck.reflection.mod.blocks.tier2.BlockFireGen;
 import de.ellpeck.reflection.mod.blocks.tier2.BlockPassiveMobGen;
 import de.ellpeck.reflection.mod.blocks.tier2.BlockReflector2;
 import de.ellpeck.reflection.mod.blocks.tier3.BlockAdvancedCharger;
+import de.ellpeck.reflection.mod.blocks.tier4.BlockRFConverter;
 import de.ellpeck.reflection.mod.lib.LibMod;
 import de.ellpeck.reflection.mod.lib.LibNames;
 import de.ellpeck.reflection.mod.tile.TileGlassShards;
@@ -45,6 +46,9 @@ public class InitBlocks{
 
     //Tier 3
     public static Block blockAdvancedCharger;
+
+    //Tier 4
+    public static Block blockRFConverter;
 
     public static Block blockSparkle;
     public static Block blockGlassShards;
@@ -75,6 +79,9 @@ public class InitBlocks{
 
         //Tier 3
         blockAdvancedCharger = new BlockAdvancedCharger();
+
+        //Tier 4
+        blockRFConverter = new BlockRFConverter();
 
         blockSparkle = new BlockSparkle();
         blockGlassShards = new BlockGlassShards();

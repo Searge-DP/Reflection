@@ -27,6 +27,7 @@ public class ReflectionAPI{
     public static final LightNetworkTier TIER_1 = new LightNetworkTier(1, EntitySheep.func_175513_a(EnumDyeColor.WHITE));
     public static final LightNetworkTier TIER_2 = new LightNetworkTier(2, EntitySheep.func_175513_a(EnumDyeColor.ORANGE));
     public static final LightNetworkTier TIER_3 = new LightNetworkTier(3, EntitySheep.func_175513_a(EnumDyeColor.MAGENTA));
+    public static final LightNetworkTier TIER_4 = new LightNetworkTier(4, EntitySheep.func_175513_a(EnumDyeColor.LIGHT_BLUE));
 
     /**
      * The method handler

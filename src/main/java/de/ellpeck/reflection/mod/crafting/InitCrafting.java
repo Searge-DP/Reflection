@@ -75,6 +75,7 @@ public class InitCrafting{
         addShaped(new ItemStack(InitBlocks.blockAdvancedCharger), "NBN", "NRN", "LLL", 'B', new ItemStack(InitItems.itemLightBatteryAdvanced), 'R', new ItemStack(InitBlocks.blockReflector1), 'N', new ItemStack(InitItems.itemLightaniumNugget), 'L', new ItemStack(InitItems.itemLightaniumIngot));
         addShaped(new ItemStack(InitBlocks.blockPassiveMobGen), "NNN", "NRN", "DDD", 'N', new ItemStack(InitItems.itemLightaniumNugget), 'R', new ItemStack(Items.leather), 'D', new ItemStack(InitItems.itemDarknessIngot));
         addShaped(new ItemStack(InitBlocks.blockFireGen), "NPN", "NRN", "DDD", 'N', new ItemStack(InitItems.itemLightaniumNugget), 'R', new ItemStack(Items.water_bucket), 'P', new ItemStack(Items.fire_charge), 'D', new ItemStack(InitItems.itemDarknessIngot));
+        addShaped(new ItemStack(InitBlocks.blockRFConverter), "DLD", "LRL", "DLD", 'D', new ItemStack(InitBlocks.blockDarkness), 'L', new ItemStack(InitBlocks.blockLightanium), 'R', new ItemStack(Items.redstone));
 
         LibMod.LOGGER.info(String.format("%s has registered %s Crafting Recipes!", LibMod.MOD_NAME, CraftingManager.getInstance().getRecipeList().size()-craftingSize));
     }

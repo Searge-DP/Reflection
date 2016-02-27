@@ -35,6 +35,7 @@ lightNetworkTier.reflection.0=Tierless
 lightNetworkTier.reflection.1=Commoners
 lightNetworkTier.reflection.2=Apprentices
 lightNetworkTier.reflection.3=Gentries
+lightNetworkTier.reflection.4=Barons
 
 #Blocks
 tile.reflection.blockConverter12.name=Converter - Commoner's Apprenticeship
@@ -53,6 +54,7 @@ tile.reflection.blockPassiveMobGen.name=Condenser of the Passive Light
 tile.reflection.blockOreDarkness.name=Ore of the Dark
 tile.reflection.blockDarkness.name=Block of the Dark
 tile.reflection.blockFireGen.name=Absorber of Infernos
+tile.reflection.blockRFConverter.name=Converter of the Fluxified
 
 #Misc
 misc.reflection.connectionWorked=You see a beam of light appear...
