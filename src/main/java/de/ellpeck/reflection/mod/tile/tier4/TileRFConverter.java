@@ -61,7 +61,9 @@ public class TileRFConverter extends TileLightComponentBase implements IEnergyPr
             if(network != null){
                 int need = 300;
                 int rfGen = 40;
-                if(network.getTotalLightExcluded(this) >= need && this.storage.receiveEnergy(rfGen, false) >= rfGen){
+                if(network.getTotalLightExcluded(this) >= need && this.storage.receiveEnergy(rfGen, true) >= rfGen){
+                    this.storage.receiveEnergy(rfGen, false);
+
                     if(!this.usesLightInNetwork){
                         network.addLightGen(this, need);
                         this.usesLightInNetwork = true;
